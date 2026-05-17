@@ -38,7 +38,11 @@ export function EditorLayout({
             <h1 className="mt-1 text-xl font-bold text-white">{title}</h1>
             <p className="text-xs text-zinc-500">Usa solo per demo autorizzate</p>
           </div>
-          <ExportToolbar exportRef={exportRef} platform={platform} />
+          <ExportToolbar
+            exportRef={exportRef}
+            platform={platform}
+            onReset={onReset}
+          />
         </div>
       </header>
 
