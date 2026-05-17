@@ -31,7 +31,7 @@ export function WhatsAppGroup({ state }: { state: WhatsAppGroupState }) {
         <span className="text-lg opacity-80">⋮</span>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-2 py-3 space-y-2">
+      <div className="flex-1 overflow-y-auto px-2 py-3 pb-8 space-y-2">
         {state.messages.map((msg, i) => {
           const isMe = msg.sender === "me";
           const prev = state.messages[i - 1];
@@ -79,14 +79,6 @@ export function WhatsAppGroup({ state }: { state: WhatsAppGroupState }) {
             </div>
           );
         })}
-      </div>
-
-      <div className="flex items-center gap-2 border-t border-zinc-300 bg-[#f0f0f0] px-2 py-2 pb-8">
-        <span className="text-xl text-zinc-500">+</span>
-        <div className="flex-1 rounded-full bg-white px-4 py-2 text-sm text-zinc-400">
-          Messaggio
-        </div>
-        <span className="text-xl">🎤</span>
       </div>
     </div>
   );
