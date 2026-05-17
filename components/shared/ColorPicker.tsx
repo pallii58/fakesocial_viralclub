@@ -66,18 +66,24 @@ export function ColorPicker({
   const [hexFocused, setHexFocused] = useState(false);
   const hsvRef = useRef(hsv);
   hsvRef.current = hsv;
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
 
   const presetList = uniquePresets(presets);
+
+  const emitChange = useCallback((hex: string) => {
+    queueMicrotask(() => onChangeRef.current(hex));
+  }, []);
 
   const applyHsv = useCallback(
     (next: Hsv) => {
       hsvRef.current = next;
       setHsv(next);
       const hex = hsvToHex(next);
-      onChange(hex);
+      emitChange(hex);
       if (!hexFocused) setHexDraft(hex);
     },
-    [onChange, hexFocused]
+    [emitChange, hexFocused]
   );
 
   useEffect(() => {
@@ -247,11 +253,11 @@ export function ColorPicker({
 
           {presetList.length > 0 && (
             <div className="flex flex-wrap gap-1.5">
-              {presetList.map((hex) => {
+              {presetList.map((hex, i) => {
                 const selected = hex === safeHex;
                 return (
                   <button
-                    key={hex}
+                    key={`${hex}-${i}`}
                     type="button"
                     title={hex}
                     aria-label={`Colore ${hex}`}
