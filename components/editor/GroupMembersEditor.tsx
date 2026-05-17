@@ -18,33 +18,34 @@ export function GroupMembersEditor({
   };
 
   return (
-    <div className="space-y-3">
-      <h3 className="text-sm font-semibold text-violet-300/80">Membri gruppo</h3>
+    <div className="editor-fields">
+      <span className="editor-label block">Membri gruppo</span>
       {members.map((member) => (
-        <div
-          key={member.id}
-          className="space-y-2 rounded-lg border border-violet-500/15 bg-black/30 p-3"
-        >
-          <input
-            value={member.name}
-            onChange={(e) => update(member.id, { name: e.target.value })}
-            className="editor-input"
-            placeholder="Nome membro"
-          />
-          <ImageUploadField
-            label="Immagine profilo"
-            value={member.avatar}
-            onChange={(avatar) => update(member.id, { avatar })}
-          />
-          {member.id !== "me" && (
-            <button
-              type="button"
-              onClick={() => onChange(members.filter((m) => m.id !== member.id))}
-              className="text-xs text-red-400 hover:text-red-300"
-            >
-              Rimuovi membro
-            </button>
-          )}
+        <div key={member.id} className="editor-block">
+          <div className="editor-block-fields">
+            <input
+              value={member.name}
+              onChange={(e) => update(member.id, { name: e.target.value })}
+              className="editor-input"
+              placeholder="Nome membro"
+            />
+            <ImageUploadField
+              label="Immagine profilo"
+              value={member.avatar}
+              onChange={(avatar) => update(member.id, { avatar })}
+            />
+            {member.id !== "me" && (
+              <button
+                type="button"
+                onClick={() =>
+                  onChange(members.filter((m) => m.id !== member.id))
+                }
+                className="text-xs text-red-400 hover:text-red-300"
+              >
+                Rimuovi membro
+              </button>
+            )}
+          </div>
         </div>
       ))}
       <button
@@ -52,7 +53,7 @@ export function GroupMembersEditor({
         onClick={() =>
           onChange([...members, { id: genId(), name: "Nuovo membro" }])
         }
-        className="text-sm text-violet-400 hover:text-violet-300"
+        className="editor-dashed-btn"
       >
         + Aggiungi membro
       </button>

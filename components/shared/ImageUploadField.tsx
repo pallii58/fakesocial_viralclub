@@ -24,11 +24,9 @@ export function ImageUploadField({
   };
 
   return (
-    <div className="space-y-1">
-      <span className="block text-sm font-medium text-violet-300/80">
-        {label}
-      </span>
-      <div className="space-y-2">
+    <div className="flex w-full flex-col gap-3">
+      <span className="editor-label block normal-case">{label}</span>
+      <div className="flex flex-col gap-3">
         <input
           id={inputId}
           type="file"
@@ -39,7 +37,15 @@ export function ImageUploadField({
         <label htmlFor={inputId} className="editor-dashed-btn block">
           Scegli file
         </label>
-        {value && (
+      </div>
+      {value && (
+        <div className="mt-2 flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={value}
+            alt=""
+            className="h-16 w-16 shrink-0 rounded-full border border-violet-500/20 object-cover"
+          />
           <button
             type="button"
             onClick={() => onChange(undefined)}
@@ -47,15 +53,7 @@ export function ImageUploadField({
           >
             Rimuovi
           </button>
-        )}
-      </div>
-      {value && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={value}
-          alt=""
-          className="mt-1 h-16 w-16 rounded-full border border-violet-500/20 object-cover"
-        />
+        </div>
       )}
     </div>
   );

@@ -32,7 +32,7 @@ export function NotificationEditorClient({
       backHref={backHref}
       onReset={() => setState(defaultPushNotification(brand))}
       editor={
-        <div className="space-y-4">
+        <div className="editor-fields">
           <input
             value={state.contactName}
             onChange={(e) => setState({ ...state, contactName: e.target.value })}

@@ -77,7 +77,7 @@ export function Select({
   };
 
   return (
-    <div ref={rootRef} className={`relative ${className}`}>
+    <div ref={rootRef} className={`relative block w-full ${className}`}>
       <button
         type="button"
         disabled={disabled}

@@ -51,7 +51,8 @@ export function EditorLayout({
             exportRef={activeExportRef}
             platform={platform}
             onReset={onReset}
-            transparentExport={hasBubblesView && !showBackground}
+            transparentExport={hasBubblesView}
+            exportSuffix={hasBubblesView && !showBackground ? "-messaggi" : ""}
           />
         </div>
       </header>

@@ -17,8 +17,8 @@ export function PostFieldsEditor({
   const set = (patch: Partial<PostContext>) => onChange({ ...post, ...patch });
 
   return (
-    <div className="space-y-3 rounded-xl border border-violet-500/15 bg-black/30 p-3">
-      <h3 className="text-sm font-semibold text-violet-300/80">Post / Video</h3>
+    <div className="editor-block">
+      <span className="editor-label block">Post / Video</span>
       <input
         value={post.author}
         onChange={(e) => set({ author: e.target.value })}

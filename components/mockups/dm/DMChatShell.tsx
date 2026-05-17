@@ -1,6 +1,10 @@
 "use client";
 
 import type { DMChatState } from "@/lib/types";
+import {
+  type ChatBackgroundDefaults,
+  resolveChatBackground,
+} from "@/lib/chat-background";
 import { MockAvatar } from "../MockAvatar";
 import type { ChatThemeId } from "@/lib/chat-themes";
 import { ChatBubble } from "../bubbles/ChatBubble";
@@ -10,7 +14,7 @@ export interface DMChatShellProps {
   themeId: ChatThemeId;
   headerBg: string;
   headerText?: string;
-  bodyBg: string;
+  backgroundDefaults: ChatBackgroundDefaults;
   platformLabel?: string;
 }
 
@@ -19,11 +23,16 @@ export function DMChatShell({
   themeId,
   headerBg,
   headerText = "text-white",
-  bodyBg,
+  backgroundDefaults,
   platformLabel,
 }: DMChatShellProps) {
+  const bodyStyle = resolveChatBackground(
+    state.chatBackground,
+    backgroundDefaults
+  );
+
   return (
-    <div className={`flex h-full flex-col ${bodyBg}`}>
+    <div className="flex h-full flex-col" style={bodyStyle}>
       <div
         className={`flex items-center gap-3 px-3 pb-3 pt-12 ${headerBg} ${headerText}`}
       >

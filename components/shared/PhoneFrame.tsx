@@ -16,7 +16,7 @@ export const PhoneFrame = forwardRef<HTMLDivElement, PhoneFrameProps>(
           <div
             ref={ref}
             id="mock-export-root"
-            className="relative h-[812px] w-[375px] overflow-hidden rounded-[2rem] bg-white"
+            className="relative h-[812px] w-[375px] overflow-hidden rounded-[2rem] bg-transparent"
             style={{
               fontFamily:
                 "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",

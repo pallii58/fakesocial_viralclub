@@ -1,5 +1,6 @@
 "use client";
 
+import { chatBackgroundDefaults } from "@/lib/chat-background";
 import type { DMChatState } from "@/lib/types";
 import { DMChatShell } from "./DMChatShell";
 
@@ -10,7 +11,7 @@ export function TikTokDM({ state }: { state: DMChatState }) {
       themeId="tiktok"
       headerBg="bg-black"
       headerText="text-white"
-      bodyBg="bg-black"
+      backgroundDefaults={chatBackgroundDefaults.tiktok}
     />
   );
 }

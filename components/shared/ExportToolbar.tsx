@@ -7,6 +7,7 @@ interface ExportToolbarProps {
   platform: string;
   onReset: () => void;
   transparentExport?: boolean;
+  exportSuffix?: string;
 }
 
 export function ExportToolbar({
@@ -14,19 +15,16 @@ export function ExportToolbar({
   platform,
   onReset,
   transparentExport = false,
+  exportSuffix = "",
 }: ExportToolbarProps) {
   return (
     <div className="flex flex-wrap gap-2">
       <button
         type="button"
         onClick={() =>
-          exportMock(
-            exportRef.current,
-            platform,
-            "png",
-            transparentExport ? "-messaggi" : "",
-            { transparent: transparentExport }
-          )
+          exportMock(exportRef.current, platform, "png", exportSuffix, {
+            transparent: transparentExport,
+          })
         }
         className="btn-primary"
       >

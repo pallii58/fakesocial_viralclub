@@ -4,8 +4,10 @@ import { useState } from "react";
 import { defaultWhatsAppGroup } from "@/lib/defaults";
 import type { WhatsAppGroupState } from "@/lib/types";
 import { EditorLayout } from "@/components/shared/EditorLayout";
+import { ChatBackgroundEditor } from "@/components/editor/ChatBackgroundEditor";
 import { GroupMembersEditor } from "@/components/editor/GroupMembersEditor";
 import { MessageListEditor } from "@/components/editor/MessageListEditor";
+import { chatBackgroundDefaults } from "@/lib/chat-background";
 import { WhatsAppGroup } from "@/components/mockups/WhatsAppGroup";
 import { BubblesStack } from "@/components/mockups/bubbles/BubblesStack";
 
@@ -39,7 +41,7 @@ export default function WhatsAppGroupPage() {
         />
       }
       editor={
-        <div className="space-y-4">
+        <div className="editor-fields">
           <input
             value={state.groupName}
             onChange={(e) => setState({ ...state, groupName: e.target.value })}
@@ -49,6 +51,11 @@ export default function WhatsAppGroupPage() {
           <GroupMembersEditor
             members={state.members}
             onChange={(members) => setState({ ...state, members })}
+          />
+          <ChatBackgroundEditor
+            value={state.chatBackground}
+            onChange={(chatBackground) => setState({ ...state, chatBackground })}
+            defaultColor={chatBackgroundDefaults.whatsapp.solidColor}
           />
           <MessageListEditor
             messages={state.messages}

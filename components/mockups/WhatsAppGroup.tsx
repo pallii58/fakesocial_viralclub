@@ -1,5 +1,9 @@
 "use client";
 
+import {
+  chatBackgroundDefaults,
+  resolveChatBackground,
+} from "@/lib/chat-background";
 import type { WhatsAppGroupState } from "@/lib/types";
 import { MockAvatar } from "./MockAvatar";
 import { ReadTicks } from "./ReadTicks";
@@ -16,10 +20,13 @@ export function WhatsAppGroup({ state }: { state: WhatsAppGroupState }) {
   };
 
 
+  const bodyStyle = resolveChatBackground(
+    state.chatBackground,
+    chatBackgroundDefaults.whatsapp
+  );
+
   return (
-    <div
-      className="flex h-full flex-col bg-[#efeae2]"
-    >
+    <div className="flex h-full flex-col" style={bodyStyle}>
       <div className="flex items-center gap-3 bg-[#008069] px-3 pb-3 pt-12 text-white">
         <span className="text-lg">‹</span>
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm">

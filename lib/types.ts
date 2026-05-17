@@ -2,6 +2,14 @@ export type MessageSender = "me" | "other" | string;
 
 export type ReadStatus = "sent" | "delivered" | "read";
 
+export type ChatBackgroundMode = "default" | "solid" | "image";
+
+export interface ChatBackground {
+  mode: ChatBackgroundMode;
+  color?: string;
+  image?: string;
+}
+
 export interface Message {
   id: string;
   text: string;
@@ -45,6 +53,7 @@ export interface DMChatState {
   contactAvatar?: string;
   contactStatus?: string;
   messages: Message[];
+  chatBackground?: ChatBackground;
 }
 
 export type WhatsAppDMState = DMChatState;
@@ -53,6 +62,7 @@ export interface WhatsAppGroupState {
   groupName: string;
   members: GroupMember[];
   messages: Message[];
+  chatBackground?: ChatBackground;
 }
 
 export interface PushNotificationState {

@@ -40,16 +40,12 @@ export function MessageListEditor({
   ];
 
   return (
-    <div className="space-y-4">
+    <div className="editor-fields">
+      <span className="editor-label block">Messaggi</span>
       {messages.map((msg, i) => (
-        <div
-          key={msg.id}
-          className="space-y-2 rounded-xl border border-violet-500/15 bg-black/30 p-3"
-        >
+        <div key={msg.id} className="editor-block">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-violet-400/70">
-              Messaggio {i + 1}
-            </span>
+            <span className="editor-label">Messaggio {i + 1}</span>
             <div className="flex items-center gap-2">
               <MoveButtons
                 onUp={() => move(i, -1)}
@@ -66,29 +62,30 @@ export function MessageListEditor({
               </button>
             </div>
           </div>
-          <Select
-            value={String(msg.sender)}
-            onChange={(sender) => update(msg.id, { sender })}
-            options={senderOptions.map((s) => ({
-              value: String(s.id),
-              label: s.label,
-            }))}
-          />
-          <textarea
-            value={msg.text}
-            onChange={(e) => update(msg.id, { text: e.target.value })}
-            rows={2}
-            className="editor-input"
-            placeholder="Testo messaggio"
-          />
-          <input
-            value={msg.timestamp}
-            onChange={(e) => update(msg.id, { timestamp: e.target.value })}
-            className="editor-input"
-            placeholder="Orario (es. 10:30)"
-          />
-          {showReadStatus && msg.sender === "me" && (
+          <div className="editor-block-fields">
             <Select
+              value={String(msg.sender)}
+              onChange={(sender) => update(msg.id, { sender })}
+              options={senderOptions.map((s) => ({
+                value: String(s.id),
+                label: s.label,
+              }))}
+            />
+            <textarea
+              value={msg.text}
+              onChange={(e) => update(msg.id, { text: e.target.value })}
+              rows={2}
+              className="editor-input"
+              placeholder="Testo messaggio"
+            />
+            <input
+              value={msg.timestamp}
+              onChange={(e) => update(msg.id, { timestamp: e.target.value })}
+              className="editor-input"
+              placeholder="Orario (es. 10:30)"
+            />
+            {showReadStatus && msg.sender === "me" && (
+              <Select
               value={msg.readStatus ?? "read"}
               onChange={(readStatus) =>
                 update(msg.id, {
@@ -100,8 +97,9 @@ export function MessageListEditor({
                 { value: "delivered", label: "Ricevuto" },
                 { value: "read", label: "Letto" },
               ]}
-            />
-          )}
+              />
+            )}
+          </div>
         </div>
       ))}
       <button

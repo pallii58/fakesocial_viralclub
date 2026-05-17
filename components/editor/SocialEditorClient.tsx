@@ -37,7 +37,7 @@ export function SocialEditorClient({
       backHref={backHref}
       onReset={reset}
       editor={
-        <div className="space-y-4">
+        <div className="editor-fields">
           <ViewModeToggle
             value={state.viewMode}
             onChange={(viewMode) => setState({ ...state, viewMode })}

@@ -1,5 +1,6 @@
 "use client";
 
+import { chatBackgroundDefaults } from "@/lib/chat-background";
 import type { DMChatState } from "@/lib/types";
 import { DMChatShell } from "./DMChatShell";
 
@@ -10,7 +11,7 @@ export function YouTubeDM({ state }: { state: DMChatState }) {
       themeId="youtube"
       headerBg="bg-[#0f0f0f]"
       headerText="text-white"
-      bodyBg="bg-[#0f0f0f]"
+      backgroundDefaults={chatBackgroundDefaults.youtube}
       platformLabel="Posta"
     />
   );

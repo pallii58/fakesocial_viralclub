@@ -4,8 +4,10 @@ import { useState } from "react";
 import { defaultWhatsAppDM } from "@/lib/defaults";
 import type { DMChatState } from "@/lib/types";
 import type { ChatThemeId } from "@/lib/chat-themes";
+import { chatBackgroundDefaults } from "@/lib/chat-background";
 import { EditorLayout } from "@/components/shared/EditorLayout";
 import { ImageUploadField } from "@/components/shared/ImageUploadField";
+import { ChatBackgroundEditor } from "./ChatBackgroundEditor";
 import { MessageListEditor } from "./MessageListEditor";
 import { BubblesStack } from "@/components/mockups/bubbles/BubblesStack";
 
@@ -41,7 +43,7 @@ export function DMEditorClient({
         <BubblesStack messages={state.messages} themeId={themeId} />
       }
       editor={
-        <div className="space-y-4">
+        <div className="editor-fields">
           <input
             value={state.contactName}
             onChange={(e) =>
@@ -62,6 +64,11 @@ export function DMEditorClient({
             label="Immagine profilo contatto"
             value={state.contactAvatar}
             onChange={(contactAvatar) => setState({ ...state, contactAvatar })}
+          />
+          <ChatBackgroundEditor
+            value={state.chatBackground}
+            onChange={(chatBackground) => setState({ ...state, chatBackground })}
+            defaultColor={chatBackgroundDefaults[themeId].solidColor}
           />
           <MessageListEditor
             messages={state.messages}
