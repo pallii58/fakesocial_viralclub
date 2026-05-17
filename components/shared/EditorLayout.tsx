@@ -35,7 +35,7 @@ export function EditorLayout({
       <header className="relative border-b border-violet-500/10 bg-black/50 px-4 py-4 backdrop-blur-xl sm:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <BackLink href={backHref}>← Indietro</BackLink>
+            <BackLink href={backHref}>Indietro</BackLink>
             <h1 className="mt-1 text-xl font-bold text-white">{title}</h1>
             <p className="text-xs text-zinc-500">Usa solo per demo autorizzate</p>
           </div>
