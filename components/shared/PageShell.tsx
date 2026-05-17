@@ -17,11 +17,14 @@ export function PageShell({ children, showHeader = true }: PageShellProps) {
 
       {showHeader && (
         <header className="relative border-b border-white/5 bg-black/40 px-4 py-5 backdrop-blur-xl sm:px-12">
-          <motion.div className="mx-auto flex max-w-5xl items-center">
-            <Link href="/" className="inline-block">
+          <div className="mx-auto flex max-w-5xl items-center">
+            <Link href="/" className="inline-flex items-center gap-3">
               <AppLogo size="md" priority />
+              <span className="text-base font-semibold tracking-tight text-white">
+                Fake Social
+              </span>
             </Link>
-          </motion.div>
+          </div>
         </header>
       )}
 
