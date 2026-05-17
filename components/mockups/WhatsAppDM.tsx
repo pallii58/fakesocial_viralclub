@@ -11,7 +11,6 @@ export function WhatsAppDM({ state }: { state: DMChatState }) {
       headerBg="bg-[#008069]"
       headerText="text-white"
       bodyBg="bg-[#efeae2]"
-      inputPlaceholder="Messaggio"
     />
   );
 }

@@ -11,7 +11,6 @@ export function InstagramDM({ state }: { state: DMChatState }) {
       headerBg="bg-white border-b border-zinc-200"
       headerText="text-zinc-900"
       bodyBg="bg-white"
-      inputPlaceholder="Messaggio..."
     />
   );
 }

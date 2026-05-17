@@ -12,7 +12,6 @@ export function FacebookMessenger({ state }: { state: DMChatState }) {
       headerText="text-zinc-900"
       bodyBg="bg-white"
       platformLabel="Messenger"
-      inputPlaceholder="Aa"
     />
   );
 }

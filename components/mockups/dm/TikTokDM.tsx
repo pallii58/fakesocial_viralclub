@@ -11,7 +11,6 @@ export function TikTokDM({ state }: { state: DMChatState }) {
       headerBg="bg-black"
       headerText="text-white"
       bodyBg="bg-black"
-      inputPlaceholder="Invia un messaggio..."
     />
   );
 }

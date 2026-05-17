@@ -12,7 +12,6 @@ export function YouTubeDM({ state }: { state: DMChatState }) {
       headerText="text-white"
       bodyBg="bg-[#0f0f0f]"
       platformLabel="Posta"
-      inputPlaceholder="Scrivi un messaggio..."
     />
   );
 }
