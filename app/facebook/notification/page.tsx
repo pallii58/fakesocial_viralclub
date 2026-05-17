@@ -1,11 +1,11 @@
 import { NotificationEditorClient } from "@/components/editor/NotificationEditorClient";
 
-export default function WhatsAppNotificationPage() {
+export default function FacebookNotificationPage() {
   return (
     <NotificationEditorClient
-      brand="whatsapp"
-      title="WhatsApp — Notifica"
-      backHref="/whatsapp"
+      brand="facebook"
+      title="Messenger — Notifica"
+      backHref="/facebook"
     />
   );
 }

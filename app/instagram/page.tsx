@@ -16,6 +16,11 @@ export default function InstagramHubPage() {
           title: "Post e commenti",
           description: "Post con immagine e thread commenti",
         },
+        {
+          href: "/instagram/notification",
+          title: "Notifica",
+          description: "Banner push stile Instagram per lock screen",
+        },
       ]}
     />
   );

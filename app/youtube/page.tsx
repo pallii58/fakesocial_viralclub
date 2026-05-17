@@ -16,6 +16,11 @@ export default function YouTubeHubPage() {
           title: "Video e commenti",
           description: "Thumbnail, titolo e thread commenti",
         },
+        {
+          href: "/youtube/notification",
+          title: "Notifica",
+          description: "Banner push stile YouTube per lock screen",
+        },
       ]}
     />
   );

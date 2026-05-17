@@ -55,7 +55,7 @@ export interface WhatsAppGroupState {
   messages: Message[];
 }
 
-export interface WhatsAppNotificationState {
+export interface PushNotificationState {
   contactName: string;
   contactAvatar?: string;
   message: string;
@@ -63,6 +63,9 @@ export interface WhatsAppNotificationState {
   isGroup?: boolean;
   groupName?: string;
 }
+
+/** @deprecated Use PushNotificationState */
+export type WhatsAppNotificationState = PushNotificationState;
 
 export interface SocialEditorState {
   viewMode: ViewMode;

@@ -17,25 +17,25 @@ export const platforms: PlatformCard[] = [
   {
     id: "instagram",
     name: "Instagram",
-    description: "Direct, post e commenti",
+    description: "Direct, post, commenti e notifiche",
     href: "/instagram",
   },
   {
     id: "facebook",
     name: "Facebook",
-    description: "Messenger, post e commenti",
+    description: "Messenger, post, commenti e notifiche",
     href: "/facebook",
   },
   {
     id: "tiktok",
     name: "TikTok",
-    description: "DM, video e commenti",
+    description: "DM, video, commenti e notifiche",
     href: "/tiktok",
   },
   {
     id: "youtube",
     name: "YouTube",
-    description: "Inbox, video e commenti",
+    description: "Inbox, video, commenti e notifiche",
     href: "/youtube",
   },
 ];

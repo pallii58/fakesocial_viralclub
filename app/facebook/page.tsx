@@ -16,6 +16,11 @@ export default function FacebookHubPage() {
           title: "Post e commenti",
           description: "Post con testo/immagine e commenti",
         },
+        {
+          href: "/facebook/notification",
+          title: "Notifica",
+          description: "Banner push stile Messenger per lock screen",
+        },
       ]}
     />
   );

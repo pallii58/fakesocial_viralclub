@@ -6,8 +6,10 @@ import type {
   PostContext,
   SocialEditorState,
   WhatsAppGroupState,
-  WhatsAppNotificationState,
+  PushNotificationState,
 } from "./types";
+import type { BrandId } from "@/components/brand/NeonBrandLogo";
+import { getNotificationConfig } from "./notification-config";
 
 let idCounter = 0;
 export function genId(): string {
@@ -225,13 +227,12 @@ export function defaultWhatsAppSingleMessage(): Message {
   };
 }
 
-export function defaultWhatsAppNotification(): WhatsAppNotificationState {
-  return {
-    contactName: "Marco Bianchi",
-    message: "Perfetto, ci sentiamo domani alle 15:00",
-    time: "ora",
-    isGroup: false,
-  };
+export function defaultPushNotification(brand: BrandId): PushNotificationState {
+  return getNotificationConfig(brand).defaultState();
+}
+
+export function defaultWhatsAppNotification(): PushNotificationState {
+  return defaultPushNotification("whatsapp");
 }
 
 export function defaultSocialState(

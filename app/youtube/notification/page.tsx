@@ -1,11 +1,11 @@
 import { NotificationEditorClient } from "@/components/editor/NotificationEditorClient";
 
-export default function WhatsAppNotificationPage() {
+export default function YouTubeNotificationPage() {
   return (
     <NotificationEditorClient
-      brand="whatsapp"
-      title="WhatsApp — Notifica"
-      backHref="/whatsapp"
+      brand="youtube"
+      title="YouTube — Notifica"
+      backHref="/youtube"
     />
   );
 }

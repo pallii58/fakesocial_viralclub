@@ -16,6 +16,11 @@ export default function TikTokHubPage() {
           title: "Video e commenti",
           description: "Video con caption e thread commenti",
         },
+        {
+          href: "/tiktok/notification",
+          title: "Notifica",
+          description: "Banner push stile TikTok per lock screen",
+        },
       ]}
     />
   );
