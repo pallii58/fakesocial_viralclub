@@ -62,6 +62,8 @@ export function ColorPicker({
 
   const safeHex = normalizeHex(value) ?? normalizeHex("#efeae2")!;
   const [hsv, setHsv] = useState<Hsv>(() => hexToHsv(safeHex));
+  const [hexDraft, setHexDraft] = useState(safeHex);
+  const [hexFocused, setHexFocused] = useState(false);
   const hsvRef = useRef(hsv);
   hsvRef.current = hsv;
 
@@ -71,9 +73,11 @@ export function ColorPicker({
     (next: Hsv) => {
       hsvRef.current = next;
       setHsv(next);
-      onChange(hsvToHex(next));
+      const hex = hsvToHex(next);
+      onChange(hex);
+      if (!hexFocused) setHexDraft(hex);
     },
-    [onChange]
+    [onChange, hexFocused]
   );
 
   useEffect(() => {
@@ -84,7 +88,8 @@ export function ColorPicker({
       hsvRef.current = nextHsv;
       setHsv(nextHsv);
     }
-  }, [value]);
+    if (!hexFocused) setHexDraft(next);
+  }, [value, hexFocused]);
 
   useEffect(() => {
     if (!open) return;
@@ -129,9 +134,25 @@ export function ColorPicker({
     applyHsv({ ...hsvRef.current, h: hue });
   };
 
-  const onHexInput = (raw: string) => {
+  const onHexInputChange = (raw: string) => {
     const n = normalizeHex(raw);
-    if (n) applyHsv(hexToHsv(n));
+    if (n) {
+      setHexDraft(n);
+      applyHsv(hexToHsv(n));
+    } else {
+      setHexDraft(raw);
+    }
+  };
+
+  const onHexBlur = () => {
+    setHexFocused(false);
+    const n = normalizeHex(hexDraft);
+    if (n) {
+      setHexDraft(n);
+      if (n !== safeHex) applyHsv(hexToHsv(n));
+    } else {
+      setHexDraft(safeHex);
+    }
   };
 
   const satX = `${hsv.s}%`;
@@ -218,8 +239,10 @@ export function ColorPicker({
             />
             <input
               type="text"
-              value={safeHex}
-              onChange={(e) => onHexInput(e.target.value)}
+              value={hexDraft}
+              onChange={(e) => onHexInputChange(e.target.value)}
+              onFocus={() => setHexFocused(true)}
+              onBlur={onHexBlur}
               className="editor-input flex-1 font-mono text-xs uppercase"
               placeholder="#rrggbb"
               spellCheck={false}
