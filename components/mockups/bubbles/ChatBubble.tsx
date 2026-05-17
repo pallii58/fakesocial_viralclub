@@ -18,6 +18,8 @@ interface ChatBubbleProps {
   showSenderName?: string;
   senderNameColor?: string;
   senderAvatar?: SenderAvatarSlot;
+  /** Centra la bolla (es. singolo messaggio in export trasparente) */
+  centered?: boolean;
   className?: string;
 }
 
@@ -27,15 +29,19 @@ export function ChatBubble({
   showSenderName,
   senderNameColor,
   senderAvatar,
+  centered = false,
   className = "",
 }: ChatBubbleProps) {
   const theme = chatThemes[themeId];
   const isMe = isMeSender(message.sender);
+  const rowAlign = centered
+    ? "justify-center"
+    : isMe
+      ? "justify-end"
+      : "justify-start";
 
   return (
-    <div
-      className={`flex w-full gap-1 ${isMe ? "justify-end" : "justify-start"} ${className}`}
-    >
+    <div className={`flex w-full gap-1 ${rowAlign} ${className}`}>
       {!isMe && senderAvatar !== undefined && (
         <div className="w-7 shrink-0 self-end">
           {senderAvatar ? (

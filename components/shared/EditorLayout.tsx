@@ -90,7 +90,14 @@ export function EditorLayout({
               </div>
             ) : (
               <div className={checkerboardClass}>
-                <div ref={bubblesRef}>{bubblesPreview}</div>
+                <div
+                  ref={bubblesRef}
+                  className={
+                    bubbleOnlyPreview ? "flex w-full justify-center" : undefined
+                  }
+                >
+                  {bubblesPreview}
+                </div>
               </div>
             )}
           </div>

@@ -23,7 +23,9 @@ export default function WhatsAppSingleMessagePage() {
       onReset={() => setMessage(defaultWhatsAppSingleMessage())}
       bubbleOnlyPreview
       showBubbleExport
-      bubblesPreview={<ChatBubble message={message} themeId="whatsapp" />}
+      bubblesPreview={
+        <ChatBubble message={message} themeId="whatsapp" centered />
+      }
       editor={
         <div className="editor-fields">
           <div>

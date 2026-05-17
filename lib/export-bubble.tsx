@@ -25,6 +25,7 @@ export async function exportSingleBubble(
       message={message}
       themeId={themeId}
       showSenderName={showSenderName}
+      centered
     />
   );
 
