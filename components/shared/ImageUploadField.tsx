@@ -28,7 +28,7 @@ export function ImageUploadField({
       <span className="block text-sm font-medium text-violet-300/80">
         {label}
       </span>
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="space-y-2">
         <input
           id={inputId}
           type="file"
@@ -36,7 +36,7 @@ export function ImageUploadField({
           onChange={handleFile}
           className="sr-only"
         />
-        <label htmlFor={inputId} className="file-upload-btn">
+        <label htmlFor={inputId} className="editor-dashed-btn block">
           Scegli file
         </label>
         {value && (

@@ -107,7 +107,7 @@ export function MessageListEditor({
       <button
         type="button"
         onClick={() => onChange([...messages, newMessage("me")])}
-        className="w-full rounded-xl border-2 border-dashed border-violet-500/25 py-2.5 text-sm font-medium text-violet-300/80 transition hover:border-violet-400/50 hover:bg-violet-950/30 hover:text-violet-200"
+        className="editor-dashed-btn"
       >
         + Aggiungi messaggio
       </button>
