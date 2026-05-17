@@ -20,8 +20,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="mt-4 text-lg text-zinc-400">
-            Chat, DM, commenti e post finti per presentazioni e pitch. Export PNG,
-            JPG e bolle trasparenti.
+            Chat, DM, commenti e post finti per presentazioni e pitch.
           </p>
         </div>
 
