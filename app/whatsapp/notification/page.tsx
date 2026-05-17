@@ -4,7 +4,7 @@ export default function WhatsAppNotificationPage() {
   return (
     <NotificationEditorClient
       brand="whatsapp"
-      title="WhatsApp — Notifica"
+      title="WhatsApp · Notifica"
       backHref="/whatsapp"
     />
   );

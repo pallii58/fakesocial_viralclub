@@ -4,7 +4,7 @@ export default function TikTokNotificationPage() {
   return (
     <NotificationEditorClient
       brand="tiktok"
-      title="TikTok — Notifica"
+      title="TikTok · Notifica"
       backHref="/tiktok"
     />
   );

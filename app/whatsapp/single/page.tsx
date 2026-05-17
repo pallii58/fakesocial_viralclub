@@ -18,7 +18,7 @@ export default function WhatsAppSingleMessagePage() {
 
   return (
     <EditorLayout
-      title="WhatsApp — Singolo messaggio"
+      title="WhatsApp · Singolo messaggio"
       platform="whatsapp-single"
       backHref="/whatsapp"
       onReset={() => setMessage(defaultWhatsAppSingleMessage())}

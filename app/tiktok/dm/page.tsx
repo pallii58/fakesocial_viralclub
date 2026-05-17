@@ -7,7 +7,7 @@ import { defaultTikTokDM } from "@/lib/defaults";
 export default function TikTokDMPage() {
   return (
     <DMEditorClient
-      title="TikTok — Direct"
+      title="TikTok · Direct"
       platform="tiktok-dm"
       themeId="tiktok"
       backHref="/tiktok"

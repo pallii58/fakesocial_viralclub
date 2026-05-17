@@ -6,7 +6,7 @@ import { TikTokMock } from "@/components/mockups/TikTokMock";
 export default function TikTokVideoPage() {
   return (
     <SocialEditorClient
-      title="TikTok — Video e commenti"
+      title="TikTok · Video e commenti"
       platform="tiktok-video"
       backHref="/tiktok"
       defaultPost={{

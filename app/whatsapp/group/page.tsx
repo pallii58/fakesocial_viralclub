@@ -26,7 +26,7 @@ export default function WhatsAppGroupPage() {
 
   return (
     <EditorLayout
-      title="WhatsApp — Gruppo"
+      title="WhatsApp · Gruppo"
       platform="whatsapp-group"
       backHref="/whatsapp"
       onReset={() => setState(defaultWhatsAppGroup())}

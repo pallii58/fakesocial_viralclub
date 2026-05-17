@@ -7,7 +7,7 @@ import { defaultWhatsAppDM } from "@/lib/defaults";
 export default function WhatsAppDMPage() {
   return (
     <DMEditorClient
-      title="WhatsApp — Chat DM"
+      title="WhatsApp · Chat DM"
       platform="whatsapp-dm"
       themeId="whatsapp"
       backHref="/whatsapp"

@@ -7,7 +7,7 @@ import { defaultInstagramDM } from "@/lib/defaults";
 export default function InstagramDMPage() {
   return (
     <DMEditorClient
-      title="Instagram — Direct"
+      title="Instagram · Direct"
       platform="instagram-dm"
       themeId="instagram"
       backHref="/instagram"

@@ -4,7 +4,7 @@ export default function FacebookNotificationPage() {
   return (
     <NotificationEditorClient
       brand="facebook"
-      title="Messenger — Notifica"
+      title="Messenger · Notifica"
       backHref="/facebook"
     />
   );

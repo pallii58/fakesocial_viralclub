@@ -4,7 +4,7 @@ export default function YouTubeNotificationPage() {
   return (
     <NotificationEditorClient
       brand="youtube"
-      title="YouTube — Notifica"
+      title="YouTube · Notifica"
       backHref="/youtube"
     />
   );

@@ -7,7 +7,7 @@ import { defaultYouTubeDM } from "@/lib/defaults";
 export default function YouTubeDMPage() {
   return (
     <DMEditorClient
-      title="YouTube — Messaggi"
+      title="YouTube · Messaggi"
       platform="youtube-dm"
       themeId="youtube"
       backHref="/youtube"

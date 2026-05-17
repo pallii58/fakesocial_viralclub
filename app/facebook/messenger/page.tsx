@@ -7,7 +7,7 @@ import { defaultMessengerDM } from "@/lib/defaults";
 export default function FacebookMessengerPage() {
   return (
     <DMEditorClient
-      title="Facebook — Messenger"
+      title="Facebook · Messenger"
       platform="facebook-messenger"
       themeId="messenger"
       backHref="/facebook"
