@@ -67,6 +67,7 @@ export interface WhatsAppChatState {
   contactAvatar?: string;
   contactStatus?: string;
   groupName: string;
+  groupAvatar?: string;
   members: GroupMember[];
   messages: Message[];
   chatBackground?: ChatBackground;
@@ -74,6 +75,7 @@ export interface WhatsAppChatState {
 
 export interface WhatsAppGroupState {
   groupName: string;
+  groupAvatar?: string;
   members: GroupMember[];
   messages: Message[];
   chatBackground?: ChatBackground;

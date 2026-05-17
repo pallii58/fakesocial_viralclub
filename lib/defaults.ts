@@ -231,6 +231,7 @@ export function defaultWhatsAppChat(
       contactAvatar: dm.contactAvatar,
       contactStatus: dm.contactStatus,
       groupName: group.groupName,
+      groupAvatar: group.groupAvatar,
       members: group.members,
       messages: group.messages,
       chatBackground: group.chatBackground,
@@ -242,6 +243,7 @@ export function defaultWhatsAppChat(
     contactAvatar: dm.contactAvatar,
     contactStatus: dm.contactStatus,
     groupName: group.groupName,
+    groupAvatar: group.groupAvatar,
     members: group.members,
     messages: dm.messages,
     chatBackground: dm.chatBackground,
@@ -278,6 +280,7 @@ export function switchWhatsAppChatType(
     contactAvatar: state.contactAvatar,
     contactStatus: state.contactStatus ?? base.contactStatus,
     groupName: state.groupName || state.contactName || base.groupName,
+    groupAvatar: state.groupAvatar,
     members:
       state.members.length > 0
         ? state.members.map((m) => ({ ...m }))

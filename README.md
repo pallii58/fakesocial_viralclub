@@ -220,8 +220,8 @@ npm run lint
 | Route | Editor | Export bubble |
 |-------|--------|---------------|
 | `/whatsapp` | Hub | — |
-| `/whatsapp/dm` | Chat 1:1 | Sì |
-| `/whatsapp/group` | Gruppo | Sì |
+| `/whatsapp/chat` | Chat privata o gruppo (toggle in editor) | Sì |
+| `/whatsapp/dm`, `/whatsapp/group` | Reindirizzano a `/whatsapp/chat` | — |
 | `/whatsapp/single` | Singolo messaggio | Sì (+ export bolla dedicato) |
 | `/whatsapp/notification` | Notifica push | No |
 

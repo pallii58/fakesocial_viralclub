@@ -29,9 +29,12 @@ export function WhatsAppGroup({ state }: { state: WhatsAppGroupState }) {
     <div className="flex h-full flex-col" style={bodyStyle}>
       <div className="flex items-center gap-3 bg-[#008069] px-3 pb-3 pt-12 text-white">
         <span className="text-lg">‹</span>
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm">
-          👥
-        </div>
+        <MockAvatar
+          name={state.groupName}
+          src={state.groupAvatar}
+          size={36}
+          className="bg-white/20 text-white"
+        />
         <div className="flex-1 min-w-0">
           <p className="truncate text-[16px] font-medium">{state.groupName}</p>
           <p className="text-[12px] opacity-80">

@@ -35,6 +35,7 @@ function toDMState(state: WhatsAppChatState) {
 function toGroupState(state: WhatsAppChatState) {
   return {
     groupName: state.groupName,
+    groupAvatar: state.groupAvatar,
     members: state.members,
     messages: state.messages,
     chatBackground: state.chatBackground,
@@ -87,6 +88,13 @@ export function WhatsAppChatEditorClient() {
                 }
                 className="editor-input"
                 placeholder="Nome gruppo"
+              />
+              <ImageUploadField
+                label="Immagine gruppo"
+                value={state.groupAvatar}
+                onChange={(groupAvatar) =>
+                  setState({ ...state, groupAvatar })
+                }
               />
               <GroupMembersEditor
                 members={state.members}
