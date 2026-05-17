@@ -7,8 +7,8 @@ export interface NotificationPlatformConfig {
   avatarBg: string;
   avatarText: string;
   showGroup: boolean;
-  /** Logo app in basso a destra sull'avatar (es. WhatsApp) */
-  avatarAppBadge?: boolean;
+  /** Logo app in basso a destra sull'avatar */
+  avatarAppBadge: boolean;
   defaultState: () => PushNotificationState;
 }
 
@@ -33,6 +33,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarBg: "linear-gradient(135deg, #f58529, #dd2a7b, #8134af)",
     avatarText: "#ffffff",
     showGroup: false,
+    avatarAppBadge: true,
     defaultState: () => ({
       contactName: "influencer_demo",
       message: "Ti ha inviato un messaggio: Ciao! Ti va una collab? ✨",
@@ -45,6 +46,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarBg: "#0084FF",
     avatarText: "#ffffff",
     showGroup: true,
+    avatarAppBadge: true,
     defaultState: () => ({
       contactName: "Marco Bianchi",
       message: "Ehi, hai visto il post di oggi?",
@@ -58,6 +60,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarBg: "#010101",
     avatarText: "#ffffff",
     showGroup: false,
+    avatarAppBadge: true,
     defaultState: () => ({
       contactName: "creator_viral",
       message: "bro questo trend è perfetto per il brand 🔥",
@@ -70,6 +73,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarBg: "#FF0000",
     avatarText: "#ffffff",
     showGroup: false,
+    avatarAppBadge: true,
     defaultState: () => ({
       contactName: "Partner Brand",
       message: "Nuovo messaggio: Possiamo parlare della sponsorizzazione?",

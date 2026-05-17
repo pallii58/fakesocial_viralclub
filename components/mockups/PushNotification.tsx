@@ -86,53 +86,25 @@ export function PushNotification({
     ? `${state.groupName ?? "Gruppo"} · ${state.contactName}`
     : state.contactName;
 
-  const avatar = config.avatarAppBadge ? (
-    <AvatarWithAppBadge
-      brand={brand}
-      name={state.contactName}
-      src={state.contactAvatar}
-      avatarBg={config.avatarBg}
-      avatarText={config.avatarText}
-    />
-  ) : (
-    <ContactAvatar
-      name={state.contactName}
-      src={state.contactAvatar}
-      avatarBg={config.avatarBg}
-      avatarText={config.avatarText}
-    />
-  );
-
   const card = (
     <div className="w-full max-w-sm rounded-2xl border border-white/10 bg-white/[0.97] p-3 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl">
       <div className="flex gap-3">
-        {avatar}
+        <AvatarWithAppBadge
+          brand={brand}
+          name={state.contactName}
+          src={state.contactAvatar}
+          avatarBg={config.avatarBg}
+          avatarText={config.avatarText}
+        />
         <div className="min-w-0 flex-1">
-          {config.avatarAppBadge ? (
-            <div className="mb-0.5 flex items-center justify-between gap-2">
-              <p className="min-w-0 truncate text-[15px] font-semibold leading-tight text-zinc-900">
-                {title}
-              </p>
-              <span className="shrink-0 text-xs leading-tight text-zinc-500">
-                {state.time}
-              </span>
-            </div>
-          ) : (
-            <>
-              <div className="mb-0.5 flex items-center justify-between gap-2">
-                <span
-                  className="text-[11px] font-semibold uppercase tracking-wide"
-                  style={{ color: config.accent }}
-                >
-                  {config.appLabel}
-                </span>
-                <span className="shrink-0 text-xs text-zinc-500">{state.time}</span>
-              </div>
-              <p className="truncate text-[15px] font-semibold text-zinc-900">
-                {title}
-              </p>
-            </>
-          )}
+          <div className="mb-0.5 flex items-center justify-between gap-2">
+            <p className="min-w-0 truncate text-[15px] font-semibold leading-tight text-zinc-900">
+              {title}
+            </p>
+            <span className="shrink-0 text-xs leading-tight text-zinc-500">
+              {state.time}
+            </span>
+          </div>
           <p className="mt-0.5 line-clamp-2 text-sm leading-snug text-zinc-600">
             {state.message}
           </p>
