@@ -61,10 +61,10 @@ function AvatarWithAppBadge({
         avatarText={avatarText}
       />
       <span
-        className="absolute -bottom-0.5 -right-0.5 flex h-[18px] w-[18px] items-center justify-center overflow-hidden rounded-[5px] border border-zinc-200/90 bg-white shadow-sm"
+        className="absolute -bottom-0.5 -right-0.5 flex h-[15px] w-[15px] items-center justify-center overflow-hidden rounded-[4px] border border-zinc-200/90 bg-white shadow-sm"
         aria-hidden
       >
-        <NeonBrandLogo brand={brand} size={11} className="block" />
+        <NeonBrandLogo brand={brand} size={9} className="block" />
       </span>
     </div>
   );
