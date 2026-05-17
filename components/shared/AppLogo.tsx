@@ -9,7 +9,7 @@ interface AppLogoProps {
 
 const heights = {
   sm: 22,
-  md: 32,
+  md: 30,
   lg: 48,
 } as const;
 

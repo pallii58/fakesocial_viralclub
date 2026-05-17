@@ -45,7 +45,7 @@ function LogoGroup({
 /** Loghi ufficiali stile neon, dimensione uniforme nel box. */
 export function NeonBrandLogo({
   brand,
-  size = 40,
+  size = 30,
   className = "",
 }: NeonBrandLogoProps) {
   const colors = platformNeon[brand];
