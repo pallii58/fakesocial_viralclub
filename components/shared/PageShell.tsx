@@ -18,9 +18,12 @@ export function PageShell({ children, showHeader = true }: PageShellProps) {
       {showHeader && (
         <header className="relative border-b border-white/5 bg-black/40 px-4 py-5 backdrop-blur-xl sm:px-12">
           <div className="mx-auto flex max-w-5xl items-end">
-            <Link href="/" className="inline-flex items-end gap-2.5">
+            <Link
+              href="/"
+              className="inline-flex flex-col items-start gap-1 sm:flex-row sm:items-end sm:gap-2.5"
+            >
               <AppLogo size="md" priority className="shrink-0" />
-              <span className="translate-y-px bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text pb-0.5 text-lg font-bold leading-none tracking-tight text-transparent sm:text-xl">
+              <span className="bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-lg font-bold leading-none tracking-tight text-transparent sm:translate-y-px sm:pb-0.5 sm:text-xl">
                 Fake Social
               </span>
             </Link>
