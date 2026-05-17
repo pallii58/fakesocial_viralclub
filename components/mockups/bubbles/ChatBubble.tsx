@@ -3,13 +3,21 @@
 import type { ChatThemeId } from "@/lib/chat-themes";
 import { chatThemes, isMeSender } from "@/lib/chat-themes";
 import type { Message } from "@/lib/types";
+import { MockAvatar } from "../MockAvatar";
 import { ReadTicks } from "../ReadTicks";
+
+/** undefined = nessuna colonna avatar; false = spacer; object = avatar visibile */
+export type SenderAvatarSlot =
+  | undefined
+  | false
+  | { name: string; src?: string };
 
 interface ChatBubbleProps {
   message: Message;
   themeId: ChatThemeId;
   showSenderName?: string;
   senderNameColor?: string;
+  senderAvatar?: SenderAvatarSlot;
   className?: string;
 }
 
@@ -18,6 +26,7 @@ export function ChatBubble({
   themeId,
   showSenderName,
   senderNameColor,
+  senderAvatar,
   className = "",
 }: ChatBubbleProps) {
   const theme = chatThemes[themeId];
@@ -25,8 +34,21 @@ export function ChatBubble({
 
   return (
     <div
-      className={`flex w-full ${isMe ? "justify-end" : "justify-start"} ${className}`}
+      className={`flex w-full gap-1 ${isMe ? "justify-end" : "justify-start"} ${className}`}
     >
+      {!isMe && senderAvatar !== undefined && (
+        <div className="w-7 shrink-0 self-end">
+          {senderAvatar ? (
+            <MockAvatar
+              name={senderAvatar.name}
+              src={senderAvatar.src}
+              size={28}
+            />
+          ) : (
+            <div className="w-7" />
+          )}
+        </div>
+      )}
       <div
         className={`max-w-[85%] px-3 py-2 ${isMe ? theme.meBubble : theme.otherBubble}`}
       >

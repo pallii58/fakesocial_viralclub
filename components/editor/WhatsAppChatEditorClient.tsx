@@ -74,6 +74,11 @@ export function WhatsAppChatEditorClient() {
               ? (s) => getMemberNameColor(s, state.members)
               : undefined
           }
+          getSenderAvatar={
+            isGroup
+              ? (s) => state.members.find((m) => m.id === s)?.avatar
+              : undefined
+          }
         />
       }
       editor={

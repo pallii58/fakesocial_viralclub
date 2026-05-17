@@ -10,12 +10,20 @@ interface BubblesStackProps {
   themeId: ChatThemeId;
   getSenderName?: (sender: string) => string | undefined;
   getSenderNameColor?: (sender: string) => string | undefined;
+  getSenderAvatar?: (sender: string) => string | undefined;
   className?: string;
 }
 
 export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
   function BubblesStack(
-    { messages, themeId, getSenderName, getSenderNameColor, className = "" },
+    {
+      messages,
+      themeId,
+      getSenderName,
+      getSenderNameColor,
+      getSenderAvatar,
+      className = "",
+    },
     ref
   ) {
     return (
@@ -37,6 +45,17 @@ export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
             getSenderNameColor && showSender
               ? getSenderNameColor(String(msg.sender))
               : undefined;
+          const senderAvatar =
+            getSenderAvatar && msg.sender !== "me"
+              ? showSender
+                ? {
+                    name:
+                      getSenderName?.(String(msg.sender)) ??
+                      String(msg.sender),
+                    src: getSenderAvatar(String(msg.sender)),
+                  }
+                : false
+              : undefined;
           return (
             <ChatBubble
               key={msg.id}
@@ -44,6 +63,7 @@ export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
               themeId={themeId}
               showSenderName={showName}
               senderNameColor={nameColor}
+              senderAvatar={senderAvatar}
             />
           );
         })}
