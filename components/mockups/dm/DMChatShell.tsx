@@ -5,6 +5,7 @@ import {
   type ChatBackgroundDefaults,
   resolveChatBackground,
 } from "@/lib/chat-background";
+import { VerifiedBadge } from "@/components/shared/VerifiedBadge";
 import { MockAvatar } from "../MockAvatar";
 import type { ChatThemeId } from "@/lib/chat-themes";
 import { ChatBubble } from "../bubbles/ChatBubble";
@@ -15,7 +16,8 @@ export interface DMChatShellProps {
   headerBg: string;
   headerText?: string;
   backgroundDefaults: ChatBackgroundDefaults;
-  platformLabel?: string;
+  /** Spunta blu sul nome contatto (Instagram) */
+  contactVerified?: boolean;
 }
 
 export function DMChatShell({
@@ -24,7 +26,7 @@ export function DMChatShell({
   headerBg,
   headerText = "text-white",
   backgroundDefaults,
-  platformLabel,
+  contactVerified = false,
 }: DMChatShellProps) {
   const bodyStyle = resolveChatBackground(
     state.chatBackground,
@@ -43,8 +45,9 @@ export function DMChatShell({
           size={36}
         />
         <div className="min-w-0 flex-1">
-          <p className="truncate text-[16px] font-semibold">
-            {state.contactName}
+          <p className="flex min-w-0 items-center gap-1 truncate text-[16px] font-semibold">
+            <span className="truncate">{state.contactName}</span>
+            {contactVerified && <VerifiedBadge />}
           </p>
           {state.contactStatus && (
             <p className="truncate text-[12px] opacity-75">
@@ -52,9 +55,6 @@ export function DMChatShell({
             </p>
           )}
         </div>
-        {platformLabel && (
-          <span className="text-[10px] opacity-60">{platformLabel}</span>
-        )}
         <span className="text-lg opacity-80">⋯</span>
       </div>
 

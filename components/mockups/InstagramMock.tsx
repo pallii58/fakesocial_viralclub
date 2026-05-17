@@ -2,6 +2,7 @@
 
 import type { SocialEditorState } from "@/lib/types";
 import { CommentThread } from "./CommentThread";
+import { VerifiedBadge } from "@/components/shared/VerifiedBadge";
 import { MockAvatar } from "./MockAvatar";
 
 export function InstagramMock({ state }: { state: SocialEditorState }) {
@@ -23,11 +24,7 @@ export function InstagramMock({ state }: { state: SocialEditorState }) {
             <MockAvatar name={post.author} src={post.avatar} size={32} />
             <span className="text-sm font-semibold">
               {post.author}
-              {post.verified && (
-                <span className="ml-1 inline-flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#0095f6] text-[8px] text-white">
-                  ✓
-                </span>
-              )}
+              {post.verified && <VerifiedBadge className="ml-0.5" />}
             </span>
           </div>
           <div className="aspect-square w-full bg-zinc-200">

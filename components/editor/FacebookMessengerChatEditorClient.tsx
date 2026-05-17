@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import {
-  defaultInstagramChat,
-  switchInstagramChatType,
+  defaultMessengerChat,
+  switchMessengerChatType,
 } from "@/lib/defaults";
-import type { InstagramChatState } from "@/lib/types";
+import type { MessengerChatState } from "@/lib/types";
 import { chatBackgroundDefaults } from "@/lib/chat-background";
-import { instagramGroupSenderNameColor } from "@/lib/chat-themes";
+import { messengerGroupSenderNameColor } from "@/lib/chat-themes";
 import { EditorLayout } from "@/components/shared/EditorLayout";
 import { Checkbox } from "@/components/shared/Checkbox";
 import { ImageUploadField } from "@/components/shared/ImageUploadField";
@@ -16,15 +16,15 @@ import { ChatTypeToggle } from "./ChatTypeToggle";
 import { GroupMembersEditor } from "./GroupMembersEditor";
 import { MessageListEditor } from "./MessageListEditor";
 import { BubblesStack } from "@/components/mockups/bubbles/BubblesStack";
-import { InstagramDM } from "@/components/mockups/dm/InstagramDM";
-import { InstagramGroup } from "@/components/mockups/dm/InstagramGroup";
+import { FacebookMessenger } from "@/components/mockups/dm/FacebookMessenger";
+import { MessengerGroup } from "@/components/mockups/dm/MessengerGroup";
 
-function memberName(state: InstagramChatState, sender: string) {
+function memberName(state: MessengerChatState, sender: string) {
   if (sender === "me") return "Tu";
   return state.members.find((m) => m.id === sender)?.name ?? sender;
 }
 
-function toDMState(state: InstagramChatState) {
+function toDMState(state: MessengerChatState) {
   return {
     contactName: state.contactName,
     contactAvatar: state.contactAvatar,
@@ -35,7 +35,7 @@ function toDMState(state: InstagramChatState) {
   };
 }
 
-function toGroupState(state: InstagramChatState) {
+function toGroupState(state: MessengerChatState) {
   return {
     groupName: state.groupName,
     groupAvatar: state.groupAvatar,
@@ -46,29 +46,12 @@ function toGroupState(state: InstagramChatState) {
   };
 }
 
-function memberVerified(state: InstagramChatState, sender: string) {
+function memberVerified(state: MessengerChatState, sender: string) {
   return state.members.find((m) => m.id === sender)?.verified ?? false;
 }
 
-function myAvatarValue(state: InstagramChatState) {
-  return state.myAvatar ?? state.members.find((m) => m.id === "me")?.avatar;
-}
-
-function applyMyAvatar(
-  state: InstagramChatState,
-  myAvatar?: string
-): InstagramChatState {
-  return {
-    ...state,
-    myAvatar,
-    members: state.members.map((m) =>
-      m.id === "me" ? { ...m, avatar: myAvatar } : m
-    ),
-  };
-}
-
-export function InstagramChatEditorClient() {
-  const [state, setState] = useState<InstagramChatState>(defaultInstagramChat);
+export function FacebookMessengerChatEditorClient() {
+  const [state, setState] = useState<MessengerChatState>(defaultMessengerChat);
 
   const isGroup = state.chatType === "group";
 
@@ -83,30 +66,22 @@ export function InstagramChatEditorClient() {
 
   return (
     <EditorLayout
-      title="Instagram · Direct"
-      platform="instagram-chat"
-      backHref="/instagram"
-      onReset={() => setState(defaultInstagramChat(state.chatType))}
+      title="Facebook · Messenger"
+      platform="facebook-messenger"
+      backHref="/facebook"
+      onReset={() => setState(defaultMessengerChat(state.chatType))}
       showBubbleExport
       bubblesPreview={
         <BubblesStack
           messages={state.messages}
-          themeId="instagram"
+          themeId="messenger"
           getSenderName={isGroup ? (s) => memberName(state, s) : undefined}
           getSenderNameColor={
-            isGroup ? () => instagramGroupSenderNameColor : undefined
+            isGroup ? () => messengerGroupSenderNameColor : undefined
           }
           getSenderAvatar={
             isGroup
               ? (s) => state.members.find((m) => m.id === s)?.avatar
-              : undefined
-          }
-          getTrailingSenderAvatar={
-            isGroup
-              ? (s) =>
-                  s === "me"
-                    ? myAvatarValue(state)
-                    : undefined
               : undefined
           }
           getSenderVerified={
@@ -119,15 +94,7 @@ export function InstagramChatEditorClient() {
           <ChatTypeToggle
             value={state.chatType}
             onChange={(chatType) =>
-              setState((prev) => switchInstagramChatType(prev, chatType))
-            }
-          />
-
-          <ImageUploadField
-            label="La tua immagine profilo"
-            value={myAvatarValue(state)}
-            onChange={(myAvatar) =>
-              setState((prev) => applyMyAvatar(prev, myAvatar))
+              setState((prev) => switchMessengerChatType(prev, chatType))
             }
           />
 
@@ -157,16 +124,8 @@ export function InstagramChatEditorClient() {
               />
               <GroupMembersEditor
                 members={state.members}
-                excludeIds={["me"]}
                 showVerified
-                onChange={(members) => {
-                  const me = members.find((m) => m.id === "me");
-                  setState({
-                    ...state,
-                    members,
-                    myAvatar: me?.avatar ?? state.myAvatar,
-                  });
-                }}
+                onChange={(members) => setState({ ...state, members })}
               />
             </>
           ) : (
@@ -207,7 +166,7 @@ export function InstagramChatEditorClient() {
           <ChatBackgroundEditor
             value={state.chatBackground}
             onChange={(chatBackground) => setState({ ...state, chatBackground })}
-            defaultColor={chatBackgroundDefaults.instagram.solidColor}
+            defaultColor={chatBackgroundDefaults.messenger.solidColor}
           />
 
           <MessageListEditor
@@ -219,9 +178,9 @@ export function InstagramChatEditorClient() {
       }
       preview={
         isGroup ? (
-          <InstagramGroup state={toGroupState(state)} />
+          <MessengerGroup state={toGroupState(state)} />
         ) : (
-          <InstagramDM state={toDMState(state)} />
+          <FacebookMessenger state={toDMState(state)} />
         )
       }
     />

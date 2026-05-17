@@ -18,6 +18,8 @@ interface EditorLayoutProps {
   bubblesPreview?: ReactNode;
   /** Anteprima ed export solo bolle su sfondo trasparente (es. singolo messaggio) */
   bubbleOnlyPreview?: boolean;
+  /** Export PNG con sfondo visibile (es. counter views) */
+  opaqueBubbleExport?: boolean;
 }
 
 const checkerboardClass =
@@ -33,10 +35,12 @@ export function EditorLayout({
   showBubbleExport = false,
   bubblesPreview,
   bubbleOnlyPreview = false,
+  opaqueBubbleExport = false,
 }: EditorLayoutProps) {
   const hasBubblesView = Boolean(
     bubbleOnlyPreview || (showBubbleExport && bubblesPreview)
   );
+  const transparentExport = hasBubblesView && !opaqueBubbleExport;
   const [showBackground, setShowBackground] = useState(!bubbleOnlyPreview);
   const exportRef = useRef<HTMLDivElement>(null);
   const bubblesRef = useRef<HTMLDivElement>(null);
@@ -57,7 +61,7 @@ export function EditorLayout({
             exportRef={activeExportRef}
             platform={platform}
             onReset={onReset}
-            transparentExport={hasBubblesView}
+            transparentExport={transparentExport}
             exportSuffix={
               bubbleOnlyPreview || (hasBubblesView && !showBackground)
                 ? "-messaggi"
@@ -92,7 +96,11 @@ export function EditorLayout({
               <div className={checkerboardClass}>
                 <div
                   ref={bubblesRef}
-                  className="mx-auto w-full min-w-[360px] max-w-[400px]"
+                  className={
+                    bubbleOnlyPreview
+                      ? "mx-auto flex min-h-[120px] w-full min-w-[360px] max-w-[400px] items-center justify-center"
+                      : "mx-auto w-full min-w-[360px] max-w-[400px]"
+                  }
                 >
                   {bubblesPreview}
                 </div>

@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import {
-  defaultInstagramChat,
-  switchInstagramChatType,
+  defaultTikTokChat,
+  switchTikTokChatType,
 } from "@/lib/defaults";
-import type { InstagramChatState } from "@/lib/types";
+import type { TikTokChatState } from "@/lib/types";
 import { chatBackgroundDefaults } from "@/lib/chat-background";
-import { instagramGroupSenderNameColor } from "@/lib/chat-themes";
+import { tiktokGroupSenderNameColor } from "@/lib/chat-themes";
 import { EditorLayout } from "@/components/shared/EditorLayout";
 import { Checkbox } from "@/components/shared/Checkbox";
 import { ImageUploadField } from "@/components/shared/ImageUploadField";
@@ -16,15 +16,15 @@ import { ChatTypeToggle } from "./ChatTypeToggle";
 import { GroupMembersEditor } from "./GroupMembersEditor";
 import { MessageListEditor } from "./MessageListEditor";
 import { BubblesStack } from "@/components/mockups/bubbles/BubblesStack";
-import { InstagramDM } from "@/components/mockups/dm/InstagramDM";
-import { InstagramGroup } from "@/components/mockups/dm/InstagramGroup";
+import { TikTokDM } from "@/components/mockups/dm/TikTokDM";
+import { TikTokGroup } from "@/components/mockups/dm/TikTokGroup";
 
-function memberName(state: InstagramChatState, sender: string) {
+function memberName(state: TikTokChatState, sender: string) {
   if (sender === "me") return "Tu";
   return state.members.find((m) => m.id === sender)?.name ?? sender;
 }
 
-function toDMState(state: InstagramChatState) {
+function toDMState(state: TikTokChatState) {
   return {
     contactName: state.contactName,
     contactAvatar: state.contactAvatar,
@@ -35,7 +35,7 @@ function toDMState(state: InstagramChatState) {
   };
 }
 
-function toGroupState(state: InstagramChatState) {
+function toGroupState(state: TikTokChatState) {
   return {
     groupName: state.groupName,
     groupAvatar: state.groupAvatar,
@@ -46,18 +46,18 @@ function toGroupState(state: InstagramChatState) {
   };
 }
 
-function memberVerified(state: InstagramChatState, sender: string) {
+function memberVerified(state: TikTokChatState, sender: string) {
   return state.members.find((m) => m.id === sender)?.verified ?? false;
 }
 
-function myAvatarValue(state: InstagramChatState) {
+function myAvatarValue(state: TikTokChatState) {
   return state.myAvatar ?? state.members.find((m) => m.id === "me")?.avatar;
 }
 
 function applyMyAvatar(
-  state: InstagramChatState,
+  state: TikTokChatState,
   myAvatar?: string
-): InstagramChatState {
+): TikTokChatState {
   return {
     ...state,
     myAvatar,
@@ -67,8 +67,8 @@ function applyMyAvatar(
   };
 }
 
-export function InstagramChatEditorClient() {
-  const [state, setState] = useState<InstagramChatState>(defaultInstagramChat);
+export function TikTokChatEditorClient() {
+  const [state, setState] = useState<TikTokChatState>(defaultTikTokChat);
 
   const isGroup = state.chatType === "group";
 
@@ -83,18 +83,18 @@ export function InstagramChatEditorClient() {
 
   return (
     <EditorLayout
-      title="Instagram · Direct"
-      platform="instagram-chat"
-      backHref="/instagram"
-      onReset={() => setState(defaultInstagramChat(state.chatType))}
+      title="TikTok · Direct"
+      platform="tiktok-chat"
+      backHref="/tiktok"
+      onReset={() => setState(defaultTikTokChat(state.chatType))}
       showBubbleExport
       bubblesPreview={
         <BubblesStack
           messages={state.messages}
-          themeId="instagram"
+          themeId="tiktok"
           getSenderName={isGroup ? (s) => memberName(state, s) : undefined}
           getSenderNameColor={
-            isGroup ? () => instagramGroupSenderNameColor : undefined
+            isGroup ? () => tiktokGroupSenderNameColor : undefined
           }
           getSenderAvatar={
             isGroup
@@ -119,7 +119,7 @@ export function InstagramChatEditorClient() {
           <ChatTypeToggle
             value={state.chatType}
             onChange={(chatType) =>
-              setState((prev) => switchInstagramChatType(prev, chatType))
+              setState((prev) => switchTikTokChatType(prev, chatType))
             }
           />
 
@@ -207,7 +207,7 @@ export function InstagramChatEditorClient() {
           <ChatBackgroundEditor
             value={state.chatBackground}
             onChange={(chatBackground) => setState({ ...state, chatBackground })}
-            defaultColor={chatBackgroundDefaults.instagram.solidColor}
+            defaultColor={chatBackgroundDefaults.tiktok.solidColor}
           />
 
           <MessageListEditor
@@ -219,9 +219,9 @@ export function InstagramChatEditorClient() {
       }
       preview={
         isGroup ? (
-          <InstagramGroup state={toGroupState(state)} />
+          <TikTokGroup state={toGroupState(state)} />
         ) : (
-          <InstagramDM state={toDMState(state)} />
+          <TikTokDM state={toDMState(state)} />
         )
       }
     />

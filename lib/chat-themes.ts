@@ -83,6 +83,18 @@ export const chatThemes: Record<ChatThemeId, ChatTheme> = {
   },
 };
 
+/** Nome mittente in gruppo IG — sempre celeste */
+export const instagramGroupSenderNameColor = "#0095F6";
+
+/** Nome mittente in gruppo Messenger — sempre nero */
+export const messengerGroupSenderNameColor = "#050505";
+
+/** Nome mittente in gruppo TikTok */
+export const tiktokGroupSenderNameColor = "#25f4ee";
+
+/** Nome mittente in gruppo YouTube */
+export const youtubeGroupSenderNameColor = "#aaaaaa";
+
 export function isMeSender(sender: Message["sender"]) {
   return sender === "me";
 }

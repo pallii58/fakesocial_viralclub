@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { NeonBrandLogo } from "@/components/brand/NeonBrandLogo";
 import type { BrandId } from "@/components/brand/NeonBrandLogo";
+import { VerifiedBadge } from "@/components/shared/VerifiedBadge";
 import { getNotificationConfig } from "@/lib/notification-config";
 import type { PushNotificationState } from "@/lib/types";
 
@@ -98,8 +99,9 @@ export function PushNotification({
         />
         <div className="min-w-0 flex-1">
           <div className="mb-0.5 flex items-center justify-between gap-2">
-            <p className="min-w-0 truncate text-[15px] font-semibold leading-tight text-zinc-900">
-              {title}
+            <p className="flex min-w-0 items-center gap-0.5 text-[15px] font-semibold leading-tight text-zinc-900">
+              <span className="truncate">{title}</span>
+              {state.contactVerified && <VerifiedBadge size={12} />}
             </p>
             <span className="shrink-0 text-xs leading-tight text-zinc-500">
               {state.time}

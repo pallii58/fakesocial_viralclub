@@ -12,7 +12,7 @@ export function YouTubeDM({ state }: { state: DMChatState }) {
       headerBg="bg-[#0f0f0f]"
       headerText="text-white"
       backgroundDefaults={chatBackgroundDefaults.youtube}
-      platformLabel="Posta"
+      contactVerified={state.contactVerified}
     />
   );
 }

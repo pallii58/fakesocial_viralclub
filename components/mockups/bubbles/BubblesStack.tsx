@@ -11,6 +11,8 @@ interface BubblesStackProps {
   getSenderName?: (sender: string) => string | undefined;
   getSenderNameColor?: (sender: string) => string | undefined;
   getSenderAvatar?: (sender: string) => string | undefined;
+  getTrailingSenderAvatar?: (sender: string) => string | undefined;
+  getSenderVerified?: (sender: string) => boolean;
   className?: string;
 }
 
@@ -22,6 +24,8 @@ export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
       getSenderName,
       getSenderNameColor,
       getSenderAvatar,
+      getTrailingSenderAvatar,
+      getSenderVerified,
       className = "",
     },
     ref
@@ -35,19 +39,19 @@ export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
       >
         {messages.map((msg, i) => {
           const prev = messages[i - 1];
-          const showSender =
-            msg.sender !== "me" && (!prev || prev.sender !== msg.sender);
+          const showAvatar = !prev || prev.sender !== msg.sender;
+          const isMe = msg.sender === "me";
           const showName =
-            getSenderName && showSender
+            getSenderName && !isMe && showAvatar
               ? getSenderName(String(msg.sender))
               : undefined;
           const nameColor =
-            getSenderNameColor && showSender
+            getSenderNameColor && !isMe && showAvatar
               ? getSenderNameColor(String(msg.sender))
               : undefined;
           const senderAvatar =
-            getSenderAvatar && msg.sender !== "me"
-              ? showSender
+            getSenderAvatar && !isMe
+              ? showAvatar
                 ? {
                     name:
                       getSenderName?.(String(msg.sender)) ??
@@ -56,14 +60,29 @@ export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
                   }
                 : false
               : undefined;
+          const trailingAvatar =
+            getTrailingSenderAvatar && isMe
+              ? showAvatar
+                ? {
+                    name: getSenderName?.("me") ?? "Tu",
+                    src: getTrailingSenderAvatar("me"),
+                  }
+                : false
+              : undefined;
+          const senderNameVerified =
+            getSenderVerified && !isMe && showAvatar
+              ? getSenderVerified(String(msg.sender))
+              : false;
           return (
             <ChatBubble
               key={msg.id}
               message={msg}
               themeId={themeId}
               showSenderName={showName}
+              senderNameVerified={senderNameVerified}
               senderNameColor={nameColor}
               senderAvatar={senderAvatar}
+              trailingAvatar={trailingAvatar}
             />
           );
         })}

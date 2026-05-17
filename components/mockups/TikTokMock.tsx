@@ -1,6 +1,7 @@
 "use client";
 
 import type { SocialEditorState } from "@/lib/types";
+import { VerifiedBadge } from "@/components/shared/VerifiedBadge";
 import { CommentThread } from "./CommentThread";
 import { MockAvatar } from "./MockAvatar";
 
@@ -26,7 +27,10 @@ export function TikTokMock({ state }: { state: SocialEditorState }) {
             </div>
           )}
           <div className="absolute bottom-20 left-3 right-14">
-            <p className="text-sm font-semibold">@{post.author}</p>
+            <p className="flex items-center gap-1 text-sm font-semibold">
+              <span>@{post.author}</span>
+              {post.verified && <VerifiedBadge size={13} />}
+            </p>
             <p className="mt-1 text-sm leading-snug">{post.caption}</p>
             <p className="mt-1 text-xs text-zinc-300">
               ♫ Suono originale — {post.author}

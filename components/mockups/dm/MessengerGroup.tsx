@@ -4,27 +4,29 @@ import {
   chatBackgroundDefaults,
   resolveChatBackground,
 } from "@/lib/chat-background";
-import { instagramGroupSenderNameColor } from "@/lib/chat-themes";
-import type { InstagramGroupState } from "@/lib/types";
+import { messengerGroupSenderNameColor } from "@/lib/chat-themes";
+import type { MessengerGroupState } from "@/lib/types";
 import { VerifiedBadge } from "@/components/shared/VerifiedBadge";
 import { MockAvatar } from "../MockAvatar";
 import { ChatBubble } from "../bubbles/ChatBubble";
 
-export function InstagramGroup({ state }: { state: InstagramGroupState }) {
+export function MessengerGroup({ state }: { state: MessengerGroupState }) {
   const memberName = (sender: string) => {
     if (sender === "me") return "Tu";
     return state.members.find((m) => m.id === sender)?.name ?? sender;
   };
 
-  const memberAvatar = (sender: string) =>
-    state.members.find((m) => m.id === sender)?.avatar;
+  const memberAvatar = (sender: string) => {
+    if (sender === "me") return undefined;
+    return state.members.find((m) => m.id === sender)?.avatar;
+  };
 
   const memberVerified = (sender: string) =>
     state.members.find((m) => m.id === sender)?.verified ?? false;
 
   const bodyStyle = resolveChatBackground(
     state.chatBackground,
-    chatBackgroundDefaults.instagram
+    chatBackgroundDefaults.messenger
   );
 
   return (
@@ -45,7 +47,7 @@ export function InstagramGroup({ state }: { state: InstagramGroupState }) {
             {state.members.length} partecipanti
           </p>
         </div>
-        <span className="text-lg text-zinc-600">⋯</span>
+        <span className="text-lg text-zinc-600">ⓘ</span>
       </div>
 
       <div className="flex-1 space-y-1 overflow-y-auto px-3 py-3 pb-8">
@@ -59,7 +61,7 @@ export function InstagramGroup({ state }: { state: InstagramGroupState }) {
             <ChatBubble
               key={msg.id}
               message={msg}
-              themeId="instagram"
+              themeId="messenger"
               showSenderName={
                 !isMe && showAvatar ? memberName(senderId) : undefined
               }
@@ -67,7 +69,7 @@ export function InstagramGroup({ state }: { state: InstagramGroupState }) {
                 !isMe && showAvatar ? memberVerified(senderId) : false
               }
               senderNameColor={
-                !isMe && showAvatar ? instagramGroupSenderNameColor : undefined
+                !isMe && showAvatar ? messengerGroupSenderNameColor : undefined
               }
               senderAvatar={
                 !isMe
@@ -75,16 +77,6 @@ export function InstagramGroup({ state }: { state: InstagramGroupState }) {
                     ? {
                         name: memberName(senderId),
                         src: memberAvatar(senderId),
-                      }
-                    : false
-                  : undefined
-              }
-              trailingAvatar={
-                isMe
-                  ? showAvatar
-                    ? {
-                        name: memberName("me"),
-                        src: memberAvatar("me"),
                       }
                     : false
                   : undefined

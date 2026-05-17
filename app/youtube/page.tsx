@@ -7,14 +7,9 @@ export default function YouTubeHubPage() {
       brand="youtube"
       links={[
         {
-          href: "/youtube/dm",
+          href: "/youtube/chat",
           title: "Messaggi / Inbox",
-          description: "Chat creator stile YouTube Studio",
-        },
-        {
-          href: "/youtube/video",
-          title: "Video e commenti",
-          description: "Thumbnail, titolo e thread commenti",
+          description: "Chat privata o gruppo, spunta verificata",
         },
         {
           href: "/youtube/notification",

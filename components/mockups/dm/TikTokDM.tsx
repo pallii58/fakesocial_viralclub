@@ -12,6 +12,7 @@ export function TikTokDM({ state }: { state: DMChatState }) {
       headerBg="bg-black"
       headerText="text-white"
       backgroundDefaults={chatBackgroundDefaults.tiktok}
+      contactVerified={state.contactVerified}
     />
   );
 }

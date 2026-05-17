@@ -7,14 +7,15 @@ export default function TikTokHubPage() {
       brand="tiktok"
       links={[
         {
-          href: "/tiktok/dm",
-          title: "Direct (DM)",
-          description: "Messaggi privati stile TikTok",
+          href: "/tiktok/chat",
+          title: "Direct",
+          description: "Chat privata o gruppo, spunta verificata",
         },
         {
-          href: "/tiktok/video",
-          title: "Video e commenti",
-          description: "Video con caption e thread commenti",
+          href: "/tiktok/comment",
+          title: "Commento singolo",
+          description:
+            "Un commento su sfondo trasparente, per sticker nei video",
         },
         {
           href: "/tiktok/notification",

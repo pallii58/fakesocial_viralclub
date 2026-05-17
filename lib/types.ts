@@ -22,6 +22,8 @@ export interface GroupMember {
   id: string;
   name: string;
   avatar?: string;
+  /** Spunta blu accanto al nome in chat di gruppo (IG) */
+  verified?: boolean;
 }
 
 export interface Comment {
@@ -32,6 +34,8 @@ export interface Comment {
   likes: number;
   timestamp: string;
   verified?: boolean;
+  /** Riga sotto il commento: tempo, Mi piace, Rispondi (default visibile) */
+  showCommentMeta?: boolean;
   replies?: Comment[];
 }
 
@@ -52,6 +56,8 @@ export interface DMChatState {
   contactName: string;
   contactAvatar?: string;
   contactStatus?: string;
+  /** Spunta blu in header chat privata (Instagram, Messenger) */
+  contactVerified?: boolean;
   messages: Message[];
   chatBackground?: ChatBackground;
 }
@@ -89,8 +95,14 @@ export interface InstagramChatState {
   contactName: string;
   contactAvatar?: string;
   contactStatus?: string;
+  /** Spunta blu sul contatto in chat privata */
+  contactVerified?: boolean;
+  /** La tua immagine profilo (sincronizzata con il membro «Tu» in gruppo) */
+  myAvatar?: string;
   groupName: string;
   groupAvatar?: string;
+  /** Spunta blu sul nome gruppo in header */
+  groupVerified?: boolean;
   members: GroupMember[];
   messages: Message[];
   chatBackground?: ChatBackground;
@@ -99,6 +111,86 @@ export interface InstagramChatState {
 export interface InstagramGroupState {
   groupName: string;
   groupAvatar?: string;
+  groupVerified?: boolean;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
+export type MessengerChatType = "dm" | "group";
+
+/** Chat Facebook Messenger unificata: privata o gruppo */
+export interface MessengerChatState {
+  chatType: MessengerChatType;
+  contactName: string;
+  contactAvatar?: string;
+  contactStatus?: string;
+  contactVerified?: boolean;
+  groupName: string;
+  groupAvatar?: string;
+  groupVerified?: boolean;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
+export interface MessengerGroupState {
+  groupName: string;
+  groupAvatar?: string;
+  groupVerified?: boolean;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
+export type TikTokChatType = "dm" | "group";
+
+/** Chat TikTok Direct unificata: privata o gruppo */
+export interface TikTokChatState {
+  chatType: TikTokChatType;
+  contactName: string;
+  contactAvatar?: string;
+  contactStatus?: string;
+  contactVerified?: boolean;
+  myAvatar?: string;
+  groupName: string;
+  groupAvatar?: string;
+  groupVerified?: boolean;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
+export interface TikTokGroupState {
+  groupName: string;
+  groupAvatar?: string;
+  groupVerified?: boolean;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
+export type YouTubeChatType = "dm" | "group";
+
+/** Chat YouTube Inbox unificata: privata o gruppo */
+export interface YouTubeChatState {
+  chatType: YouTubeChatType;
+  contactName: string;
+  contactAvatar?: string;
+  contactStatus?: string;
+  contactVerified?: boolean;
+  groupName: string;
+  groupAvatar?: string;
+  groupVerified?: boolean;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
+export interface YouTubeGroupState {
+  groupName: string;
+  groupAvatar?: string;
+  groupVerified?: boolean;
   members: GroupMember[];
   messages: Message[];
   chatBackground?: ChatBackground;
@@ -107,6 +199,7 @@ export interface InstagramGroupState {
 export interface PushNotificationState {
   contactName: string;
   contactAvatar?: string;
+  contactVerified?: boolean;
   message: string;
   time: string;
   isGroup?: boolean;
@@ -115,6 +208,23 @@ export interface PushNotificationState {
 
 /** @deprecated Use PushNotificationState */
 export type WhatsAppNotificationState = PushNotificationState;
+
+export type ViewsBackgroundMode = "default" | "solid" | "gradient" | "image";
+
+export interface ViewsCounterBackground {
+  mode: ViewsBackgroundMode;
+  color?: string;
+  gradientFrom?: string;
+  gradientTo?: string;
+  image?: string;
+}
+
+export interface ViewsCounterState {
+  views: number;
+  /** Testo mostrato (se vuoto → formato automatico da views) */
+  label?: string;
+  background: ViewsCounterBackground;
+}
 
 export interface SocialEditorState {
   viewMode: ViewMode;

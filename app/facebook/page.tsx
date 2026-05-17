@@ -9,12 +9,7 @@ export default function FacebookHubPage() {
         {
           href: "/facebook/messenger",
           title: "Messenger",
-          description: "Chat privata stile Facebook Messenger",
-        },
-        {
-          href: "/facebook/post",
-          title: "Post e commenti",
-          description: "Post con testo/immagine e commenti",
+          description: "Chat privata o gruppo, spunta verificata",
         },
         {
           href: "/facebook/notification",

@@ -232,7 +232,8 @@ npm run lint
 | `/instagram` | Hub | — |
 | `/instagram/chat` | Direct privata o gruppo (toggle in editor) | Sì |
 | `/instagram/dm` | Reindirizza a `/instagram/chat` | — |
-| `/instagram/post` | Post + commenti | No |
+| `/instagram/comment` | Commento singolo (sticker video) | Sì (PNG trasparente) |
+| `/instagram/post` | Redirect → `/instagram/comment` | — |
 | `/instagram/notification` | Notifica | No |
 
 ### Facebook

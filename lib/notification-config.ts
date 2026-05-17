@@ -36,6 +36,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarAppBadge: true,
     defaultState: () => ({
       contactName: "influencer_demo",
+      contactVerified: true,
       message: "Ti ha inviato un messaggio: Ciao! Ti va una collab? ✨",
       time: "2 min fa",
     }),
@@ -49,6 +50,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarAppBadge: true,
     defaultState: () => ({
       contactName: "Marco Bianchi",
+      contactVerified: true,
       message: "Ehi, hai visto il post di oggi?",
       time: "ora",
       isGroup: false,
@@ -63,6 +65,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarAppBadge: true,
     defaultState: () => ({
       contactName: "creator_viral",
+      contactVerified: true,
       message: "bro questo trend è perfetto per il brand 🔥",
       time: "adesso",
     }),
@@ -76,6 +79,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarAppBadge: true,
     defaultState: () => ({
       contactName: "Partner Brand",
+      contactVerified: true,
       message: "Nuovo messaggio: Possiamo parlare della sponsorizzazione?",
       time: "1 min fa",
     }),

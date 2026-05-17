@@ -4,32 +4,34 @@ import {
   chatBackgroundDefaults,
   resolveChatBackground,
 } from "@/lib/chat-background";
-import { instagramGroupSenderNameColor } from "@/lib/chat-themes";
-import type { InstagramGroupState } from "@/lib/types";
+import { youtubeGroupSenderNameColor } from "@/lib/chat-themes";
+import type { YouTubeGroupState } from "@/lib/types";
 import { VerifiedBadge } from "@/components/shared/VerifiedBadge";
 import { MockAvatar } from "../MockAvatar";
 import { ChatBubble } from "../bubbles/ChatBubble";
 
-export function InstagramGroup({ state }: { state: InstagramGroupState }) {
+export function YouTubeGroup({ state }: { state: YouTubeGroupState }) {
   const memberName = (sender: string) => {
     if (sender === "me") return "Tu";
     return state.members.find((m) => m.id === sender)?.name ?? sender;
   };
 
-  const memberAvatar = (sender: string) =>
-    state.members.find((m) => m.id === sender)?.avatar;
+  const memberAvatar = (sender: string) => {
+    if (sender === "me") return undefined;
+    return state.members.find((m) => m.id === sender)?.avatar;
+  };
 
   const memberVerified = (sender: string) =>
     state.members.find((m) => m.id === sender)?.verified ?? false;
 
   const bodyStyle = resolveChatBackground(
     state.chatBackground,
-    chatBackgroundDefaults.instagram
+    chatBackgroundDefaults.youtube
   );
 
   return (
     <div className="flex h-full flex-col" style={bodyStyle}>
-      <div className="flex items-center gap-3 border-b border-zinc-200 bg-white px-3 pb-3 pt-12 text-zinc-900">
+      <div className="flex items-center gap-3 border-b border-zinc-800 bg-[#0f0f0f] px-3 pb-3 pt-12 text-white">
         <span className="text-lg">‹</span>
         <MockAvatar
           name={state.groupName}
@@ -41,11 +43,11 @@ export function InstagramGroup({ state }: { state: InstagramGroupState }) {
             <span className="truncate">{state.groupName}</span>
             {state.groupVerified && <VerifiedBadge />}
           </p>
-          <p className="text-[12px] text-zinc-500">
+          <p className="text-[12px] text-zinc-400">
             {state.members.length} partecipanti
           </p>
         </div>
-        <span className="text-lg text-zinc-600">⋯</span>
+        <span className="text-lg text-zinc-400">⋯</span>
       </div>
 
       <div className="flex-1 space-y-1 overflow-y-auto px-3 py-3 pb-8">
@@ -59,7 +61,7 @@ export function InstagramGroup({ state }: { state: InstagramGroupState }) {
             <ChatBubble
               key={msg.id}
               message={msg}
-              themeId="instagram"
+              themeId="youtube"
               showSenderName={
                 !isMe && showAvatar ? memberName(senderId) : undefined
               }
@@ -67,7 +69,7 @@ export function InstagramGroup({ state }: { state: InstagramGroupState }) {
                 !isMe && showAvatar ? memberVerified(senderId) : false
               }
               senderNameColor={
-                !isMe && showAvatar ? instagramGroupSenderNameColor : undefined
+                !isMe && showAvatar ? youtubeGroupSenderNameColor : undefined
               }
               senderAvatar={
                 !isMe
@@ -75,16 +77,6 @@ export function InstagramGroup({ state }: { state: InstagramGroupState }) {
                     ? {
                         name: memberName(senderId),
                         src: memberAvatar(senderId),
-                      }
-                    : false
-                  : undefined
-              }
-              trailingAvatar={
-                isMe
-                  ? showAvatar
-                    ? {
-                        name: memberName("me"),
-                        src: memberAvatar("me"),
                       }
                     : false
                   : undefined

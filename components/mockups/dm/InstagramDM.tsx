@@ -4,7 +4,11 @@ import { chatBackgroundDefaults } from "@/lib/chat-background";
 import type { DMChatState } from "@/lib/types";
 import { DMChatShell } from "./DMChatShell";
 
-export function InstagramDM({ state }: { state: DMChatState }) {
+export type InstagramDMState = DMChatState & {
+  contactVerified?: boolean;
+};
+
+export function InstagramDM({ state }: { state: InstagramDMState }) {
   return (
     <DMChatShell
       state={state}
@@ -12,6 +16,7 @@ export function InstagramDM({ state }: { state: DMChatState }) {
       headerBg="bg-white border-b border-zinc-200"
       headerText="text-zinc-900"
       backgroundDefaults={chatBackgroundDefaults.instagram}
+      contactVerified={state.contactVerified}
     />
   );
 }

@@ -12,9 +12,15 @@ export default function InstagramHubPage() {
           description: "Chat privata o gruppo stile Instagram Direct",
         },
         {
-          href: "/instagram/post",
-          title: "Post e commenti",
-          description: "Post con immagine e thread commenti",
+          href: "/instagram/comment",
+          title: "Commento singolo",
+          description:
+            "Un commento su sfondo trasparente, per sticker nei video",
+        },
+        {
+          href: "/instagram/views",
+          title: "Counter visualizzazioni",
+          description: "Contatore visualizzazioni per Reel e video",
         },
         {
           href: "/instagram/notification",

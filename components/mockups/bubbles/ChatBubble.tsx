@@ -3,6 +3,7 @@
 import type { ChatThemeId } from "@/lib/chat-themes";
 import { chatThemes, isMeSender } from "@/lib/chat-themes";
 import type { Message } from "@/lib/types";
+import { VerifiedBadge } from "@/components/shared/VerifiedBadge";
 import { MockAvatar } from "../MockAvatar";
 import { ReadTicks } from "../ReadTicks";
 
@@ -16,8 +17,11 @@ interface ChatBubbleProps {
   message: Message;
   themeId: ChatThemeId;
   showSenderName?: string;
+  senderNameVerified?: boolean;
   senderNameColor?: string;
   senderAvatar?: SenderAvatarSlot;
+  /** Avatar a destra (es. i tuoi messaggi in gruppo IG) */
+  trailingAvatar?: SenderAvatarSlot;
   /** Centra la bolla (es. singolo messaggio in export trasparente) */
   centered?: boolean;
   className?: string;
@@ -27,8 +31,10 @@ export function ChatBubble({
   message,
   themeId,
   showSenderName,
+  senderNameVerified = false,
   senderNameColor,
   senderAvatar,
+  trailingAvatar,
   centered = false,
   className = "",
 }: ChatBubbleProps) {
@@ -60,10 +66,11 @@ export function ChatBubble({
       >
         {!isMe && showSenderName && (
           <p
-            className="mb-0.5 text-[11px] font-semibold"
+            className="mb-0.5 flex items-center gap-0.5 text-[11px] font-semibold"
             style={senderNameColor ? { color: senderNameColor } : undefined}
           >
-            {showSenderName}
+            <span className="truncate">{showSenderName}</span>
+            {senderNameVerified && <VerifiedBadge />}
           </p>
         )}
         <p
@@ -84,6 +91,19 @@ export function ChatBubble({
           )}
         </div>
       </div>
+      {isMe && trailingAvatar !== undefined && (
+        <div className="w-7 shrink-0 self-end">
+          {trailingAvatar ? (
+            <MockAvatar
+              name={trailingAvatar.name}
+              src={trailingAvatar.src}
+              size={28}
+            />
+          ) : (
+            <div className="w-7" />
+          )}
+        </div>
+      )}
     </div>
   );
 }

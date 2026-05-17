@@ -47,6 +47,13 @@ export function NotificationEditorClient({
             value={state.contactAvatar}
             onChange={(contactAvatar) => setState({ ...state, contactAvatar })}
           />
+          <Checkbox
+            label="Spunta blu (verificato)"
+            checked={state.contactVerified ?? false}
+            onChange={(contactVerified) =>
+              setState({ ...state, contactVerified })
+            }
+          />
           <textarea
             value={state.message}
             onChange={(e) => setState({ ...state, message: e.target.value })}

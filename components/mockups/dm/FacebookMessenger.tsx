@@ -12,7 +12,7 @@ export function FacebookMessenger({ state }: { state: DMChatState }) {
       headerBg="bg-white border-b border-zinc-200"
       headerText="text-zinc-900"
       backgroundDefaults={chatBackgroundDefaults.messenger}
-      platformLabel="Messenger"
+      contactVerified={state.contactVerified}
     />
   );
 }
