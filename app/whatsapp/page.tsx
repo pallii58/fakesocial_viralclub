@@ -14,7 +14,17 @@ export default function WhatsAppPage() {
         {
           href: "/whatsapp/group",
           title: "Gruppo",
-          description: "Chat di gruppo — export bolle trasparenti",
+          description: "Chat di gruppo — export messaggi trasparenti",
+        },
+        {
+          href: "/whatsapp/single",
+          title: "Singolo messaggio",
+          description: "Una bolla su sfondo chat — export PNG trasparente",
+        },
+        {
+          href: "/whatsapp/notification",
+          title: "Notifica",
+          description: "Banner push stile WhatsApp per lock screen",
         },
       ]}
     />

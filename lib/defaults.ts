@@ -6,6 +6,7 @@ import type {
   PostContext,
   SocialEditorState,
   WhatsAppGroupState,
+  WhatsAppNotificationState,
 } from "./types";
 
 let idCounter = 0;
@@ -211,6 +212,25 @@ export function defaultWhatsAppGroup(): WhatsAppGroupState {
     groupName: "Team Progetto Alpha",
     members: [...defaultMembers],
     messages: [...defaultGroupMessages],
+  };
+}
+
+export function defaultWhatsAppSingleMessage(): Message {
+  return {
+    id: "single-1",
+    text: "Ciao! Ti mando il preventivo tra poco 👍",
+    sender: "other",
+    timestamp: "10:42",
+    readStatus: undefined,
+  };
+}
+
+export function defaultWhatsAppNotification(): WhatsAppNotificationState {
+  return {
+    contactName: "Marco Bianchi",
+    message: "Perfetto, ci sentiamo domani alle 15:00",
+    time: "ora",
+    isGroup: false,
   };
 }
 

@@ -55,6 +55,15 @@ export interface WhatsAppGroupState {
   messages: Message[];
 }
 
+export interface WhatsAppNotificationState {
+  contactName: string;
+  contactAvatar?: string;
+  message: string;
+  time: string;
+  isGroup?: boolean;
+  groupName?: string;
+}
+
 export interface SocialEditorState {
   viewMode: ViewMode;
   post: PostContext;
