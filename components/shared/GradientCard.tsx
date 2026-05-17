@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { BrandId } from "@/components/brand/NeonBrandLogo";
 import { NeonBrandLogo } from "@/components/brand/NeonBrandLogo";
 import { getPlatformTheme } from "@/lib/brand";
+import { ArrowIcon } from "./ArrowIcon";
 
 interface GradientCardProps {
   href: string;
@@ -64,7 +65,12 @@ export function GradientCard({
           className="mt-4 inline-flex items-center gap-1 text-xs font-medium opacity-0 transition group-hover:opacity-100"
           style={{ color: theme.primary }}
         >
-          Apri →
+          Apri
+          <ArrowIcon
+            direction="right"
+            size={14}
+            className="transition-transform group-hover:translate-x-0.5"
+          />
         </span>
       </div>
     </Link>
