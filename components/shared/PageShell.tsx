@@ -20,7 +20,7 @@ export function PageShell({ children, showHeader = true }: PageShellProps) {
           <div className="mx-auto flex max-w-5xl items-center">
             <Link href="/" className="inline-flex flex-col items-start gap-1">
               <AppLogo size="md" priority />
-              <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-violet-600 bg-clip-text text-sm font-semibold tracking-tight text-transparent">
+              <span className="bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl">
                 Fake Social
               </span>
             </Link>
