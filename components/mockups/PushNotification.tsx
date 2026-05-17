@@ -73,7 +73,6 @@ function AvatarWithAppBadge({
 interface PushNotificationProps {
   brand: BrandId;
   state: PushNotificationState;
-  /** Solo card notifica, senza sfondo telefono (export trasparente) */
   bare?: boolean;
 }
 
@@ -109,22 +108,31 @@ export function PushNotification({
       <div className="flex gap-3">
         {avatar}
         <div className="min-w-0 flex-1">
-          <div className="mb-0.5 flex items-center justify-between gap-2">
-            {!config.avatarAppBadge && (
-              <span
-                className="text-[11px] font-semibold uppercase tracking-wide"
-                style={{ color: config.accent }}
-              >
-                {config.appLabel}
+          {config.avatarAppBadge ? (
+            <div className="mb-0.5 flex items-center justify-between gap-2">
+              <p className="min-w-0 truncate text-[15px] font-semibold leading-tight text-zinc-900">
+                {title}
+              </p>
+              <span className="shrink-0 text-xs leading-tight text-zinc-500">
+                {state.time}
               </span>
-            )}
-            <span
-              className={`shrink-0 text-xs text-zinc-500 ${config.avatarAppBadge ? "ml-auto" : ""}`}
-            >
-              {state.time}
-            </span>
-          </div>
-          <p className="truncate text-[15px] font-semibold text-zinc-900">{title}</p>
+            </div>
+          ) : (
+            <>
+              <div className="mb-0.5 flex items-center justify-between gap-2">
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-wide"
+                  style={{ color: config.accent }}
+                >
+                  {config.appLabel}
+                </span>
+                <span className="shrink-0 text-xs text-zinc-500">{state.time}</span>
+              </div>
+              <p className="truncate text-[15px] font-semibold text-zinc-900">
+                {title}
+              </p>
+            </>
+          )}
           <p className="mt-0.5 line-clamp-2 text-sm leading-snug text-zinc-600">
             {state.message}
           </p>
