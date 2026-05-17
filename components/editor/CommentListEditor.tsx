@@ -56,7 +56,7 @@ function CommentItemEditor({
         placeholder="Username"
       />
       <ImageUploadField
-        label="Avatar"
+        label="Immagine profilo"
         value={comment.avatar}
         onChange={(avatar) => onUpdate({ ...comment, avatar })}
       />

@@ -64,7 +64,7 @@ export function DMEditorClient({
             placeholder="Stato (es. Attivo ora)"
           />
           <ImageUploadField
-            label="Avatar contatto"
+            label="Immagine profilo contatto"
             value={state.contactAvatar}
             onChange={(contactAvatar) => setState({ ...state, contactAvatar })}
           />

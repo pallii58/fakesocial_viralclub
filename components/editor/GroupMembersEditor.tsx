@@ -32,7 +32,7 @@ export function GroupMembersEditor({
             placeholder="Nome membro"
           />
           <ImageUploadField
-            label="Avatar"
+            label="Immagine profilo"
             value={member.avatar}
             onChange={(avatar) => update(member.id, { avatar })}
           />

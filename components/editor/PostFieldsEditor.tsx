@@ -55,7 +55,7 @@ export function PostFieldsEditor({
         />
       </div>
       <ImageUploadField
-        label="Avatar autore"
+        label="Immagine profilo autore"
         value={post.avatar}
         onChange={(avatar) => set({ avatar })}
       />
