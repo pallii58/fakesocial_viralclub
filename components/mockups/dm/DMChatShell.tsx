@@ -3,7 +3,6 @@
 import type { DMChatState } from "@/lib/types";
 import { MockAvatar } from "../MockAvatar";
 import type { ChatThemeId } from "@/lib/chat-themes";
-import { usePreviewBackground } from "@/components/shared/PreviewBackgroundContext";
 import { ChatBubble } from "../bubbles/ChatBubble";
 
 export interface DMChatShellProps {
@@ -23,10 +22,8 @@ export function DMChatShell({
   bodyBg,
   platformLabel,
 }: DMChatShellProps) {
-  const { showBackground } = usePreviewBackground();
-
   return (
-    <div className={`flex h-full flex-col ${showBackground ? bodyBg : "bg-transparent"}`}>
+    <div className={`flex h-full flex-col ${bodyBg}`}>
       <div
         className={`flex items-center gap-3 px-3 pb-3 pt-12 ${headerBg} ${headerText}`}
       >

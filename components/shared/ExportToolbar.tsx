@@ -6,23 +6,27 @@ interface ExportToolbarProps {
   exportRef: React.RefObject<HTMLDivElement | null>;
   platform: string;
   onReset: () => void;
-  showBackground?: boolean;
+  transparentExport?: boolean;
 }
 
 export function ExportToolbar({
   exportRef,
   platform,
   onReset,
-  showBackground = true,
+  transparentExport = false,
 }: ExportToolbarProps) {
   return (
     <div className="flex flex-wrap gap-2">
       <button
         type="button"
         onClick={() =>
-          exportMock(exportRef.current, platform, "png", "", {
-            transparent: !showBackground,
-          })
+          exportMock(
+            exportRef.current,
+            platform,
+            "png",
+            transparentExport ? "-messaggi" : "",
+            { transparent: transparentExport }
+          )
         }
         className="btn-primary"
       >

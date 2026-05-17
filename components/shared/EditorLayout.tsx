@@ -6,7 +6,6 @@ import { ExportToolbar } from "./ExportToolbar";
 import { PhoneFrame } from "./PhoneFrame";
 import { BackLink } from "./BackLink";
 import { PageShell } from "./PageShell";
-import { PreviewBackgroundProvider } from "./PreviewBackgroundContext";
 
 interface EditorLayoutProps {
   title: string;
@@ -19,6 +18,9 @@ interface EditorLayoutProps {
   bubblesPreview?: ReactNode;
 }
 
+const checkerboardClass =
+  "flex justify-center rounded-xl border border-violet-500/10 bg-[repeating-conic-gradient(rgba(139,92,246,0.08)_0%_25%,transparent_0%_50%)] bg-[length:16px_16px] p-4";
+
 export function EditorLayout({
   title,
   platform,
@@ -29,8 +31,13 @@ export function EditorLayout({
   showBubbleExport = false,
   bubblesPreview,
 }: EditorLayoutProps) {
-  const exportRef = useRef<HTMLDivElement>(null);
+  const hasBubblesView = Boolean(showBubbleExport && bubblesPreview);
   const [showBackground, setShowBackground] = useState(true);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const bubblesRef = useRef<HTMLDivElement>(null);
+
+  const usePhoneView = !hasBubblesView || showBackground;
+  const activeExportRef = usePhoneView ? exportRef : bubblesRef;
 
   return (
     <PageShell showHeader={false}>
@@ -41,10 +48,10 @@ export function EditorLayout({
             <h1 className="mt-1 text-xl font-bold text-white">{title}</h1>
           </div>
           <ExportToolbar
-            exportRef={exportRef}
+            exportRef={activeExportRef}
             platform={platform}
             onReset={onReset}
-            showBackground={showBackground}
+            transparentExport={hasBubblesView && !showBackground}
           />
         </div>
       </header>
@@ -55,36 +62,27 @@ export function EditorLayout({
           {editor}
         </section>
         <section className="space-y-4">
-          <PreviewBackgroundProvider showBackground={showBackground}>
-            <div className="editor-panel">
-              <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="editor-label">Anteprima</h2>
+          <div className="editor-panel">
+            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <h2 className="editor-label">Anteprima</h2>
+              {hasBubblesView && (
                 <BackgroundPills
                   showBackground={showBackground}
                   onChange={setShowBackground}
                 />
-              </div>
-              <div
-                className={
-                  showBackground
-                    ? "flex justify-center"
-                    : "flex justify-center rounded-xl border border-violet-500/10 bg-[repeating-conic-gradient(rgba(139,92,246,0.08)_0%_25%,transparent_0%_50%)] bg-[length:16px_16px] p-4"
-                }
-              >
-                <PhoneFrame ref={exportRef} showBackground={showBackground}>
-                  {preview}
-                </PhoneFrame>
-              </div>
+              )}
             </div>
-            {showBubbleExport && bubblesPreview && (
-              <div className="editor-panel">
-                <h2 className="editor-label mb-4">Anteprima messaggi</h2>
-                <div className="flex justify-center rounded-xl border border-violet-500/10 bg-[repeating-conic-gradient(rgba(139,92,246,0.08)_0%_25%,transparent_0%_50%)] bg-[length:16px_16px] p-4">
-                  <div>{bubblesPreview}</div>
-                </div>
+
+            {usePhoneView ? (
+              <div className="flex justify-center">
+                <PhoneFrame ref={exportRef}>{preview}</PhoneFrame>
+              </div>
+            ) : (
+              <div className={checkerboardClass}>
+                <div ref={bubblesRef}>{bubblesPreview}</div>
               </div>
             )}
-          </PreviewBackgroundProvider>
+          </div>
         </section>
       </div>
     </PageShell>

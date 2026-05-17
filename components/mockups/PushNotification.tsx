@@ -3,7 +3,6 @@
 import Image from "next/image";
 import type { BrandId } from "@/components/brand/NeonBrandLogo";
 import { getNotificationConfig } from "@/lib/notification-config";
-import { usePreviewBackground } from "@/components/shared/PreviewBackgroundContext";
 import type { PushNotificationState } from "@/lib/types";
 
 function ContactAvatar({
@@ -46,18 +45,13 @@ interface PushNotificationProps {
 
 export function PushNotification({ brand, state }: PushNotificationProps) {
   const config = getNotificationConfig(brand);
-  const { showBackground } = usePreviewBackground();
   const title = state.isGroup
     ? `${state.groupName ?? "Gruppo"} · ${state.contactName}`
     : state.contactName;
 
   return (
     <div
-      className={`flex min-h-full flex-col px-4 pt-14 ${
-        showBackground
-          ? "bg-gradient-to-b from-zinc-950 via-zinc-900 to-black"
-          : "bg-transparent"
-      }`}
+      className="flex min-h-full flex-col bg-gradient-to-b from-zinc-950 via-zinc-900 to-black px-4 pt-14"
     >
       <div className="rounded-2xl border border-white/10 bg-white/[0.97] p-3 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-xl">
         <div className="flex gap-3">

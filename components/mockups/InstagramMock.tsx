@@ -2,16 +2,14 @@
 
 import type { SocialEditorState } from "@/lib/types";
 import { CommentThread } from "./CommentThread";
-import { usePreviewBackground } from "@/components/shared/PreviewBackgroundContext";
 import { MockAvatar } from "./MockAvatar";
 
 export function InstagramMock({ state }: { state: SocialEditorState }) {
   const { post, comments, viewMode } = state;
-  const { showBackground } = usePreviewBackground();
 
   return (
     <div
-      className={`flex h-full flex-col ${showBackground ? "bg-white" : "bg-transparent"}`}
+      className="flex h-full flex-col bg-white"
     >
       <div className="flex items-center justify-between border-b border-zinc-200 px-3 pb-2 pt-12">
         <span className="text-xl">‹</span>

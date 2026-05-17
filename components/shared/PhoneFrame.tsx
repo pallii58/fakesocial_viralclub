@@ -5,11 +5,10 @@ import { forwardRef, type ReactNode } from "react";
 interface PhoneFrameProps {
   children: ReactNode;
   className?: string;
-  showBackground?: boolean;
 }
 
 export const PhoneFrame = forwardRef<HTMLDivElement, PhoneFrameProps>(
-  function PhoneFrame({ children, className = "", showBackground = true }, ref) {
+  function PhoneFrame({ children, className = "" }, ref) {
     return (
       <div className={`flex justify-center ${className}`}>
         <div className="relative rounded-[2.5rem] border-[6px] border-zinc-800 bg-gradient-to-b from-zinc-900 to-black p-2 shadow-[0_0_50px_rgba(139,92,246,0.15)]">
@@ -17,9 +16,7 @@ export const PhoneFrame = forwardRef<HTMLDivElement, PhoneFrameProps>(
           <div
             ref={ref}
             id="mock-export-root"
-            className={`relative h-[812px] w-[375px] overflow-hidden rounded-[2rem] ${
-              showBackground ? "bg-white" : "bg-transparent"
-            }`}
+            className="relative h-[812px] w-[375px] overflow-hidden rounded-[2rem] bg-white"
             style={{
               fontFamily:
                 "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
