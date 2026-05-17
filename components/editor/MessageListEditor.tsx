@@ -110,9 +110,9 @@ export function MessageListEditor({
               }
               className="editor-input"
             >
-              <option value="sent">Inviato</option>
-              <option value="delivered">Consegnato</option>
-              <option value="read">Letto</option>
+              <option value="sent">✓ 1 grigia (inviato)</option>
+              <option value="delivered">✓✓ 2 grigie (consegnato)</option>
+              <option value="read">✓✓ 2 celesti (letto)</option>
             </select>
           )}
         </div>
