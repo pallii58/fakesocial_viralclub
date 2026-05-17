@@ -31,6 +31,8 @@ export function NotificationEditorClient({
       platform={`${brand}-notification`}
       backHref={backHref}
       onReset={() => setState(defaultPushNotification(brand))}
+      bubbleOnlyPreview
+      bubblesPreview={<PushNotification brand={brand} state={state} bare />}
       editor={
         <div className="editor-fields">
           <input
@@ -83,7 +85,6 @@ export function NotificationEditorClient({
           )}
         </div>
       }
-      preview={<PushNotification brand={brand} state={state} />}
     />
   );
 }
