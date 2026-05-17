@@ -1,5 +1,7 @@
 "use client";
 
+import { useId } from "react";
+
 interface ImageUploadFieldProps {
   label: string;
   value?: string;
@@ -11,6 +13,8 @@ export function ImageUploadField({
   value,
   onChange,
 }: ImageUploadFieldProps) {
+  const inputId = useId();
+
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -21,16 +25,25 @@ export function ImageUploadField({
 
   return (
     <div className="space-y-1">
-      <label className="block text-sm font-medium text-violet-300/80">
+      <span className="block text-sm font-medium text-violet-300/80">
         {label}
-      </label>
-      <div className="flex items-center gap-2">
+      </span>
+      <div className="flex flex-wrap items-center gap-2">
         <input
+          id={inputId}
           type="file"
           accept="image/*"
           onChange={handleFile}
-          className="text-sm text-zinc-400 file:mr-2 file:rounded-lg file:border-0 file:bg-violet-600/30 file:px-3 file:py-1 file:text-xs file:text-violet-200"
+          className="sr-only"
         />
+        <label htmlFor={inputId} className="file-upload-btn">
+          <span className="file-upload-cursor" aria-hidden>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M5 3l14 9-6.5 1.5L11 21 5 3z" />
+            </svg>
+          </span>
+          Scegli file
+        </label>
         {value && (
           <button
             type="button"
