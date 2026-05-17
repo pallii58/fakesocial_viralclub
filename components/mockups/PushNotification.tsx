@@ -52,8 +52,6 @@ function AvatarWithAppBadge({
   avatarBg: string;
   avatarText: string;
 }) {
-  const config = getNotificationConfig(brand);
-
   return (
     <div className="relative h-10 w-10 shrink-0">
       <ContactAvatar
@@ -63,8 +61,7 @@ function AvatarWithAppBadge({
         avatarText={avatarText}
       />
       <span
-        className="absolute -bottom-0.5 -right-0.5 flex h-[18px] w-[18px] items-center justify-center overflow-hidden rounded-[5px] border-2 border-white shadow-sm"
-        style={{ background: config.accent }}
+        className="absolute -bottom-0.5 -right-0.5 flex h-[18px] w-[18px] items-center justify-center overflow-hidden rounded-[5px] border border-zinc-200/90 bg-white shadow-sm"
         aria-hidden
       >
         <NeonBrandLogo brand={brand} size={11} className="block" />
