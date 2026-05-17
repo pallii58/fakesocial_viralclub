@@ -36,11 +36,11 @@ export const chatThemes: Record<ChatThemeId, ChatTheme> = {
   instagram: {
     id: "instagram",
     meBubble:
-      "bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] rounded-[22px] rounded-br-md shadow-sm",
+      "bg-gradient-to-br from-[#dcc0ea] via-[#f5c4cf] to-[#fde8c3] rounded-[22px] rounded-br-md",
     otherBubble: "bg-[#efefef] rounded-[22px] rounded-bl-md",
-    meText: "text-white",
+    meText: "text-zinc-900",
     otherText: "text-zinc-900",
-    timeMe: "text-white/70",
+    timeMe: "text-zinc-500",
     timeOther: "text-zinc-500",
     showReadTicks: false,
     meTail: "",
