@@ -23,6 +23,44 @@ body {
     Roboto, sans-serif;
 }
 
+/* Custom scrollbar — dark track + violet thumb */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-purple-dark) var(--brand-black-soft);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--brand-black-soft);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--brand-purple-light),
+    var(--brand-purple-dark)
+  );
+  border: 2px solid var(--brand-black-soft);
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--brand-purple-light),
+    var(--brand-purple)
+  );
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--brand-black-soft);
+}
+
 /* Editor inputs on dark panels */
 .editor-input {
   @apply w-full rounded-lg border border-violet-500/20 bg-black/40 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20;
