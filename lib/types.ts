@@ -81,6 +81,29 @@ export interface WhatsAppGroupState {
   chatBackground?: ChatBackground;
 }
 
+export type InstagramChatType = "dm" | "group";
+
+/** Chat Instagram Direct unificata: privata o gruppo */
+export interface InstagramChatState {
+  chatType: InstagramChatType;
+  contactName: string;
+  contactAvatar?: string;
+  contactStatus?: string;
+  groupName: string;
+  groupAvatar?: string;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
+export interface InstagramGroupState {
+  groupName: string;
+  groupAvatar?: string;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
 export interface PushNotificationState {
   contactName: string;
   contactAvatar?: string;

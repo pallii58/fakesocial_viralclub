@@ -230,7 +230,8 @@ npm run lint
 | Route | Editor | Export bubble |
 |-------|--------|---------------|
 | `/instagram` | Hub | — |
-| `/instagram/dm` | Direct | Sì |
+| `/instagram/chat` | Direct privata o gruppo (toggle in editor) | Sì |
+| `/instagram/dm` | Reindirizza a `/instagram/chat` | — |
 | `/instagram/post` | Post + commenti | No |
 | `/instagram/notification` | Notifica | No |
 

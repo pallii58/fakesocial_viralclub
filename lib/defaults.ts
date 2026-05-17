@@ -5,6 +5,9 @@ import type {
   Message,
   PostContext,
   SocialEditorState,
+  InstagramChatState,
+  InstagramChatType,
+  InstagramGroupState,
   WhatsAppChatState,
   WhatsAppChatType,
   WhatsAppGroupState,
@@ -131,21 +134,119 @@ export function defaultInstagramDM(): DMChatState {
   return defaultDM({
     contactName: "influencer_demo",
     contactStatus: "Attivo ora",
-    messages: [
-      {
-        id: "ig1",
-        text: "Ciao! Ti va una collab? ✨",
-        sender: "other",
-        timestamp: "14:02",
-      },
-      {
-        id: "ig2",
-        text: "Certo, mandami il brief!",
-        sender: "me",
-        timestamp: "14:05",
-      },
-    ],
+    messages: defaultInstagramDMMessages.map((m) => ({ ...m })),
   });
+}
+
+const defaultInstagramDMMessages: Message[] = [
+  {
+    id: "ig1",
+    text: "Ciao! Ti va una collab? ✨",
+    sender: "other",
+    timestamp: "14:02",
+  },
+  {
+    id: "ig2",
+    text: "Certo, mandami il brief!",
+    sender: "me",
+    timestamp: "14:05",
+  },
+];
+
+const defaultInstagramGroupMessages: Message[] = [
+  {
+    id: "igg1",
+    text: "Ragazzi, brief approvato! 🎉",
+    sender: "mem1",
+    timestamp: "14:10",
+  },
+  {
+    id: "igg2",
+    text: "Perfetto, posto storie domani",
+    sender: "mem2",
+    timestamp: "14:11",
+  },
+  {
+    id: "igg3",
+    text: "Io preparo il reel ✨",
+    sender: "me",
+    timestamp: "14:12",
+  },
+];
+
+export function defaultInstagramGroup(): InstagramGroupState {
+  return {
+    groupName: "Collab Creators",
+    members: defaultMembers.map((m) => ({ ...m })),
+    messages: defaultInstagramGroupMessages.map((m) => ({ ...m })),
+  };
+}
+
+export function defaultInstagramChat(
+  chatType: InstagramChatType = "dm"
+): InstagramChatState {
+  const dm = defaultInstagramDM();
+  const group = defaultInstagramGroup();
+  if (chatType === "group") {
+    return {
+      chatType: "group",
+      contactName: dm.contactName,
+      contactAvatar: dm.contactAvatar,
+      contactStatus: dm.contactStatus,
+      groupName: group.groupName,
+      groupAvatar: group.groupAvatar,
+      members: group.members,
+      messages: group.messages,
+      chatBackground: group.chatBackground,
+    };
+  }
+  return {
+    chatType: "dm",
+    contactName: dm.contactName,
+    contactAvatar: dm.contactAvatar,
+    contactStatus: dm.contactStatus,
+    groupName: group.groupName,
+    groupAvatar: group.groupAvatar,
+    members: group.members,
+    messages: dm.messages,
+    chatBackground: dm.chatBackground,
+  };
+}
+
+export function switchInstagramChatType(
+  state: InstagramChatState,
+  chatType: InstagramChatType
+): InstagramChatState {
+  if (state.chatType === chatType) return state;
+  const base = defaultInstagramChat(chatType);
+  const firstOther =
+    state.members.find((m) => m.id !== "me")?.id ??
+    base.members.find((m) => m.id !== "me")?.id ??
+    "mem1";
+
+  const messages =
+    chatType === "group"
+      ? state.messages.map((m) =>
+          m.sender === "me" ? m : { ...m, sender: firstOther }
+        )
+      : state.messages.map((m) =>
+          m.sender === "me" ? m : { ...m, sender: "other" }
+        );
+
+  return {
+    ...base,
+    messages,
+    chatBackground: state.chatBackground,
+    contactName: state.contactName || state.groupName || base.contactName,
+    contactAvatar: state.contactAvatar,
+    contactStatus: state.contactStatus ?? base.contactStatus,
+    groupName: state.groupName || state.contactName || base.groupName,
+    groupAvatar: state.groupAvatar,
+    members:
+      state.members.length > 0
+        ? state.members.map((m) => ({ ...m }))
+        : base.members,
+  };
 }
 
 export function defaultMessengerDM(): DMChatState {

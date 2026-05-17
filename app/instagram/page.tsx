@@ -7,9 +7,9 @@ export default function InstagramHubPage() {
       brand="instagram"
       links={[
         {
-          href: "/instagram/dm",
-          title: "Direct (DM)",
-          description: "Chat privata stile Instagram Direct",
+          href: "/instagram/chat",
+          title: "Direct",
+          description: "Chat privata o gruppo stile Instagram Direct",
         },
         {
           href: "/instagram/post",

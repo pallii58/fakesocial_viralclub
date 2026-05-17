@@ -1,10 +1,10 @@
 "use client";
 
-import type { WhatsAppChatType } from "@/lib/types";
+export type ChatType = "dm" | "group";
 
 interface ChatTypeToggleProps {
-  value: WhatsAppChatType;
-  onChange: (type: WhatsAppChatType) => void;
+  value: ChatType;
+  onChange: (type: ChatType) => void;
 }
 
 export function ChatTypeToggle({ value, onChange }: ChatTypeToggleProps) {
