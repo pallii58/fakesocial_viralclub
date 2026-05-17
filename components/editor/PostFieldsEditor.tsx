@@ -1,6 +1,7 @@
 "use client";
 
 import type { PostContext } from "@/lib/types";
+import { Checkbox } from "@/components/shared/Checkbox";
 import { ImageUploadField } from "@/components/shared/ImageUploadField";
 
 interface PostFieldsEditorProps {
@@ -59,15 +60,11 @@ export function PostFieldsEditor({
         value={post.avatar}
         onChange={(avatar) => set({ avatar })}
       />
-      <label className="flex items-center gap-2 text-sm text-zinc-300">
-        <input
-          type="checkbox"
-          checked={post.verified ?? false}
-          onChange={(e) => set({ verified: e.target.checked })}
-          className="accent-violet-500"
-        />
-        Account verificato
-      </label>
+      <Checkbox
+        label="Account verificato"
+        checked={post.verified ?? false}
+        onChange={(verified) => set({ verified })}
+      />
     </div>
   );
 }

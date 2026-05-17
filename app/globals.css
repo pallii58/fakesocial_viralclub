@@ -214,3 +214,44 @@ textarea.editor-input {
 .color-picker-preset-selected {
   @apply ring-2 ring-violet-400 ring-offset-1 ring-offset-[#12121a];
 }
+
+/* Checkbox custom (template editor) */
+.editor-checkbox {
+  @apply flex cursor-pointer select-none items-center gap-2.5;
+}
+
+.editor-checkbox-disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+.editor-checkbox-input {
+  @apply sr-only;
+}
+
+.editor-checkbox-box {
+  @apply flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-violet-500/35 bg-black/40 text-white shadow-inner transition;
+}
+
+.editor-checkbox-input:focus-visible + .editor-checkbox-box {
+  @apply ring-2 ring-violet-500/35 ring-offset-1 ring-offset-[#0a0a10];
+}
+
+.editor-checkbox-input:checked + .editor-checkbox-box {
+  @apply border-violet-400/70 bg-gradient-to-br from-violet-600 to-purple-600 shadow-[0_0_12px_rgba(139,92,246,0.35)];
+}
+
+.editor-checkbox-input:checked + .editor-checkbox-box .editor-checkbox-icon {
+  @apply opacity-100;
+}
+
+.editor-checkbox-icon {
+  @apply opacity-0 transition-opacity;
+}
+
+.editor-checkbox-label {
+  @apply text-sm leading-snug text-zinc-300;
+}
+
+.editor-checkbox:hover:not(.editor-checkbox-disabled) .editor-checkbox-box {
+  @apply border-violet-400/50;
+}

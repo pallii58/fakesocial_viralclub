@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { BrandId } from "@/components/brand/NeonBrandLogo";
 import { PushNotification } from "@/components/mockups/PushNotification";
 import { EditorLayout } from "@/components/shared/EditorLayout";
+import { Checkbox } from "@/components/shared/Checkbox";
 import { ImageUploadField } from "@/components/shared/ImageUploadField";
 import { defaultPushNotification } from "@/lib/defaults";
 import { getNotificationConfig } from "@/lib/notification-config";
@@ -60,17 +61,11 @@ export function NotificationEditorClient({
           />
           {config.showGroup && (
             <>
-              <label className="flex items-center gap-2 text-sm text-zinc-300">
-                <input
-                  type="checkbox"
-                  checked={state.isGroup ?? false}
-                  onChange={(e) =>
-                    setState({ ...state, isGroup: e.target.checked })
-                  }
-                  className="rounded border-violet-500/30"
-                />
-                Notifica di gruppo
-              </label>
+              <Checkbox
+                label="Notifica di gruppo"
+                checked={state.isGroup ?? false}
+                onChange={(isGroup) => setState({ ...state, isGroup })}
+              />
               {state.isGroup && (
                 <input
                   value={state.groupName ?? ""}

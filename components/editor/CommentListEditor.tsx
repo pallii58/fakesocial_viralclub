@@ -2,6 +2,7 @@
 
 import { genId, newComment } from "@/lib/defaults";
 import type { Comment } from "@/lib/types";
+import { Checkbox } from "@/components/shared/Checkbox";
 import { ImageUploadField } from "@/components/shared/ImageUploadField";
 import { MoveButtons } from "@/components/shared/MoveButtons";
 
@@ -84,14 +85,11 @@ function CommentItemEditor({
           placeholder="Tempo (es. 2h)"
         />
       </div>
-      <label className="flex items-center gap-2 text-sm text-zinc-300">
-        <input
-          type="checkbox"
-          checked={comment.verified ?? false}
-          onChange={(e) => onUpdate({ ...comment, verified: e.target.checked })}
-        />
-        Badge verificato
-      </label>
+      <Checkbox
+        label="Badge verificato"
+        checked={comment.verified ?? false}
+        onChange={(verified) => onUpdate({ ...comment, verified })}
+      />
     </div>
   );
 }
