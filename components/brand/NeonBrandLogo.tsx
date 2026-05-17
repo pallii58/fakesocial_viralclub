@@ -11,6 +11,8 @@ interface NeonBrandLogoProps {
   brand: BrandId;
   size?: number;
   className?: string;
+  /** Icona piatta per badge notifica (es. TikTok nero) */
+  variant?: "default" | "badge";
 }
 
 /** Scala visiva per riempire il box come Instagram (centrato su 12,12). */
@@ -43,13 +45,18 @@ function LogoGroup({
 }
 
 /** Loghi ufficiali stile neon, dimensione uniforme nel box. */
+const TIKTOK_NOTE_PATH =
+  "M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.69a8.18 8.18 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z";
+
 export function NeonBrandLogo({
   brand,
   size = 35,
   className = "",
+  variant = "default",
 }: NeonBrandLogoProps) {
   const colors = platformNeon[brand];
   const id = `neon-${brand}`;
+  const isBadge = variant === "badge";
 
   return (
     <svg
@@ -106,24 +113,29 @@ export function NeonBrandLogo({
         </LogoGroup>
       )}
 
-      {brand === "tiktok" && (
+      {brand === "tiktok" && isBadge && (
+        <g
+          transform={`translate(12 12) scale(${LOGO_SCALE.tiktok}) translate(-12 -12)`}
+        >
+          <path fill="#010101" d={TIKTOK_NOTE_PATH} />
+        </g>
+      )}
+
+      {brand === "tiktok" && !isBadge && (
         <LogoGroup id={id} brand="tiktok">
           <path
             fill="#00f2ea"
-            d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.69a8.18 8.18 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"
+            d={TIKTOK_NOTE_PATH}
             transform="translate(-0.35 -0.2)"
             opacity="0.95"
           />
           <path
             fill="#ff004f"
-            d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.69a8.18 8.18 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"
+            d={TIKTOK_NOTE_PATH}
             transform="translate(0.35 0.2)"
             opacity="0.95"
           />
-          <path
-            fill="#ffffff"
-            d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.69a8.18 8.18 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z"
-          />
+          <path fill="#ffffff" d={TIKTOK_NOTE_PATH} />
         </LogoGroup>
       )}
 
