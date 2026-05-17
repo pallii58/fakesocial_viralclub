@@ -28,7 +28,6 @@ export function EditorLayout({
   bubblesPreview,
 }: EditorLayoutProps) {
   const exportRef = useRef<HTMLDivElement>(null);
-  const bubblesRef = useRef<HTMLDivElement>(null);
 
   return (
     <PageShell showHeader={false}>
@@ -39,19 +38,18 @@ export function EditorLayout({
             <h1 className="mt-1 text-xl font-bold text-white">{title}</h1>
             <p className="text-xs text-zinc-500">Usa solo per demo autorizzate</p>
           </div>
-          <ExportToolbar
-            exportRef={exportRef}
-            platform={platform}
-            onReset={onReset}
-            bubblesRef={bubblesRef}
-            showBubbleExport={showBubbleExport}
-          />
+          <ExportToolbar exportRef={exportRef} platform={platform} />
         </div>
       </header>
 
       <div className="mx-auto grid max-w-7xl gap-6 p-4 sm:p-8 lg:grid-cols-2">
         <section className="editor-panel">
-          <h2 className="editor-label mb-4">Editor</h2>
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <h2 className="editor-label">Editor</h2>
+            <button type="button" onClick={onReset} className="btn-ghost px-3 py-1.5 text-xs">
+              Reset
+            </button>
+          </div>
           {editor}
         </section>
         <section className="space-y-4">
@@ -62,10 +60,10 @@ export function EditorLayout({
           {showBubbleExport && bubblesPreview && (
             <div className="editor-panel">
               <h2 className="editor-label mb-4">
-                Anteprima messaggi (export trasparente)
+                Anteprima messaggi
               </h2>
               <div className="flex justify-center rounded-xl border border-violet-500/10 bg-[repeating-conic-gradient(rgba(139,92,246,0.08)_0%_25%,transparent_0%_50%)] bg-[length:16px_16px] p-4">
-                <div ref={bubblesRef}>{bubblesPreview}</div>
+                <div>{bubblesPreview}</div>
               </div>
             </div>
           )}
