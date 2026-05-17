@@ -23,9 +23,6 @@ export default function Home() {
             Chat, DM, commenti e post finti per presentazioni e pitch. Export PNG,
             JPG e bolle trasparenti.
           </p>
-          <p className="mt-2 text-xs text-zinc-600">
-            Usa solo per demo autorizzate
-          </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
