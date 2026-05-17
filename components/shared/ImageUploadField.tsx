@@ -37,11 +37,6 @@ export function ImageUploadField({
           className="sr-only"
         />
         <label htmlFor={inputId} className="file-upload-btn">
-          <span className="file-upload-cursor" aria-hidden>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M5 3l14 9-6.5 1.5L11 21 5 3z" />
-            </svg>
-          </span>
           Scegli file
         </label>
         {value && (

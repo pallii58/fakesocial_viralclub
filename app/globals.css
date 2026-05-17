@@ -90,9 +90,9 @@ body {
   @apply rounded-lg bg-gradient-to-r from-fuchsia-600 to-violet-600 px-4 py-2 text-sm font-medium text-white shadow-[0_0_20px_rgba(192,38,211,0.25)] transition hover:from-fuchsia-500 hover:to-violet-500;
 }
 
-/* Custom file upload — blu + cursore animato */
+/* Custom file upload */
 .file-upload-btn {
-  @apply inline-flex cursor-pointer items-center gap-2 rounded-lg border border-blue-500/40 bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-[0_0_16px_rgba(59,130,246,0.35)] transition-all duration-200;
+  @apply inline-flex cursor-pointer items-center rounded-lg border border-blue-500/40 bg-gradient-to-r from-blue-600 to-blue-500 px-4 py-2 text-sm font-semibold text-white shadow-[0_0_16px_rgba(59,130,246,0.35)] transition-all duration-200;
 }
 
 .file-upload-btn:hover {
@@ -103,30 +103,6 @@ body {
   @apply scale-[0.98];
 }
 
-.file-upload-cursor {
-  @apply inline-flex text-blue-100 transition-transform duration-200;
-}
-
-.file-upload-btn:hover .file-upload-cursor {
-  animation: file-cursor-bounce 0.55s ease-in-out infinite;
-}
-
 .platform-card:hover {
   border-color: var(--card-border-hover) !important;
-}
-
-@keyframes file-cursor-bounce {
-  0%,
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(2px, -3px) rotate(-8deg);
-  }
-  50% {
-    transform: translate(4px, 0) rotate(0deg);
-  }
-  75% {
-    transform: translate(2px, 1px) rotate(6deg);
-  }
 }
