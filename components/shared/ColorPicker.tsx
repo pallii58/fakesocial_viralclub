@@ -135,13 +135,9 @@ export function ColorPicker({
   };
 
   const onHexInputChange = (raw: string) => {
+    setHexDraft(raw);
     const n = normalizeHex(raw);
-    if (n) {
-      setHexDraft(n);
-      applyHsv(hexToHsv(n));
-    } else {
-      setHexDraft(raw);
-    }
+    if (n) applyHsv(hexToHsv(n));
   };
 
   const onHexBlur = () => {
