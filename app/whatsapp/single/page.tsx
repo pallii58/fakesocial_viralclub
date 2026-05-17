@@ -71,7 +71,7 @@ export default function WhatsAppSingleMessagePage() {
                 }
                 options={[
                   { value: "sent", label: "Inviato" },
-                  { value: "delivered", label: "Consegnato" },
+                  { value: "delivered", label: "Ricevuto" },
                   { value: "read", label: "Letto" },
                 ]}
               />

@@ -96,9 +96,9 @@ export function MessageListEditor({
                 })
               }
               options={[
-                { value: "sent", label: "✓ 1 grigia (inviato)" },
-                { value: "delivered", label: "✓✓ 2 grigie (consegnato)" },
-                { value: "read", label: "✓✓ 2 celesti (letto)" },
+                { value: "sent", label: "Inviato" },
+                { value: "delivered", label: "Ricevuto" },
+                { value: "read", label: "Letto" },
               ]}
             />
           )}
