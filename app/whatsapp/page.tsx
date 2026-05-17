@@ -14,7 +14,7 @@ export default function WhatsAppPage() {
         {
           href: "/whatsapp/group",
           title: "Gruppo",
-          description: "Chat di gruppo — export messaggi trasparenti",
+          description: "Chat di gruppo",
         },
         {
           href: "/whatsapp/single",
