@@ -56,7 +56,7 @@ export function ChatBubble({
         </div>
       )}
       <div
-        className={`max-w-[85%] px-3 py-2 ${isMe ? theme.meBubble : theme.otherBubble}`}
+        className={`max-w-[min(92%,22rem)] px-3.5 py-2 ${isMe ? theme.meBubble : theme.otherBubble}`}
       >
         {!isMe && showSenderName && (
           <p

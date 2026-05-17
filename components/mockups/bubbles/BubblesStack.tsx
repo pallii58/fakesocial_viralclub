@@ -30,7 +30,7 @@ export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
       <div
         ref={ref}
         id="bubbles-export-root"
-        className={`inline-block space-y-2 p-4 ${className}`}
+        className={`mx-auto block w-full min-w-[360px] max-w-[400px] space-y-2.5 p-6 ${className}`}
         style={{ background: "transparent" }}
       >
         {messages.map((msg, i) => {

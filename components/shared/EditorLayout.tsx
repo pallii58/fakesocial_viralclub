@@ -93,7 +93,9 @@ export function EditorLayout({
                 <div
                   ref={bubblesRef}
                   className={
-                    bubbleOnlyPreview ? "flex w-full justify-center" : undefined
+                    bubbleOnlyPreview
+                      ? "flex w-full justify-center [&>#bubbles-export-root]:min-w-[360px] [&>:not(#bubbles-export-root)]:min-w-[360px] [&>:not(#bubbles-export-root)]:max-w-[400px] [&>:not(#bubbles-export-root)]:w-full"
+                      : "w-full min-w-0 [&>#bubbles-export-root]:mx-auto"
                   }
                 >
                   {bubblesPreview}
