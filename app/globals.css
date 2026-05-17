@@ -73,6 +73,10 @@ body {
   animation: file-cursor-bounce 0.55s ease-in-out infinite;
 }
 
+.platform-card:hover {
+  border-color: var(--card-border-hover) !important;
+}
+
 @keyframes file-cursor-bounce {
   0%,
   100% {

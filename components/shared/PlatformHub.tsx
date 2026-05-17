@@ -1,5 +1,6 @@
 import type { BrandId } from "@/components/brand/NeonBrandLogo";
 import { NeonBrandLogo } from "@/components/brand/NeonBrandLogo";
+import { getPlatformTheme } from "@/lib/brand";
 import { BackLink } from "./BackLink";
 import { GradientCard } from "./GradientCard";
 import { PageShell } from "./PageShell";
@@ -17,12 +18,20 @@ interface PlatformHubProps {
 }
 
 export function PlatformHub({ platformName, brand, links }: PlatformHubProps) {
+  const theme = getPlatformTheme(brand);
+
   return (
     <PageShell showHeader={false}>
       <div className="mx-auto max-w-lg px-4 py-12 sm:px-6">
         <BackLink href="/" />
         <div className="mt-6 flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-violet-500/20 bg-black/60 shadow-[0_0_30px_rgba(139,92,246,0.12)]">
+          <div
+            className="flex h-16 w-16 items-center justify-center rounded-2xl border bg-black/60"
+            style={{
+              borderColor: theme.border,
+              boxShadow: `0 0 30px ${theme.glow}`,
+            }}
+          >
             <NeonBrandLogo brand={brand} size={44} />
           </div>
           <div>
@@ -37,6 +46,7 @@ export function PlatformHub({ platformName, brand, links }: PlatformHubProps) {
               href={link.href}
               title={link.title}
               description={link.description}
+              brand={brand}
             />
           ))}
         </div>
