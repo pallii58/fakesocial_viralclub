@@ -13,6 +13,12 @@ interface NeonBrandLogoProps {
   className?: string;
 }
 
+const strokeProps = {
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  fill: "none",
+};
+
 export function NeonBrandLogo({
   brand,
   size = 48,
@@ -20,6 +26,7 @@ export function NeonBrandLogo({
 }: NeonBrandLogoProps) {
   const colors = platformNeon[brand];
   const id = `neon-${brand}`;
+  const sw = 2;
 
   return (
     <svg
@@ -32,109 +39,130 @@ export function NeonBrandLogo({
       aria-hidden
     >
       <defs>
-        <filter id={`${id}-glow`} x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="2.5" result="blur" />
+        <filter id={`${id}-glow`} x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
-        {brand === "instagram" && (
-          <linearGradient id={`${id}-grad`} x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ffaa33" />
-            <stop offset="50%" stopColor="#ff49c8" />
-            <stop offset="100%" stopColor="#a855f7" />
-          </linearGradient>
-        )}
-        {brand === "tiktok" && (
-          <linearGradient id={`${id}-grad`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#00f7f3" />
-            <stop offset="100%" stopColor="#ff2d55" />
-          </linearGradient>
-        )}
+        <linearGradient id={`${id}-ig`} x1="8" y1="40" x2="40" y2="8">
+          <stop offset="0%" stopColor="#ffaa33" />
+          <stop offset="45%" stopColor="#ff49c8" />
+          <stop offset="100%" stopColor="#a855f7" />
+        </linearGradient>
+        <linearGradient id={`${id}-tt`} x1="14" y1="10" x2="36" y2="38">
+          <stop offset="0%" stopColor="#00f7f3" />
+          <stop offset="100%" stopColor="#ff2d55" />
+        </linearGradient>
       </defs>
 
-      {brand === "whatsapp" && (
-        <g filter={`url(#${id}-glow)`}>
-          <path
-            d="M24 4C13.5 4 5 12.1 5 22.2c0 3.6 1 7 2.7 10L5 40l8.2-2.1c2.9 1.6 6.2 2.5 10.8 2.5 10.5 0 19-8.1 19-18.2S34.5 4 24 4z"
-            stroke={colors.primary}
-            strokeWidth="2"
-            fill="none"
-          />
-          <path
-            d="M18 20c.5-1 1.2-1 1.8-.2l1.2 1.6c.5.7 1.3.8 2 .3l2.4-1.8c.8-.6 1.6-.4 2.1.4l1.4 2.4c.5.9.2 1.8-.7 2.3-2.2 1.2-4.8 2.5-6.8 4.2-1 .8-2.2.5-2.8-.5l-1.4-2.4c-.5-.8-.3-1.6.5-2.1l2.2-1.5"
-            stroke={colors.primary}
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            fill="none"
-          />
-        </g>
-      )}
+      <g filter={`url(#${id}-glow)`}>
+        {brand === "whatsapp" && (
+          <>
+            <path
+              d="M24 6c-9.4 0-17 7.1-17 15.9 0 2.8.7 5.5 2 7.9L7 40l10.4-2.7c2.2 1.2 4.7 1.8 6.6 1.8 9.4 0 17-7.1 17-15.9S33.4 6 24 6z"
+              stroke={colors.primary}
+              strokeWidth={sw}
+              {...strokeProps}
+            />
+            <path
+              d="M17.5 19.5c.4-.9 1.1-.9 1.7-.1l1.4 1.9c.4.6 1.1.7 1.7.3l2.8-2c.7-.5 1.4-.3 1.9.5l1.5 2.5c.5.9.2 1.8-.8 2.4-2.4 1.3-5.2 2.6-7.2 4.3-1 .7-2.2.4-2.8-.6l-1.5-2.5c-.5-.8-.3-1.6.5-2.1l2.5-1.7"
+              stroke={colors.primary}
+              strokeWidth={1.6}
+              {...strokeProps}
+            />
+          </>
+        )}
 
-      {brand === "instagram" && (
-        <g filter={`url(#${id}-glow)`}>
-          <rect
-            x="8"
-            y="8"
-            width="32"
-            height="32"
-            rx="9"
-            stroke={`url(#${id}-grad)`}
-            strokeWidth="2.5"
-            fill="none"
-          />
-          <circle
-            cx="24"
-            cy="24"
-            r="7.5"
-            stroke={`url(#${id}-grad)`}
-            strokeWidth="2.5"
-            fill="none"
-          />
-          <circle cx="33" cy="15" r="2.5" fill={colors.primary} />
-        </g>
-      )}
+        {brand === "instagram" && (
+          <>
+            <rect
+              x="9"
+              y="9"
+              width="30"
+              height="30"
+              rx="8"
+              stroke={`url(#${id}-ig)`}
+              strokeWidth={sw + 0.25}
+              {...strokeProps}
+            />
+            <circle
+              cx="24"
+              cy="24"
+              r="6.5"
+              stroke={`url(#${id}-ig)`}
+              strokeWidth={sw + 0.25}
+              {...strokeProps}
+            />
+            <circle
+              cx="32.5"
+              cy="15.5"
+              r="2"
+              stroke={`url(#${id}-ig)`}
+              strokeWidth={1.75}
+              {...strokeProps}
+            />
+          </>
+        )}
 
-      {brand === "facebook" && (
-        <g filter={`url(#${id}-glow)`}>
-          <path
-            d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z"
-            stroke={colors.primary}
-            strokeWidth="2"
-            fill="none"
-          />
-          <path
-            d="M27 14h-4c-2.2 0-4 1.8-4 4v3h-3v4h3v10h4V25h4l1-4h-5v-3c0-.6.4-1 1-1h4V14z"
-            fill={colors.primary}
-          />
-        </g>
-      )}
+        {brand === "facebook" && (
+          <>
+            <circle
+              cx="24"
+              cy="24"
+              r="18"
+              stroke={colors.primary}
+              strokeWidth={sw}
+              {...strokeProps}
+            />
+            <path
+              d="M27.5 15h-4.5c-2.5 0-4.5 2-4.5 4.5v3h-3.5v4.5h3.5V33h5v-10.5h4.5l.8-4.5h-5.3v-3c0-.8.7-1.5 1.5-1.5h3.5V15z"
+              stroke={colors.primary}
+              strokeWidth={sw}
+              {...strokeProps}
+            />
+          </>
+        )}
 
-      {brand === "tiktok" && (
-        <g filter={`url(#${id}-glow)`}>
-          <path
-            d="M30 8v6.5c1.8-.2 3.5.3 5 1.5V20c-1.8-1.3-4-1.8-6.2-1.5v11.8c0 4.8-3.9 8.7-8.7 8.7S11.4 35.1 11.4 30.3s3.9-8.7 8.7-8.7c.6 0 1.2.1 1.7.2v5.2a3.5 3.5 0 00-1.7-.4 3.7 3.7 0 100 7.4 3.7 3.7 0 003.7-3.7V8H30z"
-            fill={`url(#${id}-grad)`}
-          />
-        </g>
-      )}
+        {brand === "tiktok" && (
+          <>
+            <path
+              d="M29 11v6.8c1.6-.15 3.2.35 4.5 1.4"
+              stroke="#00f7f3"
+              strokeWidth={sw}
+              {...strokeProps}
+            />
+            <path
+              d="M29 11h5v13.5c0 4.5-3.7 8.2-8.2 8.2s-8.2-3.7-8.2-8.2 3.7-8.2 8.2-8.2c.55 0 1.1.05 1.6.15v5"
+              stroke={`url(#${id}-tt)`}
+              strokeWidth={sw}
+              {...strokeProps}
+            />
+          </>
+        )}
 
-      {brand === "youtube" && (
-        <g filter={`url(#${id}-glow)`}>
-          <rect
-            x="6"
-            y="12"
-            width="36"
-            height="24"
-            rx="6"
-            stroke={colors.primary}
-            strokeWidth="2"
-            fill="none"
-          />
-          <path d="M21 18v12l12-6-12-6z" fill={colors.primary} />
-        </g>
-      )}
+        {brand === "youtube" && (
+          <>
+            <rect
+              x="5"
+              y="13"
+              width="38"
+              height="22"
+              rx="7"
+              stroke={colors.primary}
+              strokeWidth={sw}
+              {...strokeProps}
+            />
+            <path
+              d="M20 18.5v11l11-5.5-11-5.5z"
+              stroke={colors.primary}
+              strokeWidth={sw}
+              {...strokeProps}
+            />
+          </>
+        )}
+      </g>
     </svg>
   );
 }
