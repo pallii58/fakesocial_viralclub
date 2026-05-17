@@ -11,7 +11,7 @@ export const platforms: PlatformCard[] = [
   {
     id: "whatsapp",
     name: "WhatsApp",
-    description: "DM, gruppi, messaggio singolo e notifiche",
+    description: "Chat, messaggio singolo e notifiche",
     href: "/whatsapp",
   },
   {

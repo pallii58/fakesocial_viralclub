@@ -7,14 +7,9 @@ export default function WhatsAppPage() {
       brand="whatsapp"
       links={[
         {
-          href: "/whatsapp/dm",
-          title: "Chat DM",
-          description: "Conversazione 1:1 con messaggi e spunte lettura",
-        },
-        {
-          href: "/whatsapp/group",
-          title: "Gruppo",
-          description: "Chat di gruppo",
+          href: "/whatsapp/chat",
+          title: "Chat",
+          description: "Privata o gruppo, messaggi e spunte lettura",
         },
         {
           href: "/whatsapp/single",

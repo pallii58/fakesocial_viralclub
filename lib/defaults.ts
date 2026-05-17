@@ -5,6 +5,8 @@ import type {
   Message,
   PostContext,
   SocialEditorState,
+  WhatsAppChatState,
+  WhatsAppChatType,
   WhatsAppGroupState,
   PushNotificationState,
 } from "./types";
@@ -212,8 +214,74 @@ export function defaultYouTubeDM(): DMChatState {
 export function defaultWhatsAppGroup(): WhatsAppGroupState {
   return {
     groupName: "Team Progetto Alpha",
-    members: [...defaultMembers],
-    messages: [...defaultGroupMessages],
+    members: defaultMembers.map((m) => ({ ...m })),
+    messages: defaultGroupMessages.map((m) => ({ ...m })),
+  };
+}
+
+export function defaultWhatsAppChat(
+  chatType: WhatsAppChatType = "dm"
+): WhatsAppChatState {
+  const dm = defaultWhatsAppDM();
+  const group = defaultWhatsAppGroup();
+  if (chatType === "group") {
+    return {
+      chatType: "group",
+      contactName: dm.contactName,
+      contactAvatar: dm.contactAvatar,
+      contactStatus: dm.contactStatus,
+      groupName: group.groupName,
+      members: group.members,
+      messages: group.messages,
+      chatBackground: group.chatBackground,
+    };
+  }
+  return {
+    chatType: "dm",
+    contactName: dm.contactName,
+    contactAvatar: dm.contactAvatar,
+    contactStatus: dm.contactStatus,
+    groupName: group.groupName,
+    members: group.members,
+    messages: dm.messages,
+    chatBackground: dm.chatBackground,
+  };
+}
+
+export function switchWhatsAppChatType(
+  state: WhatsAppChatState,
+  chatType: WhatsAppChatType
+): WhatsAppChatState {
+  if (state.chatType === chatType) return state;
+  const base = defaultWhatsAppChat(chatType);
+  const firstOther =
+    state.members.find((m) => m.id !== "me")?.id ??
+    base.members.find((m) => m.id !== "me")?.id ??
+    "mem1";
+
+  const messages =
+    chatType === "group"
+      ? state.messages.map((m) =>
+          m.sender === "me"
+            ? m
+            : { ...m, sender: firstOther }
+        )
+      : state.messages.map((m) =>
+          m.sender === "me" ? m : { ...m, sender: "other" }
+        );
+
+  return {
+    ...base,
+    messages,
+    chatBackground: state.chatBackground,
+    contactName: state.contactName || state.groupName || base.contactName,
+    contactAvatar: state.contactAvatar,
+    contactStatus: state.contactStatus ?? base.contactStatus,
+    groupName: state.groupName || state.contactName || base.groupName,
+    members:
+      state.members.length > 0
+        ? state.members.map((m) => ({ ...m }))
+        : base.members,
   };
 }
 

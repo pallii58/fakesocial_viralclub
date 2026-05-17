@@ -58,6 +58,20 @@ export interface DMChatState {
 
 export type WhatsAppDMState = DMChatState;
 
+export type WhatsAppChatType = "dm" | "group";
+
+/** Chat WhatsApp unificata: privata o gruppo */
+export interface WhatsAppChatState {
+  chatType: WhatsAppChatType;
+  contactName: string;
+  contactAvatar?: string;
+  contactStatus?: string;
+  groupName: string;
+  members: GroupMember[];
+  messages: Message[];
+  chatBackground?: ChatBackground;
+}
+
 export interface WhatsAppGroupState {
   groupName: string;
   members: GroupMember[];
