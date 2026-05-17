@@ -62,7 +62,7 @@ export function EditorLayout({
           {showBubbleExport && bubblesPreview && (
             <div className="editor-panel">
               <h2 className="editor-label mb-4">
-                Anteprima bolle (export trasparente)
+                Anteprima messaggi (export trasparente)
               </h2>
               <div className="flex justify-center rounded-xl border border-violet-500/10 bg-[repeating-conic-gradient(rgba(139,92,246,0.08)_0%_25%,transparent_0%_50%)] bg-[length:16px_16px] p-4">
                 <div ref={bubblesRef}>{bubblesPreview}</div>

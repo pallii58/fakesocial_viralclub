@@ -19,7 +19,7 @@ export default function WhatsAppPage() {
         {
           href: "/whatsapp/single",
           title: "Singolo messaggio",
-          description: "Una bolla su sfondo chat — export PNG trasparente",
+          description: "Un messaggio su sfondo chat",
         },
         {
           href: "/whatsapp/notification",

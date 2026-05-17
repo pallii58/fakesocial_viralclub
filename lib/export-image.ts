@@ -51,7 +51,7 @@ export async function exportMock(
 export async function exportTransparentPng(
   element: HTMLElement | null,
   platform: string,
-  suffix = "-bolle"
+  suffix = "-messaggi"
 ) {
   if (!element) return;
   const timestamp = Date.now();

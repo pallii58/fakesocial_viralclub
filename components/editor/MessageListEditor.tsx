@@ -64,7 +64,7 @@ export function MessageListEditor({
                   onClick={() => onExportBubble(msg)}
                   className="text-xs font-medium text-fuchsia-400 hover:text-fuchsia-300"
                 >
-                  PNG bolla
+                  PNG messaggio
                 </button>
               )}
               <button

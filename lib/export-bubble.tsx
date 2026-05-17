@@ -32,7 +32,7 @@ export async function exportSingleBubble(
 
   const bubbleEl = container.firstElementChild as HTMLElement | null;
   if (bubbleEl) {
-    await exportTransparentPng(bubbleEl, platform, `-bolla-${message.id.slice(-6)}`);
+    await exportTransparentPng(bubbleEl, platform, `-messaggio-${message.id.slice(-6)}`);
   }
 
   root.unmount();

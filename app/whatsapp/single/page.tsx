@@ -81,7 +81,7 @@ export default function WhatsAppSingleMessagePage() {
             onClick={() => exportSingleBubble(message, "whatsapp", "whatsapp-single")}
             className="btn-secondary w-full"
           >
-            Esporta PNG bolla trasparente
+            Esporta PNG messaggio trasparente
           </button>
         </div>
       }

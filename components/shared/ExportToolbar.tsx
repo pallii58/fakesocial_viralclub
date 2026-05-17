@@ -28,10 +28,10 @@ export function ExportToolbar({
       {showBubbleExport && bubblesRef && (
         <button
           type="button"
-          onClick={() => exportTransparentPng(bubblesRef.current, platform, "-bolle")}
+          onClick={() => exportTransparentPng(bubblesRef.current, platform, "-messaggi")}
           className="btn-accent"
         >
-          PNG bolle (trasparente)
+          PNG messaggi (trasparente)
         </button>
       )}
       <button type="button" onClick={onReset} className="btn-ghost">
