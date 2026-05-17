@@ -52,7 +52,7 @@ export function DMEditorClient({
             onChange={(e) =>
               setState({ ...state, contactName: e.target.value })
             }
-            className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+            className="editor-input"
             placeholder="Nome contatto"
           />
           <input
@@ -60,7 +60,7 @@ export function DMEditorClient({
             onChange={(e) =>
               setState({ ...state, contactStatus: e.target.value })
             }
-            className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+            className="editor-input"
             placeholder="Stato (es. Attivo ora)"
           />
           <ImageUploadField

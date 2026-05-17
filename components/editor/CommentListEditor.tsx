@@ -30,9 +30,9 @@ function CommentItemEditor({
   label: string;
 }) {
   return (
-    <div className="space-y-2 rounded-lg border border-zinc-200 p-3">
+    <div className="space-y-2 rounded-lg border border-violet-500/15 bg-black/30 p-3">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium text-zinc-500">{label}</span>
+        <span className="text-xs font-medium text-violet-400/70">{label}</span>
         <div className="flex items-center gap-2">
           <MoveButtons
             onUp={onMoveUp}
@@ -43,7 +43,7 @@ function CommentItemEditor({
           <button
             type="button"
             onClick={onRemove}
-            className="text-xs text-red-600 hover:underline"
+            className="text-xs text-red-400 hover:text-red-300"
           >
             Elimina
           </button>
@@ -52,7 +52,7 @@ function CommentItemEditor({
       <input
         value={comment.author}
         onChange={(e) => onUpdate({ ...comment, author: e.target.value })}
-        className="w-full rounded border border-zinc-300 px-2 py-1 text-sm"
+        className="editor-input"
         placeholder="Username"
       />
       <ImageUploadField
@@ -64,7 +64,7 @@ function CommentItemEditor({
         value={comment.text}
         onChange={(e) => onUpdate({ ...comment, text: e.target.value })}
         rows={2}
-        className="w-full rounded border border-zinc-300 px-2 py-1 text-sm"
+        className="editor-input"
         placeholder="Testo commento"
       />
       <div className="grid grid-cols-2 gap-2">
@@ -74,17 +74,17 @@ function CommentItemEditor({
           onChange={(e) =>
             onUpdate({ ...comment, likes: parseInt(e.target.value) || 0 })
           }
-          className="rounded border border-zinc-300 px-2 py-1 text-sm"
+          className="editor-input"
           placeholder="Like"
         />
         <input
           value={comment.timestamp}
           onChange={(e) => onUpdate({ ...comment, timestamp: e.target.value })}
-          className="rounded border border-zinc-300 px-2 py-1 text-sm"
+          className="editor-input"
           placeholder="Tempo (es. 2h)"
         />
       </div>
-      <label className="flex items-center gap-2 text-sm">
+      <label className="flex items-center gap-2 text-sm text-zinc-300">
         <input
           type="checkbox"
           checked={comment.verified ?? false}
@@ -144,7 +144,7 @@ export function CommentListEditor({
             disableDown={i === comments.length - 1}
           />
           {(comment.replies ?? []).map((reply, ri) => (
-            <div key={reply.id} className="ml-4 border-l-2 border-zinc-200 pl-3">
+            <div key={reply.id} className="ml-4 border-l-2 border-violet-500/20 pl-3">
               <CommentItemEditor
                 comment={reply}
                 label={`Risposta ${ri + 1}`}
@@ -169,7 +169,7 @@ export function CommentListEditor({
           <button
             type="button"
             onClick={() => addReply(i)}
-            className="ml-4 text-xs text-blue-600 hover:underline"
+            className="ml-4 text-xs text-violet-400 hover:text-violet-300"
           >
             + Aggiungi risposta
           </button>
@@ -178,7 +178,7 @@ export function CommentListEditor({
       <button
         type="button"
         onClick={() => onChange([...comments, newComment()])}
-        className="w-full rounded-lg border-2 border-dashed border-zinc-300 py-2 text-sm font-medium text-zinc-600 hover:border-emerald-500 hover:text-emerald-700"
+        className="w-full rounded-lg border-2 border-dashed border-violet-500/25 py-2.5 text-sm font-medium text-violet-300/80 hover:border-violet-400/50 hover:bg-violet-950/30"
       >
         + Aggiungi commento
       </button>

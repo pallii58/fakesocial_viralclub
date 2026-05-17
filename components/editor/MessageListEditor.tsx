@@ -45,10 +45,10 @@ export function MessageListEditor({
       {messages.map((msg, i) => (
         <div
           key={msg.id}
-          className="space-y-2 rounded-lg border border-zinc-200 p-3"
+          className="space-y-2 rounded-xl border border-violet-500/15 bg-black/30 p-3"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs font-medium text-zinc-500">
+            <span className="text-xs font-medium text-violet-400/70">
               Messaggio {i + 1}
             </span>
             <div className="flex items-center gap-2">
@@ -62,7 +62,7 @@ export function MessageListEditor({
                 <button
                   type="button"
                   onClick={() => onExportBubble(msg)}
-                  className="text-xs text-violet-600 hover:underline"
+                  className="text-xs font-medium text-fuchsia-400 hover:text-fuchsia-300"
                 >
                   PNG bolla
                 </button>
@@ -70,7 +70,7 @@ export function MessageListEditor({
               <button
                 type="button"
                 onClick={() => remove(msg.id)}
-                className="text-xs text-red-600 hover:underline"
+                className="text-xs text-red-400 hover:text-red-300"
               >
                 Elimina
               </button>
@@ -79,7 +79,7 @@ export function MessageListEditor({
           <select
             value={String(msg.sender)}
             onChange={(e) => update(msg.id, { sender: e.target.value })}
-            className="w-full rounded border border-zinc-300 px-2 py-1 text-sm"
+            className="editor-input"
           >
             {senderOptions.map((s) => (
               <option key={String(s.id)} value={String(s.id)}>
@@ -91,13 +91,13 @@ export function MessageListEditor({
             value={msg.text}
             onChange={(e) => update(msg.id, { text: e.target.value })}
             rows={2}
-            className="w-full rounded border border-zinc-300 px-2 py-1 text-sm"
+            className="editor-input"
             placeholder="Testo messaggio"
           />
           <input
             value={msg.timestamp}
             onChange={(e) => update(msg.id, { timestamp: e.target.value })}
-            className="w-full rounded border border-zinc-300 px-2 py-1 text-sm"
+            className="editor-input"
             placeholder="Orario (es. 10:30)"
           />
           {showReadStatus && msg.sender === "me" && (
@@ -108,7 +108,7 @@ export function MessageListEditor({
                   readStatus: e.target.value as Message["readStatus"],
                 })
               }
-              className="w-full rounded border border-zinc-300 px-2 py-1 text-sm"
+              className="editor-input"
             >
               <option value="sent">Inviato</option>
               <option value="delivered">Consegnato</option>
@@ -120,7 +120,7 @@ export function MessageListEditor({
       <button
         type="button"
         onClick={() => onChange([...messages, newMessage("me")])}
-        className="w-full rounded-lg border-2 border-dashed border-zinc-300 py-2 text-sm font-medium text-zinc-600 hover:border-emerald-500 hover:text-emerald-700"
+        className="w-full rounded-xl border-2 border-dashed border-violet-500/25 py-2.5 text-sm font-medium text-violet-300/80 transition hover:border-violet-400/50 hover:bg-violet-950/30 hover:text-violet-200"
       >
         + Aggiungi messaggio
       </button>

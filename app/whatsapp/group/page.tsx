@@ -44,7 +44,7 @@ export default function WhatsAppGroupPage() {
           <input
             value={state.groupName}
             onChange={(e) => setState({ ...state, groupName: e.target.value })}
-            className="w-full rounded border border-zinc-300 px-3 py-2 text-sm"
+            className="editor-input"
             placeholder="Nome gruppo"
           />
           <GroupMembersEditor

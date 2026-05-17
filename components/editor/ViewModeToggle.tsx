@@ -9,14 +9,14 @@ interface ViewModeToggleProps {
 
 export function ViewModeToggle({ value, onChange }: ViewModeToggleProps) {
   return (
-    <div className="flex rounded-lg border border-zinc-200 p-1">
+    <div className="flex rounded-xl border border-violet-500/20 bg-black/40 p-1">
       <button
         type="button"
         onClick={() => onChange("full")}
-        className={`flex-1 rounded-md px-3 py-2 text-sm font-medium transition ${
+        className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition ${
           value === "full"
-            ? "bg-zinc-900 text-white"
-            : "text-zinc-600 hover:bg-zinc-50"
+            ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-[0_0_16px_rgba(139,92,246,0.35)]"
+            : "text-zinc-400 hover:text-zinc-200"
         }`}
       >
         Post + commenti
@@ -24,10 +24,10 @@ export function ViewModeToggle({ value, onChange }: ViewModeToggleProps) {
       <button
         type="button"
         onClick={() => onChange("comments-only")}
-        className={`flex-1 rounded-md px-3 py-2 text-sm font-medium transition ${
+        className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition ${
           value === "comments-only"
-            ? "bg-zinc-900 text-white"
-            : "text-zinc-600 hover:bg-zinc-50"
+            ? "bg-gradient-to-r from-violet-600 to-purple-600 text-white shadow-[0_0_16px_rgba(139,92,246,0.35)]"
+            : "text-zinc-400 hover:text-zinc-200"
         }`}
       >
         Solo commenti

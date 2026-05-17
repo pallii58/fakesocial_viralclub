@@ -21,19 +21,21 @@ export function ImageUploadField({
 
   return (
     <div className="space-y-1">
-      <label className="block text-sm font-medium text-zinc-700">{label}</label>
+      <label className="block text-sm font-medium text-violet-300/80">
+        {label}
+      </label>
       <div className="flex items-center gap-2">
         <input
           type="file"
           accept="image/*"
           onChange={handleFile}
-          className="text-sm text-zinc-600"
+          className="text-sm text-zinc-400 file:mr-2 file:rounded-lg file:border-0 file:bg-violet-600/30 file:px-3 file:py-1 file:text-xs file:text-violet-200"
         />
         {value && (
           <button
             type="button"
             onClick={() => onChange(undefined)}
-            className="text-xs text-red-600 hover:underline"
+            className="text-xs text-red-400 hover:text-red-300"
           >
             Rimuovi
           </button>
@@ -41,7 +43,11 @@ export function ImageUploadField({
       </div>
       {value && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={value} alt="" className="mt-1 h-16 w-16 rounded-full object-cover" />
+        <img
+          src={value}
+          alt=""
+          className="mt-1 h-16 w-16 rounded-full border border-violet-500/20 object-cover"
+        />
       )}
     </div>
   );
