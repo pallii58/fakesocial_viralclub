@@ -39,7 +39,6 @@ export function EditorLayout({
           <div>
             <BackLink href={backHref}>Indietro</BackLink>
             <h1 className="mt-1 text-xl font-bold text-white">{title}</h1>
-            <p className="text-xs text-zinc-500">Usa solo per demo autorizzate</p>
           </div>
           <ExportToolbar
             exportRef={exportRef}
