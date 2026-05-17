@@ -5,7 +5,6 @@ import { ChatBubble } from "@/components/mockups/bubbles/ChatBubble";
 import { EditorLayout } from "@/components/shared/EditorLayout";
 import { Select } from "@/components/shared/Select";
 import { defaultWhatsAppSingleMessage } from "@/lib/defaults";
-import { exportSingleBubble } from "@/lib/export-bubble";
 import type { Message, ReadStatus } from "@/lib/types";
 
 export default function WhatsAppSingleMessagePage() {
@@ -79,13 +78,6 @@ export default function WhatsAppSingleMessagePage() {
               />
             </div>
           )}
-          <button
-            type="button"
-            onClick={() => exportSingleBubble(message, "whatsapp", "whatsapp-single")}
-            className="btn-secondary w-full"
-          >
-            Esporta PNG messaggio trasparente
-          </button>
         </div>
       }
     />
