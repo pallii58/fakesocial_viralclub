@@ -1,3 +1,10 @@
+import type { BrandId } from "@/components/brand/NeonBrandLogo";
+
+export const VIRALCLUB_LOGO = "/viralclub-logo.webp";
+
+/** Rapporto larghezza/altezza logo (680×125) */
+export const VIRALCLUB_LOGO_ASPECT = 680 / 125;
+
 export const brand = {
   purple: "#8b5cf6",
   purpleLight: "#a78bfa",
@@ -7,8 +14,6 @@ export const brand = {
   blackSoft: "#0c0c12",
   blackCard: "#12121a",
 } as const;
-
-import type { BrandId } from "@/components/brand/NeonBrandLogo";
 
 export interface PlatformTheme {
   primary: string;

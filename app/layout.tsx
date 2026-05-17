@@ -8,9 +8,9 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Fake Social — Mock per agenzia",
+  title: "ViralClub — Fake Social",
   description:
-    "Crea screenshot di chat WhatsApp e commenti finti per Instagram, Facebook, TikTok e YouTube.",
+    "Tool ViralClub per mock di chat, DM e commenti su WhatsApp, Instagram, Facebook, TikTok e YouTube.",
 };
 
 export default function RootLayout({

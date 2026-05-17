@@ -16,13 +16,13 @@ export function PageShell({ children, showHeader = true }: PageShellProps) {
       </div>
 
       {showHeader && (
-        <header className="relative border-b border-white/5 bg-black/40 px-4 py-6 backdrop-blur-xl sm:px-12">
+        <header className="relative border-b border-white/5 bg-black/40 px-4 py-5 backdrop-blur-xl sm:px-12">
           <div className="mx-auto flex max-w-5xl items-center justify-between">
-            <Link href="/">
-              <AppLogo />
+            <Link href="/" className="inline-block">
+              <AppLogo size="md" priority />
             </Link>
-            <span className="hidden text-xs font-medium uppercase tracking-widest text-violet-400/60 sm:block">
-              Viral Club
+            <span className="hidden text-xs font-medium text-zinc-500 sm:block">
+              Fake Social
             </span>
           </div>
         </header>
