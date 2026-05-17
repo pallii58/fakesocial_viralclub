@@ -1,19 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { ChatBackgroundEditor } from "@/components/editor/ChatBackgroundEditor";
 import { ChatBubble } from "@/components/mockups/bubbles/ChatBubble";
-import { WhatsAppSingleMessage } from "@/components/mockups/WhatsAppSingleMessage";
 import { EditorLayout } from "@/components/shared/EditorLayout";
 import { Select } from "@/components/shared/Select";
-import { chatBackgroundDefaults } from "@/lib/chat-background";
 import { defaultWhatsAppSingleMessage } from "@/lib/defaults";
 import { exportSingleBubble } from "@/lib/export-bubble";
-import type { ChatBackground, Message, ReadStatus } from "@/lib/types";
+import type { Message, ReadStatus } from "@/lib/types";
 
 export default function WhatsAppSingleMessagePage() {
   const [message, setMessage] = useState<Message>(defaultWhatsAppSingleMessage);
-  const [chatBackground, setChatBackground] = useState<ChatBackground>();
 
   const update = (patch: Partial<Message>) => {
     setMessage((prev) => ({ ...prev, ...patch }));
@@ -24,10 +20,8 @@ export default function WhatsAppSingleMessagePage() {
       title="WhatsApp · Singolo messaggio"
       platform="whatsapp-single"
       backHref="/whatsapp"
-      onReset={() => {
-        setMessage(defaultWhatsAppSingleMessage());
-        setChatBackground(undefined);
-      }}
+      onReset={() => setMessage(defaultWhatsAppSingleMessage())}
+      bubbleOnlyPreview
       showBubbleExport
       bubblesPreview={<ChatBubble message={message} themeId="whatsapp" />}
       editor={
@@ -67,11 +61,6 @@ export default function WhatsAppSingleMessagePage() {
               placeholder="10:42"
             />
           </div>
-          <ChatBackgroundEditor
-            value={chatBackground}
-            onChange={setChatBackground}
-            defaultColor={chatBackgroundDefaults.whatsapp.solidColor}
-          />
           {message.sender === "me" && (
             <div>
               <label className="editor-label mb-2 block">Spunte lettura</label>
@@ -96,12 +85,6 @@ export default function WhatsAppSingleMessagePage() {
             Esporta PNG messaggio trasparente
           </button>
         </div>
-      }
-      preview={
-        <WhatsAppSingleMessage
-          message={message}
-          chatBackground={chatBackground}
-        />
       }
     />
   );

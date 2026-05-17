@@ -13,9 +13,11 @@ interface EditorLayoutProps {
   backHref?: string;
   onReset: () => void;
   editor: ReactNode;
-  preview: ReactNode;
+  preview?: ReactNode;
   showBubbleExport?: boolean;
   bubblesPreview?: ReactNode;
+  /** Anteprima ed export solo bolle su sfondo trasparente (es. singolo messaggio) */
+  bubbleOnlyPreview?: boolean;
 }
 
 const checkerboardClass =
@@ -30,13 +32,17 @@ export function EditorLayout({
   preview,
   showBubbleExport = false,
   bubblesPreview,
+  bubbleOnlyPreview = false,
 }: EditorLayoutProps) {
-  const hasBubblesView = Boolean(showBubbleExport && bubblesPreview);
-  const [showBackground, setShowBackground] = useState(true);
+  const hasBubblesView = Boolean(
+    bubbleOnlyPreview || (showBubbleExport && bubblesPreview)
+  );
+  const [showBackground, setShowBackground] = useState(!bubbleOnlyPreview);
   const exportRef = useRef<HTMLDivElement>(null);
   const bubblesRef = useRef<HTMLDivElement>(null);
 
-  const usePhoneView = !hasBubblesView || showBackground;
+  const usePhoneView =
+    !bubbleOnlyPreview && preview != null && (!hasBubblesView || showBackground);
   const activeExportRef = usePhoneView ? exportRef : bubblesRef;
 
   return (
@@ -52,7 +58,11 @@ export function EditorLayout({
             platform={platform}
             onReset={onReset}
             transparentExport={hasBubblesView}
-            exportSuffix={hasBubblesView && !showBackground ? "-messaggi" : ""}
+            exportSuffix={
+              bubbleOnlyPreview || (hasBubblesView && !showBackground)
+                ? "-messaggi"
+                : ""
+            }
           />
         </div>
       </header>
@@ -66,7 +76,7 @@ export function EditorLayout({
           <div className="editor-panel">
             <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="editor-label">Anteprima</h2>
-              {hasBubblesView && (
+              {hasBubblesView && !bubbleOnlyPreview && (
                 <BackgroundPills
                   showBackground={showBackground}
                   onChange={setShowBackground}
