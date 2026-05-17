@@ -8,7 +8,6 @@ import { GroupMembersEditor } from "@/components/editor/GroupMembersEditor";
 import { MessageListEditor } from "@/components/editor/MessageListEditor";
 import { WhatsAppGroup } from "@/components/mockups/WhatsAppGroup";
 import { BubblesStack } from "@/components/mockups/bubbles/BubblesStack";
-import { exportSingleBubble } from "@/lib/export-bubble";
 
 export default function WhatsAppGroupPage() {
   const [state, setState] = useState<WhatsAppGroupState>(defaultWhatsAppGroup);
@@ -56,14 +55,6 @@ export default function WhatsAppGroupPage() {
             onChange={(messages) => setState({ ...state, messages })}
             senders={senders}
             showReadStatus
-            onExportBubble={(msg) =>
-              exportSingleBubble(
-                msg,
-                "whatsapp",
-                "whatsapp-group",
-                msg.sender !== "me" ? memberName(String(msg.sender)) : undefined
-              )
-            }
           />
         </div>
       }

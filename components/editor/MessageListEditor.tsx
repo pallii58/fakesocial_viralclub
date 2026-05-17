@@ -9,7 +9,6 @@ interface MessageListEditorProps {
   onChange: (messages: Message[]) => void;
   senders?: { id: MessageSender; label: string }[];
   showReadStatus?: boolean;
-  onExportBubble?: (message: Message) => void;
 }
 
 export function MessageListEditor({
@@ -17,7 +16,6 @@ export function MessageListEditor({
   onChange,
   senders,
   showReadStatus,
-  onExportBubble,
 }: MessageListEditorProps) {
   const update = (id: string, patch: Partial<Message>) => {
     onChange(messages.map((m) => (m.id === id ? { ...m, ...patch } : m)));
@@ -58,15 +56,6 @@ export function MessageListEditor({
                 disableUp={i === 0}
                 disableDown={i === messages.length - 1}
               />
-              {onExportBubble && (
-                <button
-                  type="button"
-                  onClick={() => onExportBubble(msg)}
-                  className="text-xs font-medium text-fuchsia-400 hover:text-fuchsia-300"
-                >
-                  PNG messaggio
-                </button>
-              )}
               <button
                 type="button"
                 onClick={() => remove(msg.id)}

@@ -8,7 +8,6 @@ import { EditorLayout } from "@/components/shared/EditorLayout";
 import { ImageUploadField } from "@/components/shared/ImageUploadField";
 import { MessageListEditor } from "./MessageListEditor";
 import { BubblesStack } from "@/components/mockups/bubbles/BubblesStack";
-import { exportSingleBubble } from "@/lib/export-bubble";
 
 interface DMEditorClientProps {
   title: string;
@@ -30,10 +29,6 @@ export function DMEditorClient({
   showReadStatus = themeId === "whatsapp",
 }: DMEditorClientProps) {
   const [state, setState] = useState<DMChatState>(defaultState);
-
-  const handleExportBubble = (message: (typeof state.messages)[0]) => {
-    exportSingleBubble(message, themeId, platform);
-  };
 
   return (
     <EditorLayout
@@ -72,7 +67,6 @@ export function DMEditorClient({
             messages={state.messages}
             onChange={(messages) => setState({ ...state, messages })}
             showReadStatus={showReadStatus}
-            onExportBubble={handleExportBubble}
           />
         </div>
       }
