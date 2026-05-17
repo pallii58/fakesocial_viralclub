@@ -1,4 +1,3 @@
-import { AppLogo } from "@/components/shared/AppLogo";
 import { GradientCard } from "@/components/shared/GradientCard";
 import { PageShell } from "@/components/shared/PageShell";
 import { platforms } from "@/lib/platforms";
@@ -8,7 +7,6 @@ export default function Home() {
     <PageShell>
       <section className="mx-auto max-w-5xl px-4 py-12 sm:px-12 sm:py-16">
         <div className="mb-12 max-w-2xl">
-          <AppLogo size="lg" priority className="mb-8" />
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             <span className="bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent">
               Mock social
