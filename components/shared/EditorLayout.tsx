@@ -92,11 +92,7 @@ export function EditorLayout({
               <div className={checkerboardClass}>
                 <div
                   ref={bubblesRef}
-                  className={
-                    bubbleOnlyPreview
-                      ? "flex w-full justify-center [&>#bubbles-export-root]:min-w-[360px] [&>:not(#bubbles-export-root)]:min-w-[360px] [&>:not(#bubbles-export-root)]:max-w-[400px] [&>:not(#bubbles-export-root)]:w-full"
-                      : "w-full min-w-0 [&>#bubbles-export-root]:mx-auto"
-                  }
+                  className="mx-auto w-full min-w-[360px] max-w-[400px]"
                 >
                   {bubblesPreview}
                 </div>
