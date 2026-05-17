@@ -51,7 +51,7 @@ export function GradientCard({
               boxShadow: `0 0 24px ${theme.glow}`,
             }}
           >
-            <NeonBrandLogo brand={brand} size={40} />
+            <NeonBrandLogo brand={brand} size={40} className="block" />
           </div>
         )}
         <h2 className="text-lg font-semibold text-white transition-colors group-hover:text-[color:var(--card-accent)]">

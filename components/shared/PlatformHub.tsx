@@ -32,7 +32,7 @@ export function PlatformHub({ platformName, brand, links }: PlatformHubProps) {
               boxShadow: `0 0 30px ${theme.glow}`,
             }}
           >
-            <NeonBrandLogo brand={brand} size={44} />
+            <NeonBrandLogo brand={brand} size={40} className="block" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-white">{platformName}</h1>
