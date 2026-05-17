@@ -9,7 +9,7 @@ export default function WhatsAppPage() {
         {
           href: "/whatsapp/dm",
           title: "Chat DM",
-          description: "Conversazione 1:1 con bolle e spunte lettura",
+          description: "Conversazione 1:1 con messaggi e spunte lettura",
         },
         {
           href: "/whatsapp/group",
