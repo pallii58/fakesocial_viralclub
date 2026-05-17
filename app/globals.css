@@ -66,6 +66,22 @@ body {
   @apply w-full rounded-lg border border-violet-500/20 bg-black/40 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20;
 }
 
+.editor-select-trigger {
+  @apply flex w-full cursor-pointer items-center justify-between gap-2 rounded-lg border border-violet-500/20 bg-black/40 px-3 py-2 text-left text-sm text-zinc-100 transition hover:border-violet-400/40 focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.editor-select-menu {
+  @apply absolute z-50 mt-1 max-h-52 w-full overflow-auto rounded-lg border border-violet-500/25 bg-[#12121a] py-1 shadow-[0_12px_40px_rgba(0,0,0,0.55)] backdrop-blur-sm;
+}
+
+.editor-select-option {
+  @apply cursor-pointer px-3 py-2.5 text-sm text-zinc-200 outline-none transition hover:bg-violet-500/15 focus:bg-violet-500/15;
+}
+
+.editor-select-option[data-selected="true"] {
+  @apply bg-violet-500/20 font-medium text-violet-200;
+}
+
 .editor-panel {
   @apply rounded-2xl border border-violet-500/15 bg-gradient-to-br from-[#12121a]/95 to-[#0a0a10]/95 p-4 shadow-[0_0_30px_rgba(0,0,0,0.4)] backdrop-blur-sm sm:p-6;
 }

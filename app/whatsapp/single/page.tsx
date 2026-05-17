@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChatBubble } from "@/components/mockups/bubbles/ChatBubble";
 import { WhatsAppSingleMessage } from "@/components/mockups/WhatsAppSingleMessage";
 import { EditorLayout } from "@/components/shared/EditorLayout";
+import { Select } from "@/components/shared/Select";
 import { defaultWhatsAppSingleMessage } from "@/lib/defaults";
 import { exportSingleBubble } from "@/lib/export-bubble";
 import type { Message, ReadStatus } from "@/lib/types";
@@ -27,20 +28,20 @@ export default function WhatsAppSingleMessagePage() {
         <div className="space-y-4">
           <div>
             <label className="editor-label mb-2 block">Mittente</label>
-            <select
+            <Select
               value={String(message.sender)}
-              onChange={(e) => {
-                const sender = e.target.value as Message["sender"];
+              onChange={(sender) => {
                 update({
-                  sender,
-                  readStatus: sender === "me" ? message.readStatus ?? "read" : undefined,
+                  sender: sender as Message["sender"],
+                  readStatus:
+                    sender === "me" ? message.readStatus ?? "read" : undefined,
                 });
               }}
-              className="editor-input"
-            >
-              <option value="other">Contatto</option>
-              <option value="me">Tu</option>
-            </select>
+              options={[
+                { value: "other", label: "Contatto" },
+                { value: "me", label: "Tu" },
+              ]}
+            />
           </div>
           <div>
             <label className="editor-label mb-2 block">Testo</label>
@@ -63,17 +64,17 @@ export default function WhatsAppSingleMessagePage() {
           {message.sender === "me" && (
             <div>
               <label className="editor-label mb-2 block">Spunte lettura</label>
-              <select
+              <Select
                 value={message.readStatus ?? "read"}
-                onChange={(e) =>
-                  update({ readStatus: e.target.value as ReadStatus })
+                onChange={(readStatus) =>
+                  update({ readStatus: readStatus as ReadStatus })
                 }
-                className="editor-input"
-              >
-                <option value="sent">Inviato</option>
-                <option value="delivered">Consegnato</option>
-                <option value="read">Letto</option>
-              </select>
+                options={[
+                  { value: "sent", label: "Inviato" },
+                  { value: "delivered", label: "Consegnato" },
+                  { value: "read", label: "Letto" },
+                ]}
+              />
             </div>
           )}
           <button

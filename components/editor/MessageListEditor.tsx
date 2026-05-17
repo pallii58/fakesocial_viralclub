@@ -3,6 +3,7 @@
 import { newMessage } from "@/lib/defaults";
 import type { Message, MessageSender } from "@/lib/types";
 import { MoveButtons } from "@/components/shared/MoveButtons";
+import { Select } from "@/components/shared/Select";
 
 interface MessageListEditorProps {
   messages: Message[];
@@ -65,17 +66,14 @@ export function MessageListEditor({
               </button>
             </div>
           </div>
-          <select
+          <Select
             value={String(msg.sender)}
-            onChange={(e) => update(msg.id, { sender: e.target.value })}
-            className="editor-input"
-          >
-            {senderOptions.map((s) => (
-              <option key={String(s.id)} value={String(s.id)}>
-                {s.label}
-              </option>
-            ))}
-          </select>
+            onChange={(sender) => update(msg.id, { sender })}
+            options={senderOptions.map((s) => ({
+              value: String(s.id),
+              label: s.label,
+            }))}
+          />
           <textarea
             value={msg.text}
             onChange={(e) => update(msg.id, { text: e.target.value })}
@@ -90,19 +88,19 @@ export function MessageListEditor({
             placeholder="Orario (es. 10:30)"
           />
           {showReadStatus && msg.sender === "me" && (
-            <select
+            <Select
               value={msg.readStatus ?? "read"}
-              onChange={(e) =>
+              onChange={(readStatus) =>
                 update(msg.id, {
-                  readStatus: e.target.value as Message["readStatus"],
+                  readStatus: readStatus as Message["readStatus"],
                 })
               }
-              className="editor-input"
-            >
-              <option value="sent">✓ 1 grigia (inviato)</option>
-              <option value="delivered">✓✓ 2 grigie (consegnato)</option>
-              <option value="read">✓✓ 2 celesti (letto)</option>
-            </select>
+              options={[
+                { value: "sent", label: "✓ 1 grigia (inviato)" },
+                { value: "delivered", label: "✓✓ 2 grigie (consegnato)" },
+                { value: "read", label: "✓✓ 2 celesti (letto)" },
+              ]}
+            />
           )}
         </div>
       ))}
