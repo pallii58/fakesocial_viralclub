@@ -9,12 +9,13 @@ interface BubblesStackProps {
   messages: Message[];
   themeId: ChatThemeId;
   getSenderName?: (sender: string) => string | undefined;
+  getSenderNameColor?: (sender: string) => string | undefined;
   className?: string;
 }
 
 export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
   function BubblesStack(
-    { messages, themeId, getSenderName, className = "" },
+    { messages, themeId, getSenderName, getSenderNameColor, className = "" },
     ref
   ) {
     return (
@@ -26,11 +27,15 @@ export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
       >
         {messages.map((msg, i) => {
           const prev = messages[i - 1];
+          const showSender =
+            msg.sender !== "me" && (!prev || prev.sender !== msg.sender);
           const showName =
-            getSenderName &&
-            msg.sender !== "me" &&
-            (!prev || prev.sender !== msg.sender)
+            getSenderName && showSender
               ? getSenderName(String(msg.sender))
+              : undefined;
+          const nameColor =
+            getSenderNameColor && showSender
+              ? getSenderNameColor(String(msg.sender))
               : undefined;
           return (
             <ChatBubble
@@ -38,6 +43,7 @@ export const BubblesStack = forwardRef<HTMLDivElement, BubblesStackProps>(
               message={msg}
               themeId={themeId}
               showSenderName={showName}
+              senderNameColor={nameColor}
             />
           );
         })}

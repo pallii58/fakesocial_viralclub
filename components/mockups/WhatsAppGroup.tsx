@@ -4,6 +4,7 @@ import {
   chatBackgroundDefaults,
   resolveChatBackground,
 } from "@/lib/chat-background";
+import { getMemberNameColor } from "@/lib/group-member-colors";
 import type { WhatsAppGroupState } from "@/lib/types";
 import { MockAvatar } from "./MockAvatar";
 import { ReadTicks } from "./ReadTicks";
@@ -77,7 +78,12 @@ export function WhatsAppGroup({ state }: { state: WhatsAppGroupState }) {
                 }`}
               >
                 {!isMe && showName && (
-                  <p className="text-[12px] font-semibold text-orange-600 mb-0.5">
+                  <p
+                    className="mb-0.5 text-[12px] font-semibold"
+                    style={{
+                      color: getMemberNameColor(String(msg.sender), state.members),
+                    }}
+                  >
                     {name}
                   </p>
                 )}

@@ -9,6 +9,7 @@ interface ChatBubbleProps {
   message: Message;
   themeId: ChatThemeId;
   showSenderName?: string;
+  senderNameColor?: string;
   className?: string;
 }
 
@@ -16,6 +17,7 @@ export function ChatBubble({
   message,
   themeId,
   showSenderName,
+  senderNameColor,
   className = "",
 }: ChatBubbleProps) {
   const theme = chatThemes[themeId];
@@ -29,7 +31,10 @@ export function ChatBubble({
         className={`max-w-[85%] px-3 py-2 ${isMe ? theme.meBubble : theme.otherBubble}`}
       >
         {!isMe && showSenderName && (
-          <p className="mb-0.5 text-[11px] font-semibold text-orange-600">
+          <p
+            className="mb-0.5 text-[11px] font-semibold"
+            style={senderNameColor ? { color: senderNameColor } : undefined}
+          >
             {showSenderName}
           </p>
         )}

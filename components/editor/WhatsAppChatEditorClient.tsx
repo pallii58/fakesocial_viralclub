@@ -7,6 +7,7 @@ import {
 } from "@/lib/defaults";
 import type { WhatsAppChatState } from "@/lib/types";
 import { chatBackgroundDefaults } from "@/lib/chat-background";
+import { getMemberNameColor } from "@/lib/group-member-colors";
 import { EditorLayout } from "@/components/shared/EditorLayout";
 import { ImageUploadField } from "@/components/shared/ImageUploadField";
 import { ChatBackgroundEditor } from "./ChatBackgroundEditor";
@@ -68,6 +69,11 @@ export function WhatsAppChatEditorClient() {
           messages={state.messages}
           themeId="whatsapp"
           getSenderName={isGroup ? (s) => memberName(state, s) : undefined}
+          getSenderNameColor={
+            isGroup
+              ? (s) => getMemberNameColor(s, state.members)
+              : undefined
+          }
         />
       }
       editor={
