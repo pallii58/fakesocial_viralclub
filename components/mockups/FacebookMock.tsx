@@ -2,13 +2,17 @@
 
 import type { SocialEditorState } from "@/lib/types";
 import { CommentThread } from "./CommentThread";
+import { usePreviewBackground } from "@/components/shared/PreviewBackgroundContext";
 import { MockAvatar } from "./MockAvatar";
 
 export function FacebookMock({ state }: { state: SocialEditorState }) {
   const { post, comments, viewMode } = state;
+  const { showBackground } = usePreviewBackground();
 
   return (
-    <div className="flex h-full flex-col bg-[#f0f2f5]">
+    <div
+      className={`flex h-full flex-col ${showBackground ? "bg-[#f0f2f5]" : "bg-transparent"}`}
+    >
       <div className="border-b border-zinc-200 bg-white px-3 pb-2 pt-12">
         <p className="text-center text-sm font-semibold text-[#1877F2]">facebook</p>
       </div>

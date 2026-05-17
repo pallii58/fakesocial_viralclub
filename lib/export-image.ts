@@ -36,12 +36,13 @@ export async function exportMock(
   element: HTMLElement | null,
   platform: string,
   format: "png" | "jpeg",
-  suffix = ""
+  suffix = "",
+  options: CaptureOptions = {}
 ) {
   if (!element) return;
   const ext = format === "png" ? "png" : "jpg";
   const timestamp = Date.now();
-  const dataUrl = await captureElement(element, format);
+  const dataUrl = await captureElement(element, format, options);
   downloadDataUrl(
     dataUrl,
     `fake-social-${platform}${suffix}-${timestamp}.${ext}`

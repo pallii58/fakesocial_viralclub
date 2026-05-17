@@ -2,13 +2,17 @@
 
 import type { SocialEditorState } from "@/lib/types";
 import { CommentThread } from "./CommentThread";
+import { usePreviewBackground } from "@/components/shared/PreviewBackgroundContext";
 import { MockAvatar } from "./MockAvatar";
 
 export function YouTubeMock({ state }: { state: SocialEditorState }) {
   const { post, comments, viewMode } = state;
+  const { showBackground } = usePreviewBackground();
 
   return (
-    <div className="flex h-full flex-col bg-[#0f0f0f] text-white">
+    <div
+      className={`flex h-full flex-col text-white ${showBackground ? "bg-[#0f0f0f]" : "bg-transparent"}`}
+    >
       <div className="flex items-center gap-2 px-3 pb-2 pt-12">
         <span className="text-red-600 text-lg font-bold">▶</span>
         <span className="text-sm font-medium">YouTube</span>

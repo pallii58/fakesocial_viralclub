@@ -2,13 +2,17 @@
 
 import type { SocialEditorState } from "@/lib/types";
 import { CommentThread } from "./CommentThread";
+import { usePreviewBackground } from "@/components/shared/PreviewBackgroundContext";
 import { MockAvatar } from "./MockAvatar";
 
 export function TikTokMock({ state }: { state: SocialEditorState }) {
   const { post, comments, viewMode } = state;
+  const { showBackground } = usePreviewBackground();
 
   return (
-    <div className="flex h-full flex-col bg-black text-white">
+    <div
+      className={`flex h-full flex-col text-white ${showBackground ? "bg-black" : "bg-transparent"}`}
+    >
       {viewMode === "full" && (
         <div className="relative flex-1 min-h-[420px] bg-zinc-900">
           {post.image ? (

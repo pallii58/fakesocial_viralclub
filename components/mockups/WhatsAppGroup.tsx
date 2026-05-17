@@ -2,6 +2,7 @@
 
 import type { WhatsAppGroupState } from "@/lib/types";
 import { MockAvatar } from "./MockAvatar";
+import { usePreviewBackground } from "@/components/shared/PreviewBackgroundContext";
 import { ReadTicks } from "./ReadTicks";
 
 export function WhatsAppGroup({ state }: { state: WhatsAppGroupState }) {
@@ -15,8 +16,12 @@ export function WhatsAppGroup({ state }: { state: WhatsAppGroupState }) {
     return state.members.find((m) => m.id === sender)?.avatar;
   };
 
+  const { showBackground } = usePreviewBackground();
+
   return (
-    <div className="flex h-full flex-col bg-[#efeae2]">
+    <div
+      className={`flex h-full flex-col ${showBackground ? "bg-[#efeae2]" : "bg-transparent"}`}
+    >
       <div className="flex items-center gap-3 bg-[#008069] px-3 pb-3 pt-12 text-white">
         <span className="text-lg">‹</span>
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-sm">
