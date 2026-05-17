@@ -16,9 +16,6 @@ export default function Home() {
               pronti in un click
             </span>
           </h1>
-          <p className="mt-4 text-lg text-zinc-400">
-            Chat, DM, commenti e post finti per presentazioni e pitch.
-          </p>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
