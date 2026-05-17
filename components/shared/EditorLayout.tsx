@@ -58,7 +58,7 @@ export function EditorLayout({
           <PreviewBackgroundProvider showBackground={showBackground}>
             <div className="editor-panel">
               <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="editor-label">Anteprima schermo</h2>
+                <h2 className="editor-label">Anteprima</h2>
                 <BackgroundPills
                   showBackground={showBackground}
                   onChange={setShowBackground}
