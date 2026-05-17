@@ -7,9 +7,16 @@ import { EditorLayout } from "@/components/shared/EditorLayout";
 import { GroupMembersEditor } from "@/components/editor/GroupMembersEditor";
 import { MessageListEditor } from "@/components/editor/MessageListEditor";
 import { WhatsAppGroup } from "@/components/mockups/WhatsAppGroup";
+import { BubblesStack } from "@/components/mockups/bubbles/BubblesStack";
+import { exportSingleBubble } from "@/lib/export-bubble";
 
 export default function WhatsAppGroupPage() {
   const [state, setState] = useState<WhatsAppGroupState>(defaultWhatsAppGroup);
+
+  const memberName = (sender: string) => {
+    if (sender === "me") return "Tu";
+    return state.members.find((m) => m.id === sender)?.name ?? sender;
+  };
 
   const senders = [
     { id: "me", label: "Tu" },
@@ -24,6 +31,14 @@ export default function WhatsAppGroupPage() {
       platform="whatsapp-group"
       backHref="/whatsapp"
       onReset={() => setState(defaultWhatsAppGroup())}
+      showBubbleExport
+      bubblesPreview={
+        <BubblesStack
+          messages={state.messages}
+          themeId="whatsapp"
+          getSenderName={memberName}
+        />
+      }
       editor={
         <div className="space-y-4">
           <input
@@ -41,6 +56,14 @@ export default function WhatsAppGroupPage() {
             onChange={(messages) => setState({ ...state, messages })}
             senders={senders}
             showReadStatus
+            onExportBubble={(msg) =>
+              exportSingleBubble(
+                msg,
+                "whatsapp",
+                "whatsapp-group",
+                msg.sender !== "me" ? memberName(String(msg.sender)) : undefined
+              )
+            }
           />
         </div>
       }

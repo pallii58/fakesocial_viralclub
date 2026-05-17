@@ -39,12 +39,15 @@ export interface PostContext {
 
 export type ViewMode = "comments-only" | "full";
 
-export interface WhatsAppDMState {
+/** Stato chat DM / Messenger (tutte le piattaforme) */
+export interface DMChatState {
   contactName: string;
   contactAvatar?: string;
   contactStatus?: string;
   messages: Message[];
 }
+
+export type WhatsAppDMState = DMChatState;
 
 export interface WhatsAppGroupState {
   groupName: string;

@@ -11,7 +11,7 @@ export const platforms: PlatformCard[] = [
   {
     id: "whatsapp",
     name: "WhatsApp",
-    description: "Chat DM e gruppi",
+    description: "DM, gruppi e export bolle",
     href: "/whatsapp",
     color: "#25D366",
     icon: "💬",
@@ -19,7 +19,7 @@ export const platforms: PlatformCard[] = [
   {
     id: "instagram",
     name: "Instagram",
-    description: "Post e commenti",
+    description: "Direct, post e commenti",
     href: "/instagram",
     color: "#E1306C",
     icon: "📷",
@@ -27,7 +27,7 @@ export const platforms: PlatformCard[] = [
   {
     id: "facebook",
     name: "Facebook",
-    description: "Post e commenti",
+    description: "Messenger, post e commenti",
     href: "/facebook",
     color: "#1877F2",
     icon: "👍",
@@ -35,7 +35,7 @@ export const platforms: PlatformCard[] = [
   {
     id: "tiktok",
     name: "TikTok",
-    description: "Video e commenti",
+    description: "DM, video e commenti",
     href: "/tiktok",
     color: "#000000",
     icon: "🎵",
@@ -43,7 +43,7 @@ export const platforms: PlatformCard[] = [
   {
     id: "youtube",
     name: "YouTube",
-    description: "Video e commenti",
+    description: "Inbox, video e commenti",
     href: "/youtube",
     color: "#FF0000",
     icon: "▶️",

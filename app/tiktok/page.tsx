@@ -1,19 +1,24 @@
-"use client";
+import { PlatformHub } from "@/components/shared/PlatformHub";
 
-import { SocialEditorClient } from "@/components/editor/SocialEditorClient";
-import { TikTokMock } from "@/components/mockups/TikTokMock";
-
-export default function TikTokPage() {
+export default function TikTokHubPage() {
   return (
-    <SocialEditorClient
-      title="TikTok"
-      platform="tiktok"
-      defaultPost={{
-        author: "creator_demo",
-        caption: "POV: il momento perfetto per il tuo brand 🎬 #fyp #viral",
-        likes: 125400,
-      }}
-      preview={(state) => <TikTokMock state={state} />}
+    <PlatformHub
+      platformName="TikTok"
+      color="#000000"
+      links={[
+        {
+          href: "/tiktok/dm",
+          title: "Direct (DM)",
+          description: "Messaggi privati stile TikTok",
+          color: "#fe2c55",
+        },
+        {
+          href: "/tiktok/video",
+          title: "Video e commenti",
+          description: "Video con caption e thread commenti",
+          color: "#000000",
+        },
+      ]}
     />
   );
 }

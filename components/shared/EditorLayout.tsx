@@ -12,6 +12,8 @@ interface EditorLayoutProps {
   onReset: () => void;
   editor: ReactNode;
   preview: ReactNode;
+  showBubbleExport?: boolean;
+  bubblesPreview?: ReactNode;
 }
 
 export function EditorLayout({
@@ -21,8 +23,11 @@ export function EditorLayout({
   onReset,
   editor,
   preview,
+  showBubbleExport = false,
+  bubblesPreview,
 }: EditorLayoutProps) {
   const exportRef = useRef<HTMLDivElement>(null);
+  const bubblesRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="min-h-screen bg-zinc-100">
@@ -44,6 +49,8 @@ export function EditorLayout({
             exportRef={exportRef}
             platform={platform}
             onReset={onReset}
+            bubblesRef={bubblesRef}
+            showBubbleExport={showBubbleExport}
           />
         </div>
       </header>
@@ -55,11 +62,23 @@ export function EditorLayout({
           </h2>
           {editor}
         </section>
-        <section className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 shadow-sm sm:p-6">
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-500">
-            Anteprima
-          </h2>
-          <PhoneFrame ref={exportRef}>{preview}</PhoneFrame>
+        <section className="space-y-4">
+          <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 shadow-sm sm:p-6">
+            <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-500">
+              Anteprima schermo
+            </h2>
+            <PhoneFrame ref={exportRef}>{preview}</PhoneFrame>
+          </div>
+          {showBubbleExport && bubblesPreview && (
+            <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 shadow-sm sm:p-6">
+              <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-zinc-500">
+                Anteprima bolle (export trasparente)
+              </h2>
+              <div className="flex justify-center rounded-lg bg-[repeating-conic-gradient(#e4e4e7_0%_25%,transparent_0%_50%)] bg-[length:16px_16px] p-4">
+                <div ref={bubblesRef}>{bubblesPreview}</div>
+              </div>
+            </div>
+          )}
         </section>
       </div>
     </div>

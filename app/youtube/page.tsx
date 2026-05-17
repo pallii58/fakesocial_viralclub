@@ -1,21 +1,24 @@
-"use client";
+import { PlatformHub } from "@/components/shared/PlatformHub";
 
-import { SocialEditorClient } from "@/components/editor/SocialEditorClient";
-import { YouTubeMock } from "@/components/mockups/YouTubeMock";
-
-export default function YouTubePage() {
+export default function YouTubeHubPage() {
   return (
-    <SocialEditorClient
-      title="YouTube"
-      platform="youtube"
-      defaultPost={{
-        author: "Canale Demo",
-        caption: "Il video che cambierà tutto — Tutorial completo 2026",
-        likes: 892340,
-        timestamp: "2 giorni fa",
-        verified: true,
-      }}
-      preview={(state) => <YouTubeMock state={state} />}
+    <PlatformHub
+      platformName="YouTube"
+      color="#FF0000"
+      links={[
+        {
+          href: "/youtube/dm",
+          title: "Messaggi / Inbox",
+          description: "Chat creator stile YouTube Studio",
+          color: "#3ea6ff",
+        },
+        {
+          href: "/youtube/video",
+          title: "Video e commenti",
+          description: "Thumbnail, titolo e thread commenti",
+          color: "#FF0000",
+        },
+      ]}
     />
   );
 }

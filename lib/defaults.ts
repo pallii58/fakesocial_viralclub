@@ -1,10 +1,10 @@
 import type {
   Comment,
+  DMChatState,
   GroupMember,
   Message,
   PostContext,
   SocialEditorState,
-  WhatsAppDMState,
   WhatsAppGroupState,
 } from "./types";
 
@@ -109,12 +109,101 @@ const defaultPost: PostContext = {
   verified: true,
 };
 
-export function defaultWhatsAppDM(): WhatsAppDMState {
+export function defaultDM(overrides?: Partial<DMChatState>): DMChatState {
   return {
     contactName: "Cliente Demo",
     contactStatus: "online",
-    messages: [...defaultMessages],
+    messages: defaultMessages.map((m) => ({ ...m })),
+    ...overrides,
   };
+}
+
+export function defaultWhatsAppDM(): DMChatState {
+  return defaultDM({ contactStatus: "online" });
+}
+
+export function defaultInstagramDM(): DMChatState {
+  return defaultDM({
+    contactName: "influencer_demo",
+    contactStatus: "Attivo ora",
+    messages: [
+      {
+        id: "ig1",
+        text: "Ciao! Ti va una collab? ✨",
+        sender: "other",
+        timestamp: "14:02",
+      },
+      {
+        id: "ig2",
+        text: "Certo, mandami il brief!",
+        sender: "me",
+        timestamp: "14:05",
+      },
+    ],
+  });
+}
+
+export function defaultMessengerDM(): DMChatState {
+  return defaultDM({
+    contactName: "Marco Bianchi",
+    contactStatus: "Attivo ora",
+    messages: [
+      {
+        id: "fb1",
+        text: "Ehi, hai visto il post di oggi?",
+        sender: "other",
+        timestamp: "11:30",
+      },
+      {
+        id: "fb2",
+        text: "Sì! Possiamo boostarlo?",
+        sender: "me",
+        timestamp: "11:32",
+      },
+    ],
+  });
+}
+
+export function defaultTikTokDM(): DMChatState {
+  return defaultDM({
+    contactName: "creator_viral",
+    contactStatus: "Online",
+    messages: [
+      {
+        id: "tt1",
+        text: "bro questo trend è perfetto per il brand 🔥",
+        sender: "other",
+        timestamp: "18:44",
+      },
+      {
+        id: "tt2",
+        text: "lo giramo domani!",
+        sender: "me",
+        timestamp: "18:45",
+      },
+    ],
+  });
+}
+
+export function defaultYouTubeDM(): DMChatState {
+  return defaultDM({
+    contactName: "Partner Brand",
+    contactStatus: "Di solito risponde entro 1 h",
+    messages: [
+      {
+        id: "yt1",
+        text: "Ciao! Possiamo parlare della sponsorizzazione?",
+        sender: "other",
+        timestamp: "09:10",
+      },
+      {
+        id: "yt2",
+        text: "Certo, ti mando i dettagli via email.",
+        sender: "me",
+        timestamp: "09:15",
+      },
+    ],
+  });
 }
 
 export function defaultWhatsAppGroup(): WhatsAppGroupState {

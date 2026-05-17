@@ -1,14 +1,24 @@
-"use client";
+import { PlatformHub } from "@/components/shared/PlatformHub";
 
-import { SocialEditorClient } from "@/components/editor/SocialEditorClient";
-import { FacebookMock } from "@/components/mockups/FacebookMock";
-
-export default function FacebookPage() {
+export default function FacebookHubPage() {
   return (
-    <SocialEditorClient
-      title="Facebook"
-      platform="facebook"
-      preview={(state) => <FacebookMock state={state} />}
+    <PlatformHub
+      platformName="Facebook"
+      color="#1877F2"
+      links={[
+        {
+          href: "/facebook/messenger",
+          title: "Messenger",
+          description: "Chat privata stile Facebook Messenger",
+          color: "#0084ff",
+        },
+        {
+          href: "/facebook/post",
+          title: "Post e commenti",
+          description: "Post con testo/immagine e commenti",
+          color: "#1877F2",
+        },
+      ]}
     />
   );
 }

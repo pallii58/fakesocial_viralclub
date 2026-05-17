@@ -8,7 +8,9 @@ export default function WhatsAppPage() {
           ← Home
         </Link>
         <h1 className="mt-4 text-2xl font-bold text-zinc-900">WhatsApp</h1>
-        <p className="mt-1 text-zinc-600">Scegli il tipo di chat</p>
+        <p className="mt-1 text-zinc-600">
+          DM, gruppi — export PNG bolle trasparenti e singola bolla
+        </p>
         <div className="mt-8 grid gap-4">
           <Link
             href="/whatsapp/dm"
