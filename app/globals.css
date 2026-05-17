@@ -71,11 +71,11 @@ body {
 }
 
 .editor-select-menu {
-  @apply absolute z-50 mt-1 max-h-52 w-full overflow-auto rounded-lg border border-violet-500/25 bg-[#12121a] py-1 shadow-[0_12px_40px_rgba(0,0,0,0.55)] backdrop-blur-sm;
+  @apply absolute z-50 mt-1 max-h-52 w-full overflow-auto rounded-lg border border-violet-500/25 bg-[#12121a] p-0 shadow-[0_12px_40px_rgba(0,0,0,0.55)] backdrop-blur-sm;
 }
 
 .editor-select-option {
-  @apply cursor-pointer px-3 py-2.5 text-sm text-zinc-200 outline-none transition hover:bg-violet-500/15 focus:bg-violet-500/15;
+  @apply cursor-pointer px-3 py-2 text-sm text-zinc-200 outline-none transition hover:bg-violet-500/15 focus:bg-violet-500/15;
 }
 
 .editor-select-option[data-selected="true"] {
