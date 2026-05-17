@@ -7,10 +7,8 @@ export interface NotificationPlatformConfig {
   avatarBg: string;
   avatarText: string;
   showGroup: boolean;
-  /** Logo app al posto del testo (es. WhatsApp) */
-  showAppIcon?: boolean;
-  /** Avatar in basso a destra, quadrato arrotondato */
-  avatarBottomRight?: boolean;
+  /** Logo app in basso a destra sull'avatar (es. WhatsApp) */
+  avatarAppBadge?: boolean;
   defaultState: () => PushNotificationState;
 }
 
@@ -21,8 +19,7 @@ export const notificationConfig: Record<BrandId, NotificationPlatformConfig> = {
     avatarBg: "#25D366",
     avatarText: "#ffffff",
     showGroup: true,
-    showAppIcon: true,
-    avatarBottomRight: true,
+    avatarAppBadge: true,
     defaultState: () => ({
       contactName: "Marco Bianchi",
       message: "Perfetto, ci sentiamo domani alle 15:00",
