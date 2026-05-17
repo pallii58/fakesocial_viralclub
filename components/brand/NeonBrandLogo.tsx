@@ -19,7 +19,7 @@ const LOGO_SCALE: Record<BrandId, number> = {
   whatsapp: 0.92,
   facebook: 0.92,
   tiktok: 0.94,
-  youtube: 1.12,
+  youtube: 0.9,
 };
 
 function LogoGroup({
@@ -59,6 +59,7 @@ export function NeonBrandLogo({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      overflow="visible"
       aria-hidden
     >
       <defs>
